@@ -1,0 +1,24 @@
+- sections:
+    - local: index
+      title: Hugging Face on Microsoft Azure
+    - local: features
+      title: Features & Benefits
+    - local: resources
+      title: Other Resources
+  title: Getting Started
+- sections:
+    - local: azure-ml/introduction
+      title: Introduction
+    - local: azure-ml/tasks
+      title: Supported Tasks
+    - local: azure-ml/hardware
+      title: Supported Hardware
+    - sections:
+        - local: azure-ml/examples/deploy-llms
+          title: Deploy LLMs from Hugging Face on Azure ML
+      title: Examples
+  title: Azure ML
+- sections:
+    - local: azure-ai-foundry/introduction
+      title: Introduction
+  title: (Coming soon) Azure AI Foundry
