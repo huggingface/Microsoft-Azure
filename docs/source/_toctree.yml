@@ -7,6 +7,12 @@
       title: Other Resources
   title: Getting Started
 - sections:
+    - local: deploy-from-hub
+      title: Deploy Hugging Face models on Azure from the Hub
+    - local: deploy-from-azure-ml
+      title: Deploy Hugging Face models from Azure
+  title: Guides
+- sections:
     - local: azure-ml/introduction
       title: Introduction
     - local: azure-ml/tasks
@@ -17,6 +23,7 @@
         - local: azure-ml/examples/deploy-llms
           title: Deploy LLMs from Hugging Face on Azure ML
       title: Examples
+      isExpanded: false
   title: Azure ML
 - sections:
     - local: azure-ai-foundry/introduction
