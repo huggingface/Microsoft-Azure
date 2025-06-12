@@ -11,6 +11,7 @@
       title: Deploy Hugging Face models on Azure from the Hub
     - local: deploy-from-azure-ml
       title: Deploy Hugging Face models from Azure
+  local: introduction
   title: Guides
 - sections:
     - local: azure-ml/introduction
