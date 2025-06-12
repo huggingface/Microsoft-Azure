@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: trufflehog
+        name: trufflehog
+        entry: bash -c "trufflehog git file://. --since-commit HEAD --results=verified,unknown --fail"
+        language: system
+        stages: ["pre-commit", "pre-push"]
