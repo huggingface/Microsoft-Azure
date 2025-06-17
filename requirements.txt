@@ -1,2 +1,3 @@
 git+https://github.com/huggingface/doc-builder@main#egg=hf-doc-builder
 watchdog>=6.0.0
+pyyaml>=6.0.0
