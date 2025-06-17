@@ -1,32 +1,27 @@
 - sections:
-    - local: index
-      title: Hugging Face on Microsoft Azure
-    - local: features
-      title: Features & Benefits
-    - local: resources
-      title: Other Resources
+  - local: index
+    title: Hugging Face on Microsoft Azure
+  - local: features
+    title: Features & Benefits
+  - local: resources
+    title: Other Resources
   title: Getting Started
 - sections:
-    - local: guides/deploy-from-hub
-      title: Deploy Hugging Face models on Azure from the Hub
-    - local: guides/deploy-from-azure-ml
-      title: Deploy Hugging Face models from Azure
+  - local: guides/deploy-from-hub
+    title: Deploy Hugging Face models on Azure from the Hub
+  - local: guides/deploy-from-azure-ml
+    title: Deploy Hugging Face models from Azure
   local: guides/introduction
   title: Guides
 - sections:
-    - local: azure-ml/introduction
-      title: Introduction
-    - local: azure-ml/tasks
-      title: Supported Tasks
-    - local: azure-ml/hardware
-      title: Supported Hardware
-    - sections:
-        - local: azure-ml/examples/deploy-llms
-          title: Deploy LLMs from Hugging Face on Azure ML
-      title: Examples
-      isExpanded: false
+  - local: azure-ml/introduction
+    title: Introduction
+  - local: azure-ml/tasks
+    title: Supported Tasks
+  - local: azure-ml/hardware
+    title: Supported Hardware
   title: Azure ML
 - sections:
-    - local: azure-ai-foundry/introduction
-      title: Introduction
+  - local: azure-ai-foundry/introduction
+    title: Introduction
   title: (Coming soon) Azure AI Foundry
