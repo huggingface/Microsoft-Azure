@@ -17,7 +17,7 @@ docs: clean
 clean:
 	@echo "Cleaning up generated documentation..."
 	@rm -rf docs/source/azure-ml/examples
-	@awk '/^# GENERATED CONTENT DO NOT EDIT!/,/^# END GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml > docs/source/_toctree.yml.tmp && mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
+	@awk '/# GENERATED CONTENT DO NOT EDIT/,/# END OF GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml > docs/source/_toctree.yml.tmp; mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
 	@echo "Cleaning up generated Markdown Notebook files (if any)..."
 	@find examples/azure-ml -name "azure-notebook.md" -type f -delete
 	@echo "Cleanup complete."
