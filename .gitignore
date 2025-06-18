@@ -74,6 +74,9 @@ docs/_build/
 # Generated documentation examples (auto-generated content)
 docs/source/*/examples/
 
+# Prevent pushing PNG images under examples, since those now live at https://huggingface.co/datasets/huggingface/documentation-images/tree/main/microsoft-azure
+examples/**/*.png
+
 # PyBuilder
 .pybuilder/
 target/
