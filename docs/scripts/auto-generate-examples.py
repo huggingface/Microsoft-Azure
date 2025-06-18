@@ -27,16 +27,13 @@ def process_file(root, file, dir):
     # For Juypter Notebooks, remove the comment i.e. `<!--` and the `--!>` but keep the metadata
     content = re.sub(r"<!-- (.*?) -->", r"\1", content, flags=re.DOTALL)
 
-    # Replace image and link paths
-    # NOTE: Images are stored in https://huggingface.co/datasets/huggingface/documentation-images
-    # so no need to fix paths, but keeping this commented for future use if images move to GitHub
-    # content = re.sub(
-    #     r"\(\./(imgs|assets)/([^)]*\.png)\)",
-    #     r"(https://raw.githubusercontent.com/huggingface/Microsoft-Azure/main/"
-    #     + root
-    #     + r"/\1/\2)",
-    #     content,
-    # )
+    content = re.sub(
+        r"\(\./([^/)]*\.png)\)",
+        r"(https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/"
+        + root.replace("examples/", "")
+        + r"/\1)",
+        content,
+    )
     content = re.sub(
         r"\(\.\./([^)]+)\)",
         r"(https://github.com/huggingface/Microsoft-Azure/tree/main/examples/"
