@@ -1,0 +1,31 @@
+# One-click deployments from the Hugging Face Hub in Azure ML
+
+This guide introduces the Hugging Face Hub and Azure Machine Learning (Azure ML) one-click deployment of open-source models for real-time inference.
+
+TL;DR The Hugging Face Hub is a collaborative platform hosting over a million open-source machine learning models, datasets, and demos. It supports a wide range of tasks across natural language processing, vision, and audio, and provides version-controlled repositories with metadata, model cards, and programmatic access via APIs and popular ML libraries. Azure Machine Learning is a cloud-based platform for building, deploying, and managing machine learning models at scale. It provides managed infrastructure, including powerful CPU and GPU instances, automated scaling, secure endpoints, and monitoring, making it suitable for both experimentation and production deployment.
+
+The integration between Hugging Face Hub and Azure ML allows users to deploy thousands of Hugging Face models directly onto Azure’s managed infrastructure with minimal configuration. This is achieved through a native model catalog in Azure ML Studio, which features Hugging Face models ready for real-time deployment.
+
+The steps required to deploy an open-source model from the Hugging Face Hub to Azure ML as a managed online endpoint for real-time inference are the following:
+
+1. Go to the [Hugging Face Hub Models page](https://huggingface.co/models), and browse all the open-source models available on the Hub.
+
+    <Tip>
+
+    Alternatively, you can also start directly from the [Hugging Face Collection on the Azure ML Model Catalog](https://ml.azure.com/model/catalog?selectedCollection=huggingface) instead of the Hugging Face Hub, and just explore the available models using the Azure ML Model Catalog filters to deploy the models that you want. 
+
+    </Tip>
+
+2. Leverage the Hub filters to easily find and discover new models based on the filters as e.g. task type, size based in number of parameters, inference engine support, and much more.
+
+3. Select the model that you want, and within its model card click on the "Deploy" button, and then select the option "Azure ML", and then click on "Go to model in Azure ML". Note that the model may not be available for deployment, meaning that the "Deploy" button may not be enabled for some models; or that the "Azure ML" option may not be listed, meaning that the model is not supported within any of the inference engines or tasks supported on Azure ML; or also that the "Azure ML" button is available, but it says "Request to add", meaning that model is not available but could be publish, so you can request its addition into the Hugging Face Collection in the Azure ML Model Catalog.
+
+4. On Azure ML Studio, you will be redirected to the model card, and you need to click "Use this model", and fill the configuration values for the endpoint and the deployment, such as the endpoint name, the instance type, or the instance count, among others; then click "Deploy".
+
+5. After the endpoint is created and the deployment is ready, you will be able to send requests to the deployed API. For more information on how to send inference requests to it, you can either check the "Consume" tab within the Azure ML Endpoint, or check any of the available Azure ML examples on the documentation. 
+
+<video controls>
+  <source src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/one-click-deployment-azure-ml.mp4" type="video/mp4">
+</video>
+
+More information can be found in the original announcement of the one-click deployment feature from the Hugging Face Hub on Azure ML at [Hugging Face Collaborates with Microsoft to launch Hugging Face Model Catalog on Azure](https://huggingface.co/blog/hugging-face-endpoints-on-azure).
