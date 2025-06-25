@@ -3,10 +3,10 @@ import re
 
 
 def process_readme_files():
-    print("Processing azure-notebook.md files from examples/azure-ml...")
-    os.makedirs("docs/source/azure-ml/examples", exist_ok=True)
+    print("Processing azure-notebook.md files from examples/azure-ai...")
+    os.makedirs("docs/source/azure-ai/examples", exist_ok=True)
 
-    for dir in ["azure-ml"]:
+    for dir in ["azure-ai"]:
         for root, _, files in os.walk(f"examples/{dir}"):
             for file in files:
                 if file == "azure-notebook.md":
@@ -18,7 +18,7 @@ def process_file(root, file, dir):
     subdir = root.replace(f"examples/{dir}/", "")
     base = os.path.basename(subdir)
 
-    target = f"docs/source/azure-ml/examples/{base}.mdx"
+    target = f"docs/source/azure-ai/examples/{base}.mdx"
 
     print(f"Processing {file_path} to {target}")
     with open(file_path, "r") as f:

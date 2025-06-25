@@ -12,12 +12,12 @@
   local: guides/introduction
   title: Guides
 - sections:
-  - local: azure-ml/introduction
+  - local: azure-ai/introduction
     title: Introduction
-  - local: azure-ml/tasks
+  - local: azure-ai/tasks
     title: Supported Tasks
-  - local: azure-ml/hardware
+  - local: azure-ai/hardware
     title: Supported Hardware
-  title: Azure ML
+  title: Azure AI
 - local: faq
   title: Frequent Asked Questions (FAQ)

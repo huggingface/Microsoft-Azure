@@ -22,7 +22,7 @@ def update_toctree_yaml():
     content = content.strip() + "\n"
 
     # Find and sort example files
-    example_files = sorted(glob.glob("docs/source/azure-ml/examples/*.mdx"))
+    example_files = sorted(glob.glob("docs/source/azure-ai/examples/*.mdx"))
 
     if not example_files:
         print("No example files found")
@@ -52,33 +52,33 @@ def update_toctree_yaml():
         print("No valid example entries found")
         return
 
-    # Now we need to find the Azure ML section and add the Examples section to it
+    # Now we need to find the Azure AI section and add the Examples section to it
     lines = content.split("\n")
     result_lines = []
     i = 0
-    
+
     while i < len(lines):
         line = lines[i]
         result_lines.append(line)
-        
-        # Look for the Azure ML section
-        if line.strip() == "title: Azure ML":
+
+        # Look for the Azure AI section
+        if line.strip() == "title: Azure AI":
             # Add the Examples section before the title
-            result_lines.pop()  # Remove the "title: Azure ML" line we just added
-            
+            result_lines.pop()  # Remove the "title: Azure AI" line we just added
+
             # Add the Examples section with proper markers
             result_lines.append("  # GENERATED CONTENT DO NOT EDIT")
             result_lines.append("  - sections:")
             for base, title in example_entries:
-                result_lines.append(f"    - local: azure-ml/examples/{base}")
+                result_lines.append(f"    - local: azure-ai/examples/{base}")
                 result_lines.append(f"      title: {title}")
             result_lines.append("    title: Examples")
             result_lines.append("    isExpanded: false")
             result_lines.append("  # END OF GENERATED CONTENT")
-            
-            # Now add the "title: Azure ML" line
+
+            # Now add the "title: Azure AI" line
             result_lines.append(line)
-        
+
         i += 1
 
     # Write the updated content
@@ -88,3 +88,4 @@ def update_toctree_yaml():
 
 if __name__ == "__main__":
     update_toctree_yaml()
+

@@ -1,14 +1,14 @@
 .PHONY: docs clean serve help
 
 docs: clean
-	@echo "Creating docs/source/azure-ml/examples directory for examples/azure-ml..."
-	@mkdir -p docs/source/azure-ml/examples
+	@echo "Creating docs/source/azure-ai/examples directory for examples/azure-ai..."
+	@mkdir -p docs/source/azure-ai/examples
 	@echo "Converting Jupyter Notebooks to MDX..."
-	@doc-builder notebook-to-mdx examples/azure-ml/
+	@doc-builder notebook-to-mdx examples/azure-ai/
 	@echo "Auto-generating example files for documentation..."
 	@python docs/scripts/auto-generate-examples.py
 	@echo "Cleaning up generated Markdown Notebook files..."
-	@find examples/azure-ml/ -name "azure-notebook.md" -type f -delete
+	@find examples/azure-ai/ -name "azure-notebook.md" -type f -delete
 	@echo "Generating YAML tree structure and appending to _toctree.yml..."
 	@python docs/scripts/auto-update-toctree.py
 	@echo "YAML tree structure appended to docs/source/_toctree.yml"
@@ -16,10 +16,10 @@ docs: clean
 
 clean:
 	@echo "Cleaning up generated documentation..."
-	@rm -rf docs/source/azure-ml/examples
+	@rm -rf docs/source/azure-ai/examples
 	@awk '/# GENERATED CONTENT DO NOT EDIT/,/# END OF GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml > docs/source/_toctree.yml.tmp; mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
 	@echo "Cleaning up generated Markdown Notebook files (if any)..."
-	@find examples/azure-ml -name "azure-notebook.md" -type f -delete
+	@find examples/azure-ai -name "azure-notebook.md" -type f -delete
 	@echo "Cleanup complete."
 
 serve:
