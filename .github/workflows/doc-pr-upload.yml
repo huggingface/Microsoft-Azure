@@ -6,6 +6,10 @@ on:
     types:
       - completed
 
+permissions: # only because internal repo
+  actions: read
+  pull-requests: read
+
 jobs:
   build:
     uses: huggingface/doc-builder/.github/workflows/upload_pr_documentation.yml@main
