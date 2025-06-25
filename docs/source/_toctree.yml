@@ -19,7 +19,3 @@
   - local: azure-ml/hardware
     title: Supported Hardware
   title: Azure ML
-- sections:
-  - local: azure-ai-foundry/introduction
-    title: Introduction
-  title: (Coming soon) Azure AI Foundry
