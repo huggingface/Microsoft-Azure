@@ -19,3 +19,5 @@
   - local: azure-ml/hardware
     title: Supported Hardware
   title: Azure ML
+- local: faq
+  title: Frequent Asked Questions (FAQ)
