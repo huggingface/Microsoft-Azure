@@ -6,10 +6,8 @@ on:
     types:
       - completed
 
-permissions:
+permissions: # only because internal repo
   actions: read
-  # issues: read
-  # discussions: read
   pull-requests: read
 
 jobs:
