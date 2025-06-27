@@ -1,7 +1,25 @@
 # Frequent Asked Questions (FAQ)
 
-## What is the difference between Azure ML and the Azure AI Foundry Hub?
+## What is Azure Machine Learning (AzureML)?
 
-Azure Machine Learning is a cloud service for accelerating and managing the machine learning (ML) project lifecycle. ML professionals, data scientists, and engineers can use it in their day-to-day workflows to train and deploy models and manage machine learning operations (MLOps). Whereas, Azure AI Foundry Hub is a resource type that is used in combination with Azure AI Foundry resource type, and is only required for selected use cases. Hub resources provides access to open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities, next to capabilities supported by its associated AI Foundry resource.
+Azure ML is Microsoft’s cloud-native platform for fully managing the ML lifecycle—training, deployment, monitoring, pipelines, AutoML, model registries, and responsible AI tooling—designed for data scientists and ML engineers.
 
-This being said, the Azure AI Foundry Hub is a resource in combination with Azure AI Foundry, on top of Azure ML, specific for Generative AI use-cases, such as LLMs, VLMs, and so on. Every deployment on the Azure AI Foundry Hub will also show as a deployment within Azure ML, under the same Hub-based project; but when deploying on the Azure AI Foundry Hub, one could also leverage and benefit from the extended Generative AI capabilities that the Azure AI Foundry brings.
+## What is Azure AI Foundry (formerly Azure AI Studio)?
+
+Azure AI  Foundry builds on Azure ML but is tailored specifically for generative AI and agent-based applications. It offers:
+* A unified experience for building, evaluating, and deploying LLMs and multimodal agents.
+* Access to a broad catalog of open-source and commercial frontier models—from Azure OpenAI, Hugging Face, Meta, DeepSeek, etc. 
+* Integrated tools like model evaluation leaderboards, prompt flows (for RAG), content safety, and agent orchestration.
+
+## What’s the difference between a **Hub-based project** and a **Foundry (standalone) project**?
+
+| Feature | Hub-based project | Standalone Foundry project |
+|--------|--------------------|-----------------------------|
+| Requires a Hub resource | ✅ Yes—project is linked to a hub | ❌ No—project created individually |
+| Shared infrastructure (compute/quota) | ✅ Yes | ❌ No |
+| Shared security/network settings | ✅ Yes | ❌ No |
+| Shared resource connections | ✅ Yes (e.g., models, storage) | ❌ Per‑project only |
+| Full Generative AI tooling (fine-tuning, evaluation, RAG, agent orchestration) | ✅ Yes | ⚠️ Limited support |
+| Accessible from Azure ML Studio | ✅ Yes | Limited/absent |
+
+Hub-based projects provide **complete** access to generative-AI features; standalone projects operate with **limited** capabilities. Open-model deployments are only accessible through Hub-based project for now.
