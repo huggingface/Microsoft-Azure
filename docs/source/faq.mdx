@@ -1,0 +1,29 @@
+# Frequent Asked Questions (FAQ)
+
+## What is Azure Machine Learning (AzureML)?
+
+Azure ML is Microsoft’s cloud-native platform for fully managing the ML lifecycle—training, deployment, monitoring, pipelines, AutoML, model registries, and responsible AI tooling—designed for data scientists and ML engineers.
+
+## What is Azure AI Foundry (formerly Azure AI Studio)?
+
+Azure AI  Foundry builds on Azure ML but is tailored specifically for generative AI and agent-based applications. It offers:
+* A unified experience for building, evaluating, and deploying LLMs and multimodal agents.
+* Access to a broad catalog of open-source and commercial frontier models—from Azure OpenAI, Hugging Face, Meta, DeepSeek, etc. 
+* Integrated tools like model evaluation leaderboards, prompt flows (for RAG), content safety, and agent orchestration.
+
+## What’s the difference between a **Hub-based project** and a **Foundry (standalone) project**?
+
+| Feature | Hub-based project | Standalone Foundry project |
+|--------|--------------------|-----------------------------|
+| Requires a Hub resource | ✅ Yes—project is linked to a hub | ❌ No—project created individually |
+| Shared infrastructure (compute/quota) | ✅ Yes | ❌ No |
+| Shared security/network settings | ✅ Yes | ❌ No |
+| Shared resource connections | ✅ Yes (e.g., models, storage) | ❌ Per‑project only |
+| Full Generative AI tooling (fine-tuning, evaluation, RAG, agent orchestration) | ✅ Yes | ⚠️ Limited support |
+| Accessible from Azure ML Studio | ✅ Yes | Limited/absent |
+
+Hub-based projects provide **complete** access to generative-AI features; standalone projects operate with **limited** capabilities. Open-model deployments are only accessible through Hub-based project for now.
+
+## Can I deploy open models on Azure AI Foundry via the Hugging Face Hub?
+
+Not yet, at the moment the models you deploy from the Hugging Face Hub as described in [One-click deployments from the Hugging Face Hub on Azure ML](./guides/one-click-deployment-azure-ml.mdx) are deployed on Azure ML. If you'd like to deploy those on the Azure AI Foundry on a Hub-based project, then you can either go to your Hub-based project in the Azure AI Foundry and explore the Hugging Face collection to deploy those from there, or just follow any of the Azure AI examples in the documentation that explain how to programmatically deploy those.
