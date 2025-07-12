@@ -1,0 +1,128 @@
+# Configure Microsoft Azure for Azure AI
+
+This page explains how to configure Azure AI in your Microsoft Azure subscription, required to run the Azure AI examples in this documentation, but also to run any example on Azure ML, since these are the basic pre-requisites.
+
+You can either follow along the below steps, or either read more about those in the [Azure Machine Learning Tutorial: Create resources you need to get started](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2).
+
+Also note that the steps below will use the `az` CLI i.e., the Azure CLI, but there are other alternatives such as e.g. the Azure SDK for Python, or even the Azure Portal, so pick the one you feel more comfortable with.
+
+## Azure Account
+
+A Microsoft Azure account with an active subscription. If you don't have a Microsoft Azure account, you can now [create one for free](https://azure.microsoft.com/en-us/pricing/purchase-options/azure-account), including 200 USD worth of credits to use within the next 30 days after the account creation.
+
+## Azure CLI
+
+The Azure CLI (`az`) installed on the instance that you're running this example on, see [the installation steps](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest), and follow the steps of the preferred method based on your instance. Then log in into your subscription as follows:
+
+```bash
+az login
+```
+
+More information at [Sign in with Azure CLI - Login and Authentication](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli?view=azure-cli-latest).
+
+## Azure CLI extension for Azure ML
+
+Besides the Azure CLI (`az`), you also need to install the Azure ML CLI extension (`az ml`) which will be used to create the Azure ML and Azure AI Foundry required resources.
+
+First you will need to list the current extensions and remove any `ml`-related extension before installing the latest one i.e., v2.
+
+```bash
+az extension list
+az extension remove --name azure-cli-ml
+az extension remove --name ml
+```
+
+Then you can install the `az ml` v2 extension as follows:
+
+```bash
+az extension add --name ml
+```
+
+More information at [Azure Machine Learning (ML) - Install and setup the CLI (v2)](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-configure-cli?view=azureml-api-2&tabs=public).
+
+## Azure Resource Group
+
+An Azure Resource Group under the one you will create the Azure AI Foundry Hub-based project (note it will create an Azure AI Foundry resource as an Azure ML Workspace, but not the other way around, meaning that the Azure AI Foundry Hub will be listed as an Azure ML workspace, but leveraging the Azure AI Foundry capabilities for Gen AI), and the rest of the required resources. If you don't have one, you can create it as follows:
+
+```bash
+az group create --name huggingface-azure-rg --location eastus
+```
+
+Then, you can ensure that the resource group was created successfully by e.g. listing all the available resource groups that you have access to on your subscription:
+
+```bash
+az group list --output table
+```
+
+More information at [Manage Azure resource groups by using Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-cli).
+
+<Tip>
+
+You can also create the Azure Resource Group [via the Azure Portal](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal), or [via the Azure Resource Management Python SDK](https://learn.microsoft.com/en-us/azure/developer/python/sdk/examples/azure-sdk-example-resource-group?tabs=bash) (requires it to be installed as `pip install azure-mgmt-resource` in advance).
+
+</Tip>
+
+## Azure AI Foundry Hub-based project
+
+An Azure AI Foundry Hub under the aforementioned subscription and resource group. If you don't have one, you can create it as follows:
+
+```bash
+az ml workspace create \
+    --kind hub \
+    --name huggingface-azure-hub \
+    --resource-group huggingface-azure-rg \
+    --location eastus
+```
+
+<Tip>
+
+Note that the main difference with an standard Azure ML Workspace is that the Azure AI Foundry Hub command requires you to specify the `--kind hub`, removing it would create a standard Azure ML Workspace instead, so you wouldn't benefit from the features that the Azure AI Foundry brings. But, when you create an Azure AI Foundry Hub, you can still benefit from all the features that Azure ML brings, since the Azure AI Foundry Hub will still rely on Azure ML, but not the other way around.
+
+</Tip>
+
+Then, you can ensure that the workspace was created successfully by e.g. listing all the available workspaces that you have access to on your subscription:
+
+```bash
+az ml workspace list --filtered-kinds hub --query "[].{Name:name, Kind:kind}" --resource-group huggingface-azure-rg --output table
+```
+
+<Tip warning>
+
+The `--filtered-kinds` argument has been recently included as of [Azure ML CLI 2.37.0](https://learn.microsoft.com/en-us/azure/machine-learning/azure-machine-learning-release-notes-cli-v2?view=azureml-api-2#azure-machine-learning-cli-v2-v-2370), meaning that you may need to upgrade `az ml` as `az extension update --name ml`.
+
+</Tip>
+
+Once the Azure AI Foundry Hub is created, you need to create an Azure AI Foundry Project linked to that Hub, to do so you first need to obtain the Azure AI Foundry Hub ID of the recently created Hub as follows (replace the resource names with yours):
+
+```bash
+az ml workspace show \
+    --name huggingface-azure-hub \
+    --resource-group huggingface-azure-rg \
+    --query "id" \
+    -o tsv
+```
+
+That command will provide the ID as follows `/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.MachineLearningServices/workspaces/huggingface-azure-hub`, meaning that you can also format it manually yourself with the appropriate replacements. Then you need to run the following command to create the Azure AI Foundry Project for that Hub as:
+
+```bash
+az ml workspace create \
+    --kind project \
+    --hub-id $(az ml workspace show --name huggingface-azure-hub --resource-group huggingface-azure-rg --query "id" -o tsv) \
+    --name huggingface-azure-project \
+    --resource-group huggingface-azure-rg \
+    --location eastus
+```
+
+Finally, you can verify that it was correctly created with the following command:
+
+```bash
+az ml workspace list --filtered-kinds project --query "[].{Name:name, Kind:kind}" --resource-group huggingface-azure-rg --output table
+```
+
+More information at [How to create and manage an Azure AI Foundry Hub](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-azure-ai-resource?tabs=portal) and at [How to create a Hub using the Azure CLI](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=azurecli).
+
+<Tip>
+
+You can also create the Azure AI Foundry Hub [via the Azure Portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-secure-ai-hub), or [via the Azure ML Python SDK](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=python), among other options listed in [Manage AI Hub Resources](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources).
+
+</Tip>
