@@ -73,7 +73,8 @@ def update_toctree_yaml():
                 result_lines.append(f"    - local: azure-ai/examples/{base}")
                 result_lines.append(f"      title: {title}")
             result_lines.append("    title: Examples")
-            result_lines.append("    isExpanded: false")
+            # NOTE: set to true now, to improve discoverability
+            result_lines.append("    isExpanded: true")
             result_lines.append("  # END OF GENERATED CONTENT")
 
             # Now add the "title: Azure AI" line
@@ -88,4 +89,3 @@ def update_toctree_yaml():
 
 if __name__ == "__main__":
     update_toctree_yaml()
-
