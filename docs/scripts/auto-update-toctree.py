@@ -124,8 +124,8 @@ def update_toctree_yaml():
             for base, title, is_new, creation_date in example_entries:
                 result_lines.append(f"    - local: azure-ai/examples/{base}")
                 result_lines.append(f"      title: {title}")
-                if is_new:
-                    result_lines.append("      new: true")
+                # if is_new:
+                #     result_lines.append("      new: true")
             result_lines.append("    title: Examples")
             # NOTE: set to true now, to improve discoverability
             result_lines.append("    isExpanded: true")
