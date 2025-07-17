@@ -22,6 +22,8 @@
     title: Supported Tasks
   - local: azure-ai/hardware
     title: Supported Hardware
+  - local: azure-ai/models
+    title: Supported Models
   - local: azure-ai/configure
     title: Configure Microsoft Azure for Azure AI
   title: Azure AI
