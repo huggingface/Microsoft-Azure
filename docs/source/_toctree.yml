@@ -3,6 +3,8 @@
     title: Hugging Face on Microsoft Azure
   - local: features
     title: Features & Benefits
+  - local: security
+    title: Security & Compliance
   - local: resources
     title: Other Resources
   - local: faq
