@@ -1,7 +1,7 @@
 guides/one-click-deployment-azure-ml: guides/one-click-deployment-foundry
 guides/one-click-deployment-azure-ai: guides/one-click-deployment-foundry
-azure-ai/configure: foundry/set-up
-azure-ai/set-up: foundry/set-up
+azure-ai/configure: guides/configure-azure-ml-microsoft-foundry
+azure-ai/set-up: guides/configure-azure-ml-microsoft-foundry
 
 # NOTE: The redirects below are required only for the entries and examples
 # published before the rename from Azure AI Foundry to Microsoft Foundry
