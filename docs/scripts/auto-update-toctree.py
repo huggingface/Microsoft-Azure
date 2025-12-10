@@ -8,11 +8,11 @@ from pathlib import Path
 
 def get_notebook_creation_date(base_name: str) -> datetime:
     """Get the creation date of a notebook file using git"""
-    notebook_pattern = f"examples/azure-ai/*/{base_name}/azure-notebook.ipynb"
+    notebook_pattern = f"examples/foundry/*/{base_name}/azure-notebook.ipynb"
     notebook_files = glob.glob(notebook_pattern)
 
     if not notebook_files:
-        notebook_pattern = "examples/azure-ai/*/azure-notebook.ipynb"
+        notebook_pattern = "examples/foundry/*/azure-notebook.ipynb"
         all_notebooks = glob.glob(notebook_pattern)
 
         for notebook in all_notebooks:
@@ -70,7 +70,7 @@ def update_toctree_yaml():
     content = content.strip() + "\n"
 
     # Find and sort example files
-    example_files = sorted(glob.glob("docs/source/azure-ai/examples/*.mdx"))
+    example_files = sorted(glob.glob("docs/source/foundry/examples/*.mdx"))
     if not example_files:
         print("No example files found")
         with open(toctree_file, "w") as f:
@@ -104,7 +104,7 @@ def update_toctree_yaml():
     # Sort by creation date (newest first)
     example_entries.sort(key=lambda x: x[3], reverse=True)
 
-    # Now we need to find the Azure AI section and add the Examples section to it
+    # Now we need to find the Foundry section and add the Examples section to it
     lines = content.split("\n")
     result_lines = []
     i = 0
@@ -113,16 +113,16 @@ def update_toctree_yaml():
         line = lines[i]
         result_lines.append(line)
 
-        # Look for the Azure AI section
-        if line.strip() == "title: Azure AI":
+        # Look for the Foundry section
+        if line.strip() == "title: Foundry":
             # Add the Examples section before the title
-            result_lines.pop()  # Remove the "title: Azure AI" line we just added
+            result_lines.pop()  # Remove the "title: Foundry" line we just added
 
             # Add the Examples section with proper markers
             result_lines.append("  # GENERATED CONTENT DO NOT EDIT")
             result_lines.append("  - sections:")
             for base, title, is_new, creation_date in example_entries:
-                result_lines.append(f"    - local: azure-ai/examples/{base}")
+                result_lines.append(f"    - local: foundry/examples/{base}")
                 result_lines.append(f"      title: {title}")
                 # if is_new:
                 #     result_lines.append("      new: true")
