@@ -1,5 +1,11 @@
 # Configure Azure Machine Learning and Microsoft Foundry
 
+<Tip warning>
+
+Throughout this guide you'll see references to both Azure AI Foundry and Microsoft Foundry simultaneously, but that's because Microsoft Foundry has superseded Azure AI Foundry, but still referencing to it for the "classic" experience, which is the one that supports Hub-based projects and then, models from the Hugging Face Hub.
+
+</Tip>
+
 This guide explains how to configure Azure Machine Learning and Microsoft Foundry in your Microsoft Azure subscription, required to run the Microsoft Foundry examples in this documentation, but also to run any example on Azure Machine Learning, since these are the basic pre-requisites.
 
 You can either follow along the below steps, or either read more about those in the [Azure Machine Learning Tutorial: Create resources you need to get started](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-create-resources?view=azureml-api-2).
@@ -42,7 +48,7 @@ More information at [Azure Machine Learning (ML) - Install and setup the CLI (v2
 
 ## Azure Resource Group
 
-An Azure Resource Group under the one you will create the Microsoft Foundry Hub-based project (note it will create an Microsoft Foundry resource as an Azure Machine Learning Workspace, but not the other way around, meaning that the Microsoft Foundry Hub will be listed as an Azure Machine Learning workspace, but leveraging the Microsoft Foundry capabilities for Gen AI), and the rest of the required resources. If you don't have one, you can create it as follows:
+An Azure Resource Group under the one you will create the Azure AI Foundry Hub-based project (note it will create an Microsoft Foundry resource as an Azure Machine Learning Workspace, but not the other way around, meaning that the Azure AI Foundry Hub will be listed as an Azure Machine Learning workspace, but leveraging the Microsoft Foundry capabilities for Gen AI), and the rest of the required resources. If you don't have one, you can create it as follows:
 
 ```bash
 az group create --name huggingface-azure-rg --location eastus
@@ -62,9 +68,9 @@ You can also create the Azure Resource Group [via the Azure Portal](https://lear
 
 </Tip>
 
-## Microsoft Foundry Hub-based project
+## Azure AI Foundry Hub-based project
 
-An Microsoft Foundry Hub under the aforementioned subscription and resource group. If you don't have one, you can create it as follows:
+An Azure AI Foundry Hub-based project (given that the new experience on Microsoft Foundry does not yet support Hugging Face models, but rather only the classic experience which is the same as saying Azure AI Foundry) under the aforementioned subscription and resource group. If you don't have one, you can create it as follows:
 
 ```bash
 az ml workspace create \
@@ -92,7 +98,7 @@ The `--filtered-kinds` argument has been recently included as of [Azure Machine 
 
 </Tip>
 
-Once the Microsoft Foundry project (formerly Azure AI Foundry Hub-based project) is created, you need to create an Microsoft Foundry project linked to that Hub, to do so you first need to obtain the Microsoft Foundry Hub ID of the recently created Hub as follows (replace the resource names with yours):
+Once the Azure AI Foundry Hub-based project is created, you need to create an Azure AI Foundry project linked to that Hub, to do so you first need to obtain the Azure AI Foundry Hub ID of the recently created Hub as follows (replace the resource names with yours):
 
 ```bash
 az ml workspace show \
@@ -119,10 +125,10 @@ Finally, you can verify that it was correctly created with the following command
 az ml workspace list --filtered-kinds project --query "[].{Name:name, Kind:kind}" --resource-group huggingface-azure-rg --output table
 ```
 
-More information at [How to create and manage an Microsoft Foundry Hub](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-azure-ai-resource?tabs=portal) and at [How to create a Hub using the Azure CLI](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=azurecli).
+More information at [How to create and manage an Azure AI Foundry Hub](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-azure-ai-resource?tabs=portal) and at [How to create a Hub using the Azure CLI](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=azurecli).
 
 <Tip>
 
-You can also create the Microsoft Foundry Hub [via the Azure Portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-secure-ai-hub), or [via the Azure Machine Learning Python SDK](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=python), among other options listed in [Manage AI Hub Resources](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources).
+You can also create the Azure AI Foundry Hub [via the Azure Portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-secure-ai-hub), or [via the Azure Machine Learning Python SDK](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/create-hub-project-sdk?tabs=python), among other options listed in [Manage AI Hub Resources](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources).
 
 </Tip>
