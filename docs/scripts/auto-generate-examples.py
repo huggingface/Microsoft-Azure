@@ -34,6 +34,9 @@ def process_file(root, file, dir):
         + r"/\1)",
         content,
     )
+    # NOTE: Here until we migrate the images in https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/
+    # from `azure-ai` to `foundry`
+    content = content.replace("/foundry/", "/azure-ai/")
     content = re.sub(
         r"\(\.\./([^)]+)\)",
         r"(https://github.com/huggingface/Microsoft-Azure/tree/main/examples/"
