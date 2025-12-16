@@ -48,7 +48,7 @@ More information at [Azure Machine Learning (ML) - Install and setup the CLI (v2
 
 ## Azure Resource Group
 
-An Azure Resource Group under the one you will create the Azure AI Foundry Hub-based project (note it will create an Microsoft Foundry resource as an Azure Machine Learning Workspace, but not the other way around, meaning that the Azure AI Foundry Hub will be listed as an Azure Machine Learning workspace, but leveraging the Microsoft Foundry capabilities for Gen AI), and the rest of the required resources. If you don't have one, you can create it as follows:
+
 
 ```bash
 az group create --name huggingface-azure-rg --location eastus
@@ -82,7 +82,7 @@ az ml workspace create \
 
 <Tip>
 
-Note that the main difference with an standard Azure Machine Learning Workspace is that the Microsoft Foundry command requires you to specify the `--kind hub`, removing it would create a standard Azure Machine Learning Workspace instead, so you wouldn't benefit from the features that the Microsoft Foundry brings. But, when you create an Microsoft Foundry, you can still benefit from all the features that Azure Machine Learning brings, since the Microsoft Foundry will still rely on Azure Machine Learning, but not the other way around.
+
 
 </Tip>
 
