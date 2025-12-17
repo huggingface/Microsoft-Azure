@@ -3,10 +3,10 @@ import re
 
 
 def process_readme_files():
-    print("Processing azure-notebook.md files from examples/azure-ai...")
-    os.makedirs("docs/source/azure-ai/examples", exist_ok=True)
+    print("Processing azure-notebook.md files from examples/foundry...")
+    os.makedirs("docs/source/foundry/examples", exist_ok=True)
 
-    for dir in ["azure-ai"]:
+    for dir in ["foundry"]:
         for root, _, files in os.walk(f"examples/{dir}"):
             for file in files:
                 if file == "azure-notebook.md":
@@ -18,7 +18,7 @@ def process_file(root, file, dir):
     subdir = root.replace(f"examples/{dir}/", "")
     base = os.path.basename(subdir)
 
-    target = f"docs/source/azure-ai/examples/{base}.mdx"
+    target = f"docs/source/foundry/examples/{base}.mdx"
 
     print(f"Processing {file_path} to {target}")
     with open(file_path, "r") as f:
@@ -34,6 +34,9 @@ def process_file(root, file, dir):
         + r"/\1)",
         content,
     )
+    # NOTE: Here until we migrate the images in https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/
+    # from `azure-ai` to `foundry`
+    content = content.replace("/foundry/", "/azure-ai/")
     content = re.sub(
         r"\(\.\./([^)]+)\)",
         r"(https://github.com/huggingface/Microsoft-Azure/tree/main/examples/"

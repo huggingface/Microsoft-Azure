@@ -1,2 +1,16 @@
-guides/one-click-deployment-azure-ml: guides/one-click-deployment-azure-ai
-azure-ai/configure: azure-ai/set-up
+guides/one-click-deployment-azure-ml: guides/one-click-deployment-foundry
+guides/one-click-deployment-azure-ai: guides/one-click-deployment-foundry
+azure-ai/configure: guides/configure-azure-ml-microsoft-foundry
+azure-ai/set-up: guides/configure-azure-ml-microsoft-foundry
+
+# NOTE: The redirects below are required only for the entries and examples
+# published before the rename from Azure AI Foundry to Microsoft Foundry
+azure-ai/hardware: foundry/hardware
+azure-ai/introduction: foundry/introduction
+azure-ai/models: foundry/models
+azure-ai/tasks: foundry/tasks
+azure-ai/examples/build-agents-with-smolagents: foundry/examples/build-agents-with-smolagents
+azure-ai/examples/deploy-large-language-models: foundry/examples/deploy-large-language-models
+azure-ai/examples/deploy-nvidia-parakeet-asr: foundry/examples/deploy-nvidia-parakeet-asr
+azure-ai/examples/deploy-smollm3: foundry/examples/deploy-smollm3
+azure-ai/examples/deploy-vision-language-models: foundry/examples/deploy-vision-language-models

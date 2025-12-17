@@ -11,21 +11,21 @@
     title: Frequent Asked Questions (FAQ)
   title: Getting Started
 - sections:
-  - local: guides/one-click-deployment-azure-ai
-    title: One-click deployments from the Hugging Face Hub on Azure AI
+  - local: guides/one-click-deployment-foundry
+    title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
   - local: guides/request-model-addition
-    title: Request a model addition in the Hugging Face collection on Azure
+    title: Request a model addition in the Hugging Face collection on Microsoft Foundry
+  - local: guides/configure-azure-ml-microsoft-foundry
+    title: Configure Azure Machine Learning and Microsoft Foundry
   local: guides/introduction
   title: Guides
 - sections:
-  - local: azure-ai/introduction
+  - local: foundry/introduction
     title: Introduction
-  - local: azure-ai/tasks
+  - local: foundry/tasks
     title: Supported Tasks
-  - local: azure-ai/hardware
+  - local: foundry/hardware
     title: Supported Hardware
-  - local: azure-ai/models
+  - local: foundry/models
     title: Supported Models
-  - local: azure-ai/set-up
-    title: Set up Azure AI
-  title: Azure AI
+  title: Foundry

@@ -1,0 +1,29 @@
+# Supported Models
+
+Around +11,000 open models from the Hugging Face Hub are available through Microsoft Foundry and Azure Machine Learning. This curated subset of the +2,200,000 public open-models on the Hub includes the most downloaded and relevant models, all compatible with Transformers, Sentence Transformers, Diffusers, and other Hugging Face libraries and solutions.
+
+<Tip>
+
+Even if you don't have a Microsoft Azure account, you can still explore the [public Hugging Face Collection on Microsoft Foundry](https://ai.azure.com/catalog/publishers/hugging%20face,huggingface).
+
+</Tip>
+
+This being said, the supported models range different architectures and backends, but a way to identify whether a model from the Hugging Face Hub is made available within the model catalog in Microsoft Foundry and Azure Machine Learning is to either:
+
+1. Navigate to the model card of the given model under https://huggingface.co/models, and check whether the "Deploy" button is available with the "Deploy on Microsoft Foundry" option listed there. If available, the URL pointing to the model on Microsoft Foundry will be provided via the "Go to model on Microsoft Foundry" button. Otherwise, you can request the model's addition by clicking "Request to add" (See [Request a model addition in the Hugging Face collection on Microsoft Foundry](../guides/request-model-addition) for details).
+
+2. On the other hand, you can also navigate to either the Microsoft Foundry (from a Hub-based project) or the Azure Machine Learning model catalogs under the Hugging Face collection, and search the given model. If the model appears, it means it's supported and you can grab the URI pointing to it to programmatically deploy it. Otherwise, you can either [open an issue](https://github.com/huggingface/Microsoft-Azure/issues/new) requesting the model addition, or request it via the Hugging Face Hub model card with the "Request to add" button as mentioned before.
+
+3. Alternatively, you can also check if the given model is available on Microsoft Foundry programmatically with the following Python snippet, that sends a request to an Azure API that given a model ID from the Hugging Face Hub returns either HTTP 200 with the model URL if it's available, or just HTTP 404 if not available.
+
+```python
+import requests
+
+model_id = "HuggingFaceTB/SmolLM3-3B"
+response = requests.get("https://get-azure-ai-url.azurewebsites.net/api/get-azure-ai-url", params={"model_id": model_id})
+if response.status_code == 200:
+    print(response.json())
+    # {"url": "https://ai.azure.com/explore/models/HuggingFaceTB-SmolLM3-3B/version/6/registry/HuggingFace"}
+```
+
+We are really excited for this partnership between Hugging Face and Microsoft Azure, and working really hard to bring Azure customers the best open models from the Hugging Face collection into Microsoft Foundry and Azure Machine Learning, so stay tuned for updates and a lot more models to come in the following months!
