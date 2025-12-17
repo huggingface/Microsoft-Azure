@@ -2,7 +2,7 @@
 
 ## How to contribute with an example?
 
-If you are willing to contribute with an Azure AI example, or even just update / fix an existing example you can do so by simply updating the Jupyter Notebook, making sure you match the following:
+If you are willing to contribute with a Microsoft Foundry example, or even just update / fix an existing example you can do so by simply updating the Jupyter Notebook, making sure you match the following:
 
 - When you push your changes you don't leak any of your Azure keys.
 - Clean output of all cells before pushing.

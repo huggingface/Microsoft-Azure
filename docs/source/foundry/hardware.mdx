@@ -2,20 +2,21 @@
 
 ## NVIDIA GPUs
 
-Instance Name         	  | GPU Type	     | GPUs	| Total GPU VRAM
+Instance Name             | GPU Type         | GPUs | Total GPU VRAM
 --------------------------|------------------|------|----------------
-Standard_NC4as_T4_v3 	  | NVIDIA TESLA T4  | 1    | 16 GB
+Standard_NC4as_T4_v3      | NVIDIA TESLA T4  | 1    | 16 GB
 Standard_NC8as_T4_v3      | NVIDIA TESLA T4  | 1    | 16 GB
 Standard_NC16as_T4_v3     | NVIDIA TESLA T4  | 1    | 16 GB
 Standard_NC64as_T4_v3     | NVIDIA TESLA T4  | 4    | 64 GB
 Standard_NC24ads_A100_v4  | NVIDIA A100 80GB | 1    | 80 GB
-Standard_NC40ADS_H100_V5  | NVIDIA H100 80GB | 1    | 80 GB
+Standard_NC40ads_H100_v5  | NVIDIA H100 80GB | 1    | 80 GB
 Standard_NC48ads_A100_v4  | NVIDIA A100 80GB | 2    | 160 GB
 Standard_NC80adis_H100_v5 | NVIDIA H100 80GB | 2    | 160 GB
 Standard_NC96ads_A100_v4  | NVIDIA A100 80GB | 4    | 320 GB
 Standard_ND96asr_v4       | NVIDIA A100 40GB | 8    | 320 GB
 Standard_ND96amsr_A100_v4 | NVIDIA A100 80GB | 8    | 640 GB
 Standard_ND96isr_H100_v5  | NVIDIA H100 80GB | 8    | 640 GB
+Standard_ND96is_H100_v5   | NVIDIA H100 80GB | 8    | 640 GB
 
 More information about those GPU Types / Families can be found in the [Microsoft Azure Documentation - Sizes for virtual machines in Azure - GPU accelerated](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview?tabs=breakdownseries%2Cgeneralsizelist%2Ccomputesizelist%2Cmemorysizelist%2Cstoragesizelist%2Cgpusizelist%2Cfpgasizelist%2Chpcsizelist#gpu-accelerated).
 
@@ -23,20 +24,20 @@ More information about those GPU Types / Families can be found in the [Microsoft
 
 Instance         | CPU Model (Family)             | vCPUs | RAM (GiB)
 -----------------|--------------------------------|-------|-----------
-Standard_DS2_v2  | Intel Xeon E5-2673 v4 / 8272CL | 2     | 7
 Standard_F2s_v2  | Intel Xeon Platinum 8272CL     | 2     | 4
+Standard_DS2_v2  | Intel Xeon E5-2673 v4 / 8272CL | 2     | 7
+Standard_F4s_v2  | Intel Xeon Platinum 8272CL     | 4     | 8
+Standard_DS3_v2  | Intel Xeon E5-2673 v4 / 8272CL | 4     | 14
 Standard_E2s_v3  | Intel Xeon Platinum 8272CL     | 2     | 16
-Standard_F4s_v2  | Intel Xeon Platinum 8272CL     | 4	  | 8
-Standard_DS3_v2  | Intel Xeon E5-2673 v4 / 8272CL | 4	  | 14
-Standard_F8s_v2  | Intel Xeon Platinum 8272CL     | 8	  | 16
-Standard_DS4_v2  | Intel Xeon Platinum 8272CL     | 8	  | 28
-Standard_E4s_v3  | Intel Xeon 8171M               | 4	  | 32
-Standard_F16s_v2 | Intel Xeon Platinum 8272CL     | 16	  | 32
-Standard_DS5_v2  | Intel Xeon Platinum 8272CL     | 16	  | 56
-Standard_E16s_v3 | Intel Xeon Platinum 8272CL     | 16	  | 128
-Standard_F32s_v2 | Intel Xeon Platinum 8272CL     | 32	  | 64
-Standard_F48s_v2 | Intel Xeon Platinum 8272CL     | 48	  | 96
-Standard_F64s_v2 | Intel Xeon Platinum 8272CL     | 64	  | 128
+Standard_F8s_v2  | Intel Xeon Platinum 8272CL     | 8     | 16
+Standard_DS4_v2  | Intel Xeon Platinum 8272CL     | 8     | 28
+Standard_E4s_v3  | Intel Xeon 8171M               | 4     | 32
+Standard_F16s_v2 | Intel Xeon Platinum 8272CL     | 16    | 32
+Standard_DS5_v2  | Intel Xeon Platinum 8272CL     | 16    | 56
+Standard_F32s_v2 | Intel Xeon Platinum 8272CL     | 32    | 64
+Standard_F48s_v2 | Intel Xeon Platinum 8272CL     | 48    | 96
+Standard_E16s_v3 | Intel Xeon Platinum 8272CL     | 16    | 128
+Standard_F64s_v2 | Intel Xeon Platinum 8272CL     | 64    | 128
 Standard_F72s_v2 | Intel Xeon Platinum 8272CL     | 72    | 144
 
 More information about those CPU Models / Families can be found in the [Microsoft Azure Documentation - Sizes for virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview) under the bookmarks [General Purpose](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview?tabs=breakdownseries%2Cgeneralsizelist%2Ccomputesizelist%2Cmemorysizelist%2Cstoragesizelist%2Cgpusizelist%2Cfpgasizelist%2Chpcsizelist#general-purpose) and [Compute Optimized](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/overview?tabs=breakdownseries%2Cgeneralsizelist%2Ccomputesizelist%2Cmemorysizelist%2Cstoragesizelist%2Cgpusizelist%2Cfpgasizelist%2Chpcsizelist#compute-optimized).

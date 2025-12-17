@@ -1,0 +1,27 @@
+# One-click deployments from the Hugging Face Hub on Microsoft Foundry
+
+This guide introduces the Hugging Face Hub and Microsoft Foundry one-click deployment experience for open-source models as Azure Machine Learning Managed Online Endpoints for real-time inference.
+
+TL;DR The Hugging Face Hub is a collaborative platform hosting over a million open-source machine learning models, datasets, and demos. It supports a wide range of tasks across natural language processing, vision, and audio, and provides version-controlled repositories with metadata, model cards, and programmatic access via APIs and popular ML libraries. Microsoft Foundry builds on Azure Machine Learning but is tailored specifically for generative AI and agent-based applications. Azure Machine Learning is a cloud-based platform for building, deploying, and managing machine learning models at scale. It provides managed infrastructure, including powerful CPU and GPU instances, automated scaling, secure endpoints, and monitoring, making it suitable for both experimentation and production deployment.
+
+The integration between Hugging Face Hub and Microsoft Foundry and Azure Machine Learning allows users to deploy thousands of Hugging Face models directly onto Azure's managed infrastructure with minimal configuration. This is achieved through a native model catalog in Microsoft Foundry and Azure Machine Learning Studio, which features Hugging Face models ready for real-time deployment.
+
+The steps required to deploy an open-source model from the Hugging Face Hub to Microsoft Foundry as an Azure Machine Learning Managed Online Endpoint for real-time inference are the following:
+
+1. Go to the [Hugging Face Hub Models page](https://huggingface.co/models), and browse all the open-source models available on the Hub.
+
+    <Tip>
+
+    Alternatively, you can also start directly from the [Hugging Face Collection on Microsoft Foundry (public URL, no authentication required)](https://ai.azure.com/catalog/publishers/hugging%20face,huggingface), or from the [Hugging Face Collection on Microsoft Foundry (requires Azure authentication)](https://ai.azure.com/explore/models?selectedCollection=Hugging+Face) instead of the Hugging Face Hub, and just explore the available models using the Microsoft Foundry model catalog filters to deploy the models that you want.
+
+    </Tip>
+
+2. Leverage the Hub filters to easily find and discover new models based on the filters as e.g. task type, size based in number of parameters, inference engine support, and much more.
+
+3. Select the model that you want, and within its model card click on the "Deploy" button. Then select the option "Deploy on Microsoft Foundry", and click on "Go to model in Microsoft Foundry". Note that the "Deploy" button may be unavailable for some models, indicating they cannot be deployed. In other cases, the "Deploy on Microsoft Foundry" option may not appear, meaning the model is not supported by any of the inference engines or tasks available in Microsoft Foundry. If the option appears as "Request to add", the model is not yet available but can be requested for its addition in the Hugging Face collection within the Microsoft Foundry model catalog.
+
+4. On Microsoft Foundry Foundry, you will be redirected to the model card. Once there, click "Use this model" and fill the configuration values for the endpoint and the deployment, such as the endpoint name, the instance type, or the instance count, among others; then click "Deploy".
+
+5. After the endpoint is created and the deployment is ready, you will be able to send requests to the deployed API. For more information on how to send inference requests to it, you can either check the "Consume" tab within the Azure Machine Learning Endpoint in Microsoft Foundry Foundry, or check any of the available Microsoft Foundry examples on the documentation.
+
+<video src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/one-click-deployment-azure-ai.mp4" controls autoplay muted loop />
