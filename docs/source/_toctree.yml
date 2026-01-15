@@ -14,7 +14,7 @@
   - local: guides/one-click-deployment-foundry
     title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
   - local: guides/access-gated-models
-    title: Access gated models on Microsoft Foundry
+    title: Deploy Hugging Face gated models on Microsoft Foundry
   - local: guides/request-model-addition
     title: Request a model addition in the Hugging Face collection on Microsoft Foundry
   - local: guides/configure-azure-ml-microsoft-foundry

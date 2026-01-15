@@ -2,7 +2,7 @@
 
 Some Hugging Face models on Microsoft Foundry are **gated**, meaning you must request access from the model publisher on the Hugging Face Hub before you can deploy them on Foundry. The access request is then tied to your Hugging Face identity and allows you to download the model weights from the Hub.
 
-This guide walks you through how to deploy a gated model on Microsoft Foundry.
+This guide walks you through how to deploy a Hugging Face gated model on Microsoft Foundry.
 
 ## 0. Pre-requisites
 
@@ -55,7 +55,7 @@ Note that some models approve instantly; others require review that can take up 
 
 ## 3. Create a Hugging Face Token
 
-You can manage your access tokens in your Hugging Face account settings. Create a fine-grained token with `Read access to contents of all public gated repos you can access` selected [here](https://huggingface.co/settings/tokens/new?canReadGatedRepos=true&tokenType=fineGrained).
+You can manage your access tokens in your Hugging Face account settings. Create a fine-grained token with `Read access to contents of all public gated repositories you can access` selected [here](https://huggingface.co/settings/tokens/new?canReadGatedRepos=true&tokenType=fineGrained).
 
 > For organizations seeking stronger oversight on their user’s token, [Hugging Face Team and Enterprise Plans](https://huggingface.co/enterprise) offer enhanced token governance capabilities to companies.
 
@@ -89,7 +89,7 @@ client = MLClient(
 )
 ```
 
-Then, when creating the Managed Online Endpoint for the deployment, ensure the endpoint is configured to allow access to default secret stores. This can only be done programmatically for now. 
+Then, when creating the Managed Online Endpoint for the deployment, ensure the endpoint is configured to allow access to default secret stores. this is what allows the Managed Online Endpoint in Azure Machine Learning to read the Connection Secret. It can only be done programmatically for now. 
 
 ```python
 from azure.ai.ml.entities import ManagedOnlineEndpoint
@@ -133,4 +133,4 @@ deployment = ManagedOnlineDeployment(
 client.online_deployments.begin_create_or_update(deployment).wait()
 ```
 
-That's it, you deployed your first gated model on Microsoft Foundry!
+That's it, you deployed your first Hugging Face gated model on Microsoft Foundry!
