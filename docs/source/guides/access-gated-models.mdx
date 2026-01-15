@@ -1,6 +1,6 @@
 # Deploy Hugging Face gated models on Microsoft Foundry
 
-Some Hugging Face models in the Microsoft Foundry model catalog are **gated**, meaning you must request access from the model publisher on the Hugging Face Hub before you can deploy them. The access request is then tied to your Hugging Face identity.
+Some Hugging Face models on Microsoft Foundry are **gated**, meaning you must request access from the model publisher on the Hugging Face Hub before you can deploy them on Foundry. The access request is then tied to your Hugging Face identity and allows you to download the model weights from the Hub.
 
 This guide walks you through how to deploy a gated model on Microsoft Foundry.
 
@@ -45,11 +45,13 @@ os.environ["DEPLOYMENT_NAME"] = f"deployment-{str(uuid4())[:8]}"
 
 ## 1. Identify a gated model in the catalog
 
-When you open a model’s listing on Microsoft Foundry catalog, look at the **Details** section. If the model is gated, you will see a banner at the top mentioning a **Gated Model Access** is required.
+When you select a model from the Microsoft Foundry catalog under the Hugging Face collection, if the model is gated, you will see a banner at the top mentioning a **Gated Model Access** is required, as well as the `isGated` property set.
 
 ## 2. Request access on Hugging Face
 
-From the model’s catalog page, follow the link to the model page on the Hugging Face Hub. Click the **Request access** / **Agree and access repository** action (wording varies by model). Finally, you need to wait for approval from the model authors. Some models approve instantly; others require review that can take up to a day.
+In the model page for the gated model on Microsoft Foundry you  will see a link to the model on the Hugging Face Hub. If you then go to the Hub, you can **Request access** / **Agree and access repository** action (wording varies by model). Finally, you need to wait for approval from the model authors or organization in charge.
+
+Note that some models approve instantly; others require review that can take up to a day.
 
 ## 3. Create a Hugging Face Token
 
