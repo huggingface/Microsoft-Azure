@@ -1,0 +1,135 @@
+# Deploy Hugging Face gated models on Microsoft Foundry
+
+Some Hugging Face models in the Microsoft Foundry model catalog are **gated**, meaning you must request access from the model publisher on the Hugging Face Hub before you can deploy them. The access request is then tied to your Hugging Face identity.
+
+This guide walks you through how to deploy a gated model on Microsoft Foundry.
+
+## 0. Pre-requisites
+
+To run the guide, you will need to comply with the following pre-requisites:
+
+- An Azure account with an active subscription.
+- The Azure CLI installed and logged in.
+- The Azure Machine Learning extension for the Azure CLI.
+- An Azure Resource Group.
+- A Hub-based project on Microsoft Foundry (classic, i.e., Azure AI Foundry Hub-based project).
+
+For more information, please go through the steps in [Configure Azure Machine Learning and Microsoft Foundry](https://huggingface.co/docs/microsoft-azure/guides/configure-azure-ml-microsoft-foundry).
+
+In this example, the [Azure Machine Learning SDK for Python](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ml/azure-ai-ml) will be used to create the endpoint and the deployment. Along with it, you will also need to install `azure-identity` to authenticate with your Azure credentials via Python.
+
+```bash
+pip install azure-ai-ml azure-identity --upgrade --quiet
+```
+
+Then, setting the following environment variables is recommended as those will be used along the example for the Azure ML Client, so make sure to update and set those values accordingly.
+
+```bash
+env LOCATION eastus
+env SUBSCRIPTION_ID <YOUR_SUBSCRIPTION_ID>
+env RESOURCE_GROUP <YOUR_RESOURCE_GROUP>
+env WORKSPACE_NAME <YOUR_WORKSPACE_NAME>
+```
+
+You also need to define both the endpoint and deployment names. Those will be used throughout the example.
+
+> Endpoint names must to be globally unique per region i.e., even if you don't have any endpoint named that way running under your subscription, if the name is reserved by another Azure customer, then you won't be able to use the same name. Adding a timestamp or a custom identifier is recommended to prevent running into HTTP 400 validation issues when trying to deploy an endpoint with an already locked / reserved name. Also the endpoint name must be between 3 and 32 characters long.
+
+```python
+import os
+from uuid import uuid4
+
+os.environ["ENDPOINT_NAME"] = f"endpoint-{str(uuid4())[:8]}"
+os.environ["DEPLOYMENT_NAME"] = f"deployment-{str(uuid4())[:8]}"
+```
+
+## 1. Identify a gated model in the catalog
+
+When you open a model’s listing on Microsoft Foundry catalog, look at the **Details** section. If the model is gated, you will see a banner at the top mentioning a **Gated Model Access** is required.
+
+## 2. Request access on Hugging Face
+
+From the model’s catalog page, follow the link to the model page on the Hugging Face Hub. Click the **Request access** / **Agree and access repository** action (wording varies by model). Finally, you need to wait for approval from the model authors. Some models approve instantly; others require review that can take up to a day.
+
+## 3. Create a Hugging Face Token
+
+You can manage your access tokens in your Hugging Face account settings. Create a fine-grained token with `Read access to contents of all public gated repos you can access` selected [here](https://huggingface.co/settings/tokens/new?canReadGatedRepos=true&tokenType=fineGrained).
+
+> For organizations seeking stronger oversight on their user’s token, [Hugging Face Team and Enterprise Plans](https://huggingface.co/enterprise) offer enhanced token governance capabilities to companies.
+
+
+## 4. Create an Azure Machine Learning Connection with Custom keys 
+
+Create a **Custom keys** workspace connection with your Hugging Face Token. This connection is how the deployment process authenticates to the Hugging Face Hub to validate access and download the gated model.
+
+```bash
+az ml connection create \
+    --name HuggingFaceTokenConnection \
+    --type "Generic" \
+    --resource-group $RESOURCE_GROUP \
+    --workspace-name $WORKSPACE_NAME \
+    --secret "HF_TOKEN=<YOUR_HF_TOKEN_HERE>"
+```
+
+### 5. Create the Managed Online Endpoint with secret-store access enabled
+
+First you need to authenticate into the Microsoft Foundry via Azure Machine Learning with the Python SDK:
+
+```bash
+import os
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+client = MLClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=os.getenv("SUBSCRIPTION_ID"),
+    resource_group_name=os.getenv("RESOURCE_GROUP"),
+    workspace_name=os.getenv("WORKSPACE_NAME"),
+)
+```
+
+Then, when creating the Managed Online Endpoint for the deployment, ensure the endpoint is configured to allow access to default secret stores. This can only be done programmatically for now. 
+
+```python
+from azure.ai.ml.entities import ManagedOnlineEndpoint
+
+endpoint = ManagedOnlineEndpoint(
+    name=os.getenv("ENDPOINT_NAME"),
+    properties={"enforce_access_to_default_secret_stores": "enabled"},
+)
+
+client.begin_create_or_update(endpoint).wait()
+```
+
+This allows the endpoint deployment to read the secret connection value (your token) at deployment time.
+
+### 6. Create the Managed Online Deployment
+
+After creating the endpoint, you need to create the [ManagedOnlineDeployment via the Azure ML Python SDK](https://learn.microsoft.com/en-us/python/api/azure-ai-ml/azure.ai.ml.entities.managedonlinedeployment?view=azure-python) i.e., create a deployment linked to the given endpoint.
+
+To create the Azure Machine Learning Managed Online Endpoint you don't need to provide the model ID on the Hugging Face Hub but rather the model URI on Azure Machine Learning formatted as follows:
+
+```python
+model_id = "facebook/sam3" # example gated model
+
+model_uri = f"azureml://registries/HuggingFace/models/{model_id.replace('/', '-').replace('_', '-').lower()}/labels/latest"
+model_uri
+```
+
+Make sure to select the instance type recommended for the model you want to deploy. You can find it in the model catalog deploy page.
+
+```python
+from azure.ai.ml.entities import ManagedOnlineDeployment
+
+deployment = ManagedOnlineDeployment(
+    name=os.getenv("DEPLOYMENT_NAME"),
+    endpoint_name=os.getenv("ENDPOINT_NAME"),
+    model=model_uri,
+    instance_type="Standard_NC40ads_H100_v5",
+    instance_count=1,
+)
+
+client.online_deployments.begin_create_or_update(deployment).wait()
+```
+
+That's it, you deployed your first gated model on Microsoft Foundry!
