@@ -1,10 +1,29 @@
 import os
 import re
+import subprocess
 
 SERVICES = [
     ("Foundry", "foundry"),
     ("Machine Learning", "machine-learning"),
 ]
+
+
+def get_git_date(file_path: str) -> str | None:
+    """Get the last commit date (YYYY-MM-DD) for a file using git."""
+    if not file_path or not os.path.exists(file_path):
+        return None
+    try:
+        date = (
+            subprocess.check_output(
+                ["git", "log", "-1", "--format=%ad", "--date=short", file_path],
+                stderr=subprocess.STDOUT,
+            )
+            .decode("utf-8")
+            .strip()
+        )
+        return date or None
+    except Exception:
+        return None
 
 
 def process_readme_files():
@@ -29,8 +48,9 @@ def process_file(root, file, dir_name):
     with open(file_path, "r") as f:
         content = f.read()
 
-    # For Juypter Notebooks, remove the comment i.e. `<!--` and the `--!>` but keep the metadata
-    content = re.sub(r"<!-- (.*?) -->", r"\1", content, flags=re.DOTALL)
+    # For Jupyter Notebooks, uncomment the metadata block i.e. `<!-- ---...--- -->`
+    # but keep it in the content so auto-update-toctree.py can parse it
+    content = re.sub(r"<!--\s*(---.*?---)\s*-->", r"\1", content, flags=re.DOTALL)
 
     content = re.sub(
         r"\(\./([^/)]*\.png)\)",

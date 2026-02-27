@@ -1,6 +1,5 @@
 .PHONY: install docs clean serve help
 
-# Add new services here (space-separated directory names under examples/)
 SERVICES := foundry machine-learning
 
 install:
