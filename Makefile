@@ -28,7 +28,7 @@ clean:
 	@$(foreach svc,$(SERVICES), \
 		rm -rf docs/source/$(svc)/examples && \
 	) true
-	@awk '/# GENERATED CONTENT DO NOT EDIT/,/# END OF GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml > docs/source/_toctree.yml.tmp; mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
+	@awk '/# GENERATED CONTENT DO NOT EDIT/,/# END OF GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml | sed -e :a -e '/^\n*$$/{$$d;N;ba' -e '}' > docs/source/_toctree.yml.tmp; mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
 	@echo "Cleaning up generated Markdown Notebook files (if any)..."
 	@$(foreach svc,$(SERVICES), \
 		find examples/$(svc) -name "azure-notebook.md" -type f -delete && \

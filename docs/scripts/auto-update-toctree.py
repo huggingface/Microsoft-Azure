@@ -261,8 +261,10 @@ def update_toctree_yaml():
             continue
         lines = inject_examples_for_service(lines, display_name, dir_name, entries)
 
+    # Ensure the file ends with exactly one newline (POSIX compliant)
+    output = "\n".join(lines).rstrip("\n") + "\n"
     with open(toctree_file, "w") as f:
-        f.write("\n".join(lines))
+        f.write(output)
 
 
 if __name__ == "__main__":
