@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 SERVICES = [
-    ("Foundry", "foundry"),
-    ("Machine Learning", "machine-learning"),
+    ("Microsoft Foundry", "foundry"),
+    ("Azure Machine Learning", "machine-learning"),
 ]
 
 

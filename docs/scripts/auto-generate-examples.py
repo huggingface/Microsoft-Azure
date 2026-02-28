@@ -3,8 +3,8 @@ import re
 import subprocess
 
 SERVICES = [
-    ("Foundry", "foundry"),
-    ("Machine Learning", "machine-learning"),
+    ("Microsoft Foundry", "foundry"),
+    ("Azure Machine Learning", "machine-learning"),
 ]
 
 
