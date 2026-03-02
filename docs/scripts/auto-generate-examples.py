@@ -1,31 +1,56 @@
 import os
 import re
+import subprocess
+
+SERVICES = [
+    ("Microsoft Foundry", "foundry"),
+    ("Azure Machine Learning", "machine-learning"),
+]
+
+
+def get_git_date(file_path: str) -> str | None:
+    """Get the last commit date (YYYY-MM-DD) for a file using git."""
+    if not file_path or not os.path.exists(file_path):
+        return None
+    try:
+        date = (
+            subprocess.check_output(
+                ["git", "log", "-1", "--format=%ad", "--date=short", file_path],
+                stderr=subprocess.STDOUT,
+            )
+            .decode("utf-8")
+            .strip()
+        )
+        return date or None
+    except Exception:
+        return None
 
 
 def process_readme_files():
-    print("Processing azure-notebook.md files from examples/foundry...")
-    os.makedirs("docs/source/foundry/examples", exist_ok=True)
+    for _, dir_name in SERVICES:
+        print(f"Processing azure-notebook.md files from examples/{dir_name}...")
+        os.makedirs(f"docs/source/{dir_name}/examples", exist_ok=True)
 
-    for dir in ["foundry"]:
-        for root, _, files in os.walk(f"examples/{dir}"):
+        for root, _, files in os.walk(f"examples/{dir_name}"):
             for file in files:
                 if file == "azure-notebook.md":
-                    process_file(root, file, dir)
+                    process_file(root, file, dir_name)
 
 
-def process_file(root, file, dir):
+def process_file(root, file, dir_name):
     file_path = os.path.join(root, file)
-    subdir = root.replace(f"examples/{dir}/", "")
+    subdir = root.replace(f"examples/{dir_name}/", "")
     base = os.path.basename(subdir)
 
-    target = f"docs/source/foundry/examples/{base}.mdx"
+    target = f"docs/source/{dir_name}/examples/{base}.mdx"
 
     print(f"Processing {file_path} to {target}")
     with open(file_path, "r") as f:
         content = f.read()
 
-    # For Juypter Notebooks, remove the comment i.e. `<!--` and the `--!>` but keep the metadata
-    content = re.sub(r"<!-- (.*?) -->", r"\1", content, flags=re.DOTALL)
+    # For Jupyter Notebooks, uncomment the metadata block i.e. `<!-- ---...--- -->`
+    # but keep it in the content so auto-update-toctree.py can parse it
+    content = re.sub(r"<!--\s*(---.*?---)\s*-->", r"\1", content, flags=re.DOTALL)
 
     content = re.sub(
         r"\(\./([^/)]*\.png)\)",
@@ -34,13 +59,10 @@ def process_file(root, file, dir):
         + r"/\1)",
         content,
     )
-    # NOTE: Here until we migrate the images in https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/
-    # from `azure-ai` to `foundry`
-    content = content.replace("/foundry/", "/azure-ai/")
     content = re.sub(
         r"\(\.\./([^)]+)\)",
         r"(https://github.com/huggingface/Microsoft-Azure/tree/main/examples/"
-        + dir
+        + dir_name
         + r"/\1)",
         content,
     )
