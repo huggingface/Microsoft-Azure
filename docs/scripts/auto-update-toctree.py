@@ -186,7 +186,7 @@ def build_examples_section(dir_name: str, entries: list) -> list:
     lines.append("  - sections:")
     for base, title, is_new, creation_date in entries:
         lines.append(f"    - local: {dir_name}/examples/{base}")
-        lines.append(f"      title: {title}")
+        lines.append(f'      title: "{title}"')
         # if is_new:
         #     lines.append("      new: true")
     lines.append("    title: Examples")
@@ -207,12 +207,12 @@ def inject_examples_for_service(
     section is appended at the end of the file.
     """
     # Check whether the section already exists
-    has_section = any(line.strip() == f"title: {display_name}" for line in lines)
+    has_section = any(line.strip() == f'title: "{display_name}"' for line in lines)
 
     if has_section:
         result_lines = []
         for line in lines:
-            if line.strip() == f"title: {display_name}":
+            if line.strip() == f'title: "{display_name}"':
                 result_lines.extend(build_examples_section(dir_name, entries))
             result_lines.append(line)
         return result_lines
@@ -226,7 +226,7 @@ def inject_examples_for_service(
     new_section.append("  - sections:")
     for base, title, is_new, creation_date in entries:
         new_section.append(f"    - local: {dir_name}/examples/{base}")
-        new_section.append(f"      title: {title}")
+        new_section.append(f'      title: "{title}"')
     new_section.append("    title: Examples")
     new_section.append("    isExpanded: true")
     new_section.append(f"  title: {display_name}")
