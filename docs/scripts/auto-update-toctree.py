@@ -196,6 +196,16 @@ def build_examples_section(dir_name: str, entries: list) -> list:
     return lines
 
 
+def is_service_title_line(line: str, display_name: str) -> bool:
+    """Return True when a YAML line defines the requested title.
+
+    Supports both quoted and unquoted forms:
+    `title: Microsoft Foundry` and `title: "Microsoft Foundry"`.
+    """
+    match = re.match(r'^\s*title:\s*"?(.+?)"?\s*$', line)
+    return bool(match and match.group(1) == display_name)
+
+
 def inject_examples_for_service(
     lines: list, display_name: str, dir_name: str, entries: list
 ) -> list:
@@ -207,12 +217,12 @@ def inject_examples_for_service(
     section is appended at the end of the file.
     """
     # Check whether the section already exists
-    has_section = any(line.strip() == f'title: "{display_name}"' for line in lines)
+    has_section = any(is_service_title_line(line, display_name) for line in lines)
 
     if has_section:
         result_lines = []
         for line in lines:
-            if line.strip() == f'title: "{display_name}"':
+            if is_service_title_line(line, display_name):
                 result_lines.extend(build_examples_section(dir_name, entries))
             result_lines.append(line)
         return result_lines
