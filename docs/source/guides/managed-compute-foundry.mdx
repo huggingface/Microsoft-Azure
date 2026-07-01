@@ -1,0 +1,169 @@
+# Deploy Hugging Face Models in Foundry with Managed Compute
+
+<Tip warning>
+
+Managed compute in Microsoft Foundry is currently in **Public Preview**, and [registration is required](https://forms.cloud.microsoft/r/8Jnx1LALLA) to use it.
+
+</Tip>
+
+Managed compute is a deployment type in Microsoft Foundry that hosts open-source models from the Hugging Face collection on dedicated GPU capacity, without requiring you to provision virtual machines, operate a Kubernetes cluster, or build and patch your own container images. Microsoft owns the GPU topology, the serving runtime (vLLM, SGLang, TensorRT-LLM, TEI, and more depending on the model), the container image, and security patching. You choose the model, a deployment template, the accelerator family (NVIDIA A100, NVIDIA H100, or AMD MI300X), and how many instances to run.
+
+Managed compute deployments live behind the same unified Foundry endpoint, authentication (Microsoft Entra ID or API key), SDKs, and observability surface as any other Foundry deployment, so switching from a pay-per-token model to an open-source one is just a change of the `model` field in your requests.
+
+This guide walks you through discovering a Hugging Face model in the Foundry catalog, deploying it with managed compute, and sending it inference requests.
+
+To see managed compute in action, watch the deep-dive session from Microsoft Build 2026, [Hugging Face open-source models to production on Microsoft Foundry](https://build.microsoft.com/en-US/sessions/DEM320):
+
+<video src="https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/hf-open-source-models-to-production-on-microsoft-foundry.mp4" controls muted loop preload="none" />
+
+## Prerequisites
+
+- An Azure account with an active subscription and a [Microsoft Foundry](https://ai.azure.com/) project. If you don't have one yet, see [Configure Azure Machine Learning and Microsoft Foundry](./configure-azure-ml-microsoft-foundry).
+- The following role assignments on the Foundry account scope:
+  - **Cognitive Services Contributor** (or **Foundry Owner** / **Foundry Account Owner**) to create, update, and delete managed compute deployments.
+  - **Foundry User** to call the deployment with Microsoft Entra ID from the Playground, SDK, or REST.
+- Approved managed compute quota for the accelerator family you plan to deploy on (A100, H100, or MI300X) in your target region. Managed compute quota is separate from Azure VM quota; see [Request more quota](#request-more-quota) below.
+- If you plan to deploy via the Python SDK, install the management and inference clients:
+
+```bash
+pip install azure-mgmt-cognitiveservices azure-identity openai --upgrade --quiet
+```
+
+## 1. Find a model in the catalog
+
+Managed compute deploys models from the **Hugging Face Collection** in the Foundry model catalog, served from the `azure-huggingface` registry.
+
+1. Open the [Foundry portal](https://ai.azure.com/nextgen), make sure the New Foundry toggle is on, and go to **Discover** > **Models**.
+2. In the **Collections** filter, select **Hugging Face**. Use the other filters (model family, modality, task) or the search box to narrow down the model you want.
+3. In the **Deployment options** filter, select **Managed compute** to only show models available for this deployment type.
+4. Select a model card to open its details.
+
+![Filtering the Foundry model catalog by the Hugging Face collection and managed compute deployment option](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/catalog.png)
+
+The model card shows the upstream license, modality, supported tasks, and the deployment templates published for the model. If you plan to deploy via the Python SDK or REST instead of the portal wizard, note down the following values from the model card and the deployment wizard:
+
+- **Model ID**, the fully qualified registry asset ID, for example:
+
+    ```
+    azureml://registries/azure-huggingface/models/qwen--qwen3-32b/versions/3
+    ```
+
+- **Deployment template ID**, which pins the runtime, accelerator family and count, and context length, for example:
+
+    ```
+    azureml://registries/azure-huggingface/deploymenttemplates/qwen--qwen3-32b--40k-nvidia-h100/labels/latest
+    ```
+
+- **Accelerator type**, for example `H100_80GB`, `A100_80GB`, or `MI300_192GB`, shown next to each template in the deployment wizard.
+
+A model and a deployment template must be compatible; the portal wizard only shows templates published for the model you selected.
+
+## 2. Deploy the model
+
+On the model card, select **Deploy** to open the deployment wizard:
+
+1. Enter a **Deployment name**. This is what your application passes in the `model` field at inference time, so pick a stable, application-friendly name (for example, `qwen3-32b`).
+2. Select the **Deployment template** that matches your workload, for example the H100 single-accelerator template for lower cost, or a two-accelerator template for a longer context length.
+3. Select the **Accelerator type**.
+4. Set **Model instances** to `1` to start. You can scale out later by increasing the instance count.
+5. Acknowledge the deployment cost and select **Deploy**. Provisioning typically takes 10 to 15 minutes.
+
+![Deploying a model from the model card with a deployment name, template, accelerator type, and instance count](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/deploy.png)
+
+Alternatively, deploy the same model with the Python management SDK. Replace the placeholders with your subscription ID, resource group, Foundry account name, and the model and template IDs from the previous step.
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<your-subscription-id>"
+RESOURCE_GROUP = "<your-resource-group>"
+ACCOUNT_NAME = "<your-foundry-account>"
+DEPLOYMENT_NAME = "qwen3-32b"
+
+MODEL = "azureml://registries/azure-huggingface/models/qwen--qwen3-32b/versions/3"
+TEMPLATE = "azureml://registries/azure-huggingface/deploymenttemplates/qwen--qwen3-32b--40k-nvidia-h100/labels/latest"
+
+client = CognitiveServicesManagementClient(DefaultAzureCredential(), SUBSCRIPTION_ID)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": MODEL,
+            "deploymentTemplate": TEMPLATE,
+            "acceleratorType": "H100_80GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()  # blocks until terminal state (~10-15 min)
+
+print(f"State: {deployment.properties.provisioning_state}")
+```
+
+## 3. Send a test request
+
+Once the deployment's provisioning state is `Succeeded`, you can test it interactively from the **Playground** tab on the deployment details page, or call it from code through the unified Foundry endpoint:
+
+```
+https://<account>.services.ai.azure.com/openai/v1/
+```
+
+The `model` field in the request body takes the **deployment name** you chose, not the model ID.
+
+```python
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from openai import OpenAI
+
+ACCOUNT_NAME = "<your-foundry-account>"
+DEPLOYMENT_NAME = "qwen3-32b"
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default",
+)
+
+client = OpenAI(
+    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    api_key="placeholder",  # required by the OpenAI SDK; overridden by the Authorization header
+    default_headers={"Authorization": f"Bearer {token_provider()}"},
+)
+
+response = client.chat.completions.create(
+    model=DEPLOYMENT_NAME,
+    messages=[{"role": "user", "content": "What is the capital of France?"}],
+)
+
+print(response.choices[0].message.content)
+```
+
+Calling the deployment with Microsoft Entra ID requires the **Foundry User** role on the Foundry account. You can alternatively authenticate with the account API key by passing `api_key=<your-api-key>` to the `OpenAI` client.
+
+## Scale, monitor, and delete the deployment
+
+Because managed compute deployments are model-centric, you scale by changing the number of model instances rather than sizing a node. Increase `sku.capacity` and call `begin_create_or_update` again to scale out.
+
+Managed compute deployments emit metrics on the same Azure Monitor surface as other Foundry deployments, including request counts by status code, latency percentiles, and, for chat-completion models, token usage and time-to-first-token. Open the deployment in the [Azure portal](https://portal.azure.com/) under **Metrics** to chart these and configure alerts.
+
+To delete a deployment and release its accelerator allocation:
+
+```python
+client.managed_compute_deployments.begin_delete(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+).result()
+```
+
+## Request more quota
+
+Managed compute quota is granted per accelerator family per region and is **separate from Azure VM quota**; existing VM quota can't be applied to a managed compute deployment. To request more:
+
+1. In the Foundry portal, go to **Operate** > **Quota**.
+2. Select the **Managed compute** tab to see current allocations grouped by accelerator family and region.
+3. Select **Request quota**, choose the accelerator family (A100, H100, or MI300X) and target region, and submit the request.
+
+Allow up to 15 minutes for an approved quota change to propagate.

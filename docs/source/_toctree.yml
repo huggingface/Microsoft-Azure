@@ -11,6 +11,8 @@
     title: Frequent Asked Questions (FAQ)
   title: Getting Started
 - sections:
+  - local: guides/managed-compute-foundry
+    title: Deploy Hugging Face Models in Foundry with Managed Compute
   - local: guides/one-click-deployment-foundry
     title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
   - local: guides/access-gated-models
