@@ -6,7 +6,7 @@ Managed compute in Microsoft Foundry is currently in **Public Preview**, and [re
 
 </Tip>
 
-Managed compute is a deployment type in Microsoft Foundry that hosts open-source models from the Hugging Face collection on dedicated GPU capacity, without requiring you to provision virtual machines, operate a Kubernetes cluster, or build and patch your own container images. Microsoft owns the GPU topology, the serving runtime (vLLM, SGLang, TensorRT-LLM, TEI, and more depending on the model), the container image, and security patching. You choose the model, a deployment template, the accelerator family (NVIDIA A100, NVIDIA H100, or AMD MI300X), and how many instances to run.
+Managed compute is a deployment type in Microsoft Foundry that hosts open-source models from the Hugging Face collection on dedicated GPU capacity, without requiring you to provision virtual machines, operate a Kubernetes cluster, or build and patch your own container images. Microsoft owns the GPU topology, the serving runtime (vLLM, SGLang, TEI, and more depending on the model), the container image, and security patching. You choose the model, a deployment template, the accelerator family (NVIDIA A100, NVIDIA H100, or AMD MI300X), and how many instances to run.
 
 Managed compute deployments live behind the same unified Foundry endpoint, authentication (Microsoft Entra ID or API key), SDKs, and observability surface as any other Foundry deployment, so switching from a pay-per-token model to an open-source one is just a change of the `model` field in your requests.
 
@@ -70,7 +70,7 @@ On the model card, select **Deploy** to open the deployment wizard:
 
 ![Deploying a model from the model card with a deployment name, template, accelerator type, and instance count](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/deploy.png)
 
-Alternatively, deploy the same model with the Python management SDK. Replace the placeholders with your subscription ID, resource group, Foundry account name, and the model and template IDs from the previous step.
+Alternatively, deploy the same model with the Python SDK. Replace the placeholders with your subscription ID, resource group, Foundry account name, and the model and template IDs from the previous step.
 
 ```python
 from azure.identity import DefaultAzureCredential
