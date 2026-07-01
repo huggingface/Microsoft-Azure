@@ -128,8 +128,7 @@ token_provider = get_bearer_token_provider(
 
 client = OpenAI(
     base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
-    api_key="placeholder",  # required by the OpenAI SDK; overridden by the Authorization header
-    default_headers={"Authorization": f"Bearer {token_provider()}"},
+    api_key=token_provider(),
 )
 
 response = client.chat.completions.create(
