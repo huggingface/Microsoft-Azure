@@ -2,15 +2,15 @@
 
 <Tip warning>
 
-Managed compute in Microsoft Foundry is currently in **Public Preview**, and [registration is required](https://forms.cloud.microsoft/r/8Jnx1LALLA) to use it.
+Managed compute in Microsoft Foundry is currently in **Public Preview**, expect no SLA for the time being.
 
 </Tip>
 
 Managed compute is a deployment type in Microsoft Foundry that hosts open-source models from the Hugging Face collection on dedicated GPU capacity, without requiring you to provision virtual machines, operate a Kubernetes cluster, or build and patch your own container images. Microsoft owns the GPU topology, the serving runtime (vLLM, SGLang, TEI, and more depending on the model), the container image, and security patching. You choose the model, a deployment template, the accelerator family (NVIDIA A100, NVIDIA H100, or AMD MI300X), and how many instances to run.
 
-Managed compute deployments live behind the same unified Foundry endpoint, authentication (Microsoft Entra ID or API key), SDKs, and observability surface as any other Foundry deployment, so switching from a pay-per-token model to an open-source one is just a change of the `model` field in your requests.
+Managed compute deployments live behind the same unified Foundry Routing Endpoint, authentication (Microsoft Entra ID or API key), SDKs, and observability surface as any other Foundry deployment, so switching from a pay-per-token model to an open-source one is just a change of the `model` field in your requests.
 
-This guide walks you through discovering a Hugging Face model in the Foundry catalog, deploying it with managed compute, and sending it inference requests.
+This guide walks you through discovering a Hugging Face model in the Foundry catalog, deploying it with managed compute, and sending inference requests.
 
 To see managed compute in action, watch the deep-dive session from Microsoft Build 2026, [Hugging Face open-source models to production on Microsoft Foundry](https://build.microsoft.com/en-US/sessions/DEM320):
 
@@ -55,6 +55,13 @@ The model card shows the upstream license, modality, supported tasks, and the de
     ```
 
 - **Accelerator type**, for example `H100_80GB`, `A100_80GB`, or `MI300_192GB`, shown next to each template in the deployment wizard.
+
+| Template | Runtime | Accelerator | Context |
+| --- | --- | --- | --- |
+| qwen–qwen3-32b–40k-nvidia-a100 | vLLM | 1 × A100 80 GB | 40K |
+| qwen–qwen3-32b–40k-nvidia-h100 | vLLM | 1 × H100 80 GB | 40K |
+| qwen–qwen3-32b–128k-nvidia-2xa100 | vLLM | 2 × A100 80 GB | 128K |
+| qwen–qwen3-32b–128k-nvidia-2xh100 | vLLM | 2 × H100 80 GB | 128K |
 
 A model and a deployment template must be compatible; the portal wizard only shows templates published for the model you selected.
 
@@ -118,7 +125,7 @@ The `model` field in the request body takes the **deployment name** you chose, n
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from openai import OpenAI
 
-ACCOUNT_NAME = "<your-foundry-account>"
+RESOURCE = "<your-foundry-resource>"
 DEPLOYMENT_NAME = "qwen3-32b"
 
 token_provider = get_bearer_token_provider(
@@ -127,7 +134,7 @@ token_provider = get_bearer_token_provider(
 )
 
 client = OpenAI(
-    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    base_url=f"https://{RESOURCE}.services.ai.azure.com/openai/v1",
     api_key=token_provider(),
 )
 
