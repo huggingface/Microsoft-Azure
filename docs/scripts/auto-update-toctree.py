@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 SERVICES = [
-    ("Microsoft Foundry", "foundry"),
-    ("Azure Machine Learning", "machine-learning"),
+    ("Archived Microsoft Foundry examples", "foundry"),
+    ("Archived Azure Machine Learning examples", "machine-learning"),
 ]
 
 
@@ -129,7 +129,7 @@ def inject_author_date(content: str, author: str | None, date: str | None) -> st
 
 def get_example_entries(dir_name: str) -> list:
     """Find, process, and sort example files for a given service directory."""
-    example_files = sorted(glob.glob(f"docs/source/{dir_name}/examples/*.mdx"))
+    example_files = sorted(glob.glob(f"docs/source/deprecated/{dir_name}/examples/*.mdx"))
     if not example_files:
         return []
 
@@ -179,20 +179,19 @@ def get_example_entries(dir_name: str) -> list:
     return entries
 
 
-def build_examples_section(dir_name: str, entries: list) -> list:
+def build_examples_section(dir_name: str, entries: list, indent: str) -> list:
     """Build the YAML lines for an Examples sub-section."""
     lines = []
-    lines.append("  # GENERATED CONTENT DO NOT EDIT")
-    lines.append("  - sections:")
+    lines.append(f"{indent}# GENERATED CONTENT DO NOT EDIT")
+    lines.append(f"{indent}- sections:")
     for base, title, is_new, creation_date in entries:
-        lines.append(f"    - local: {dir_name}/examples/{base}")
-        lines.append(f'      title: "{title}"')
+        lines.append(f"{indent}  - local: deprecated/{dir_name}/examples/{base}")
+        lines.append(f'{indent}    title: "{title}"')
         # if is_new:
         #     lines.append("      new: true")
-    lines.append("    title: Examples")
-    # NOTE: set to true now, to improve discoverability
-    lines.append("    isExpanded: true")
-    lines.append("  # END OF GENERATED CONTENT")
+    lines.append(f"{indent}  title: Examples")
+    lines.append(f"{indent}  isExpanded: false")
+    lines.append(f"{indent}# END OF GENERATED CONTENT")
     return lines
 
 
@@ -223,7 +222,9 @@ def inject_examples_for_service(
         result_lines = []
         for line in lines:
             if is_service_title_line(line, display_name):
-                result_lines.extend(build_examples_section(dir_name, entries))
+                indent_match = re.match(r"^(\s*)title:", line)
+                indent = indent_match.group(1) if indent_match else "  "
+                result_lines.extend(build_examples_section(dir_name, entries, indent))
             result_lines.append(line)
         return result_lines
 
@@ -235,7 +236,7 @@ def inject_examples_for_service(
     new_section.append("- sections:")
     new_section.append("  - sections:")
     for base, title, is_new, creation_date in entries:
-        new_section.append(f"    - local: {dir_name}/examples/{base}")
+        new_section.append(f"    - local: deprecated/{dir_name}/examples/{base}")
         new_section.append(f'      title: "{title}"')
     new_section.append("    title: Examples")
     new_section.append("    isExpanded: true")

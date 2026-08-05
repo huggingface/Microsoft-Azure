@@ -1,11 +1,50 @@
-# Hugging Face on Microsoft Azure
+# Hugging Face on Microsoft Foundry
 
 ![Hugging Face on Microsoft Azure](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/thumbnail.png)
 
-Hugging Face collaborates with Microsoft Azure across open science, open source, and cloud, to enable companies to build their own AI with the latest open models from Hugging Face and the latest infrastructure features from Microsoft Azure.
+Hugging Face and Microsoft work together to make open models easier to discover and deploy on Microsoft Foundry. The Hugging Face collection in Foundry brings a large catalog of open models into the Foundry experience so teams can deploy them from the UI or from Python without building the full serving stack themselves.
 
-Hugging Face enables new experiences for Microsoft Azure customers, allowing them to [deploy models on their Microsoft Azure infrastructure directly from the Hugging Face Hub via one-click deployments](./guides/one-click-deployment-foundry) in a secure and scalable way, as well as from either the Microsoft Foundry or the Azure Machine Learning model catalog, or even programmatically via the Azure CLI or the Python SDK.
+With Hugging Face on Microsoft Foundry, you can:
 
-This collaboration aims to offer developers access to an everyday growing catalog of open-source models from the Hugging Face Hub, using Hugging Face open-source libraries across a broad spectrum of Microsoft Azure services and hardware platforms.
+- Discover open models from the Hugging Face catalog directly in Microsoft Foundry.
+- Deploy supported models from the UI or programmatically from Python.
+- Use the resulting deployments behind Foundry-managed endpoints.
+- Build applications, agents, and examples on top of those deployments.
 
-By combining Hugging Face's open-source models, libraries and solutions with Microsoft Azure's scalable and secure cloud services, developers can more easily and affordably incorporate advanced AI capabilities into their applications.
+## Microsoft Foundry
+
+The Hugging Face collection is available from the Foundry model catalog, where you can filter models by family, modality, task, and deployment option before starting a deployment.
+
+![Filtering the Foundry model catalog by the Hugging Face collection and managed compute deployment option](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/catalog.png)
+
+Once a deployment is ready, you can call it through the Foundry endpoint with a standard OpenAI-compatible client:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<resource>.services.ai.azure.com/openai/v1/",
+    api_key="<TOKEN_OR_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<deployment-name>",
+    messages=[{"role": "user", "content": "Hello from Microsoft Foundry."}],
+)
+```
+
+## Where to start?
+
+Before deploying a model from Microsoft Foundry, you will usually need:
+
+- An Azure subscription
+- A Microsoft Foundry project
+- Permission to create deployments in that project
+- Enough quota in the target region for the hardware you want to use
+
+Start with the Getting started section:
+
+- [Deploy open-models from Microsoft Foundry with Python](./get-started/deploy-open-models-from-microsoft-foundry-with-python)
+  This will cover the prerequisites and a simple programmatic deployment flow.
+- [Deploy open-models from Microsoft Foundry](./get-started/deploy-open-models-from-microsoft-foundry)
+  This will cover the equivalent flow from the Foundry UI.

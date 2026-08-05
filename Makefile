@@ -7,8 +7,8 @@ install:
 
 docs: clean
 	@$(foreach svc,$(SERVICES), \
-		echo "Creating docs/source/$(svc)/examples directory for examples/$(svc)..." && \
-		mkdir -p docs/source/$(svc)/examples && \
+		echo "Creating docs/source/deprecated/$(svc)/examples directory for examples/$(svc)..." && \
+		mkdir -p docs/source/deprecated/$(svc)/examples && \
 		echo "Converting Jupyter Notebooks to MDX for $(svc)..." && \
 		doc-builder notebook-to-mdx examples/$(svc)/ && \
 	) true
@@ -26,7 +26,7 @@ docs: clean
 clean:
 	@echo "Cleaning up generated documentation..."
 	@$(foreach svc,$(SERVICES), \
-		rm -rf docs/source/$(svc)/examples && \
+		rm -rf docs/source/deprecated/$(svc)/examples && \
 	) true
 	@awk '/# GENERATED CONTENT DO NOT EDIT/,/# END OF GENERATED CONTENT/{next} {print}' docs/source/_toctree.yml | sed -e :a -e '/^\n*$$/{$$d;N;ba' -e '}' > docs/source/_toctree.yml.tmp; mv docs/source/_toctree.yml.tmp docs/source/_toctree.yml
 	@echo "Cleaning up generated Markdown Notebook files (if any)..."

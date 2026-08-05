@@ -1,35 +1,88 @@
 - sections:
   - local: index
-    title: Hugging Face on Microsoft Azure
-  - local: features
-    title: Features & Benefits
-  - local: security
-    title: Security & Compliance
-  - local: resources
-    title: Other Resources
-  - local: faq
-    title: Frequent Asked Questions (FAQ)
-  title: Getting Started
+    title: Overview
+  title: Overview
 - sections:
-  - local: guides/managed-compute-foundry
-    title: Deploy Hugging Face Models in Foundry with Managed Compute
-  - local: guides/one-click-deployment-foundry
-    title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
-  - local: guides/access-gated-models
-    title: Deploy Hugging Face gated models on Microsoft Foundry
-  - local: guides/request-model-addition
-    title: Request a model addition in the Hugging Face collection on Microsoft Foundry
-  - local: guides/configure-azure-ml-microsoft-foundry
-    title: Configure Azure Machine Learning and Microsoft Foundry
-  local: guides/introduction
-  title: Guides
+  - local: get-started/deploy-open-models-on-microsoft-foundry-with-python
+    title: Deploy open-models on Microsoft Foundry with Python
+  - local: get-started/deploy-open-models-on-microsoft-foundry
+    title: Deploy open-models on Microsoft Foundry
+  title: Get started
 - sections:
-  - local: foundry/introduction
-    title: Introduction
-  - local: foundry/tasks
-    title: Supported Tasks
-  - local: foundry/hardware
-    title: Supported Hardware
-  - local: foundry/models
-    title: Supported Models
-  title: Microsoft Foundry
+  - local: agents/introduction
+    title: Agents
+  title: Agents
+- sections:
+  - local: large-language-models/introduction
+    title: Large Language Models
+  title: Large Language Models
+- sections:
+  - local: deprecated/overview
+    title: Overview
+  - sections:
+    - local: deprecated/features
+      title: Features & Benefits
+    - local: deprecated/security
+      title: Security & Compliance
+    - local: deprecated/resources
+      title: Other Resources
+    - local: deprecated/faq
+      title: FAQ
+    title: Legacy top-level pages
+    isExpanded: false
+  - sections:
+    - local: deprecated/guides/introduction
+      title: Guides index
+    - local: deprecated/guides/configure-azure-ml-microsoft-foundry
+      title: Configure Azure Machine Learning and Microsoft Foundry
+    - local: deprecated/guides/managed-compute-foundry
+      title: Deploy Hugging Face Models in Foundry with Managed Compute
+    - local: deprecated/guides/one-click-deployment-foundry
+      title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
+    - local: deprecated/guides/access-gated-models
+      title: Deploy Hugging Face gated models on Microsoft Foundry
+    - local: deprecated/guides/request-model-addition
+      title: Request a model addition in the Hugging Face collection on Microsoft Foundry
+    title: Legacy guides
+    isExpanded: false
+  - sections:
+    - local: deprecated/foundry/introduction
+      title: Introduction
+    - local: deprecated/foundry/tasks
+      title: Supported tasks
+    - local: deprecated/foundry/hardware
+      title: Supported hardware
+    - local: deprecated/foundry/models
+      title: Supported models
+    title: Legacy Foundry reference
+    isExpanded: false
+  - sections:
+    # GENERATED CONTENT DO NOT EDIT
+    - sections:
+      - local: deprecated/foundry/examples/build-agents-with-smolagents
+        title: "Archived Example: Build Agents with smolagents on Microsoft Foundry"
+      - local: deprecated/foundry/examples/deploy-large-language-models
+        title: "Archived Example: Deploy Large Language Models on Microsoft Foundry"
+      - local: deprecated/foundry/examples/deploy-nvidia-parakeet-asr
+        title: "Archived Example: Deploy NVIDIA Parakeet for ASR on Microsoft Foundry"
+      - local: deprecated/foundry/examples/deploy-smollm3
+        title: "Archived Example: Deploy SmolLM3 on Microsoft Foundry"
+      - local: deprecated/foundry/examples/deploy-vision-language-models
+        title: "Archived Example: Deploy Vision Language Models on Microsoft Foundry"
+      title: Examples
+      isExpanded: false
+    # END OF GENERATED CONTENT
+    title: Archived Microsoft Foundry examples
+    isExpanded: false
+  - sections:
+    # GENERATED CONTENT DO NOT EDIT
+    - sections:
+      - local: deprecated/machine-learning/examples/tool-calling-agent-fine-tuning
+        title: "Archived Example: Tool-calling Agent Fine-tuning on Azure Machine Learning"
+      title: Examples
+      isExpanded: false
+    # END OF GENERATED CONTENT
+    title: Archived Azure Machine Learning examples
+    isExpanded: false
+  title: Deprecated / Archived
+  isExpanded: false

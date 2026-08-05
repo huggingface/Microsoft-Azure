@@ -3,9 +3,11 @@ import re
 import subprocess
 
 SERVICES = [
-    ("Microsoft Foundry", "foundry"),
-    ("Azure Machine Learning", "machine-learning"),
+    ("Archived Microsoft Foundry", "foundry"),
+    ("Archived Azure Machine Learning", "machine-learning"),
 ]
+
+TARGET_ROOT = "docs/source/deprecated"
 
 
 def get_git_date(file_path: str) -> str | None:
@@ -29,7 +31,7 @@ def get_git_date(file_path: str) -> str | None:
 def process_readme_files():
     for _, dir_name in SERVICES:
         print(f"Processing azure-notebook.md files from examples/{dir_name}...")
-        os.makedirs(f"docs/source/{dir_name}/examples", exist_ok=True)
+        os.makedirs(f"{TARGET_ROOT}/{dir_name}/examples", exist_ok=True)
 
         for root, _, files in os.walk(f"examples/{dir_name}"):
             for file in files:
@@ -42,7 +44,7 @@ def process_file(root, file, dir_name):
     subdir = root.replace(f"examples/{dir_name}/", "")
     base = os.path.basename(subdir)
 
-    target = f"docs/source/{dir_name}/examples/{base}.mdx"
+    target = f"{TARGET_ROOT}/{dir_name}/examples/{base}.mdx"
 
     print(f"Processing {file_path} to {target}")
     with open(file_path, "r") as f:
