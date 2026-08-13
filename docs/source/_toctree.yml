@@ -12,6 +12,9 @@
   - local: agents/introduction
     title: Agents
   title: Agents
+  - local: harness/hermes-agent
+    title: Hermes Agent (Coming soon)
+  title: Harness
 - sections:
   - local: large-language-models/introduction
     title: Large Language Models
