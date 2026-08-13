@@ -9,9 +9,6 @@
     title: Deploy open-models on Microsoft Foundry
   title: Get started
 - sections:
-  - local: agents/introduction
-    title: Agents
-  title: Agents
   - local: harness/hermes-agent
     title: Hermes Agent (Coming soon)
   title: Harness
