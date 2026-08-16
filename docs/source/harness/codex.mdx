@@ -1,3 +1,82 @@
 # Codex
 
-Coming soon!
+[Codex](https://developers.openai.com/codex/cli) is OpenAI's coding agent. The CLI works from your terminal, where it can inspect a repository, edit files, and run commands with your approval.
+
+![OpenAI Codex Landing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/codex/thumbnail.png)
+
+## Install the harness
+
+On macOS or Linux, install the Codex CLI with:
+
+```bash
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+```
+
+On Windows, run:
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+```
+
+You can also install Codex with [npm or Homebrew](https://github.com/openai/codex#installing-and-running-codex-cli).
+
+## Connect the model
+
+<Tip>
+    This guide assumes that you already have a model running on Microsoft Foundry. If you do not, deploy one [with Python](../get-started/deploy-open-models-on-microsoft-foundry-with-python.mdx) or [from the UI](../get-started/deploy-open-models-on-microsoft-foundry.mdx) first.
+</Tip>
+
+Codex allows you to [define custom profiles to connect to custom model providers](https://learn.chatgpt.com/docs/config-file/config-advanced) through the Responses API.
+
+For example, suppose you [deploy Qwen3.8 27B on Microsoft Foundry](https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface) in a project named `huggingface-demo`, you can create a custom profile at `~/.codex/microsoft-foundry.config.toml` with:
+
+```toml
+model = "qwen--qwen3-8-27b"
+model_provider = "microsoft-foundry"
+model_reasoning_effort = "medium"
+
+[model_providers.microsoft-foundry]
+name = "Microsoft Foundry"
+base_url = "https://huggingface-demo.openai.azure.com/openai/v1"
+env_key = "MICROSOFT_FOUNDRY_API_KEY"
+wire_api = "responses"
+```
+
+The value of `model` must be the **deployment name**, which may differ from the model name shown in the catalog.
+
+Set the API key in the same shell where you will run Codex:
+
+```bash
+export MICROSOFT_FOUNDRY_API_KEY="<API-KEY>"
+```
+
+For PowerShell, use:
+
+```powershell
+$env:MICROSOFT_FOUNDRY_API_KEY="<API-KEY>"
+```
+
+You can copy the key from [Microsoft Foundry](https://ai.azure.com), or retrieve it with the Azure CLI:
+
+```bash
+az cognitiveservices account keys list \
+  --subscription <SUBSCRIPTION-ID> \
+  --resource-group <RESOURCE-GROUP> \
+  --name <FOUNDRY-RESOURCE-NAME> \
+  --query key1 \
+  --output tsv
+```
+
+<!-- TODO: Add an image of the Codex provider configuration and /status output. -->
+
+## Test it!
+
+Finally, to test Codex with the open-model on Microsoft Foundry you can e.g., clone a repository and start `codex` with the previously created profile.
+
+```bash
+git clone https://github.com/huggingface/transformers.git
+cd transformers/
+codex --profile microsoft-foundry
+```
+
+<video src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/codex/video.mp4" controls muted loop preload="metadata" />

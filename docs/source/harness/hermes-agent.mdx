@@ -2,9 +2,9 @@
 
 [Hermes Agent](https://hermes-agent.nousresearch.com/) is a self-improving AI agent built by Nous Research. It's the only agent with a built-in learning loop, it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions.
 
-![Hermes Agent Landing Page](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/thumbnail.png)
+![Hermes Agent Landing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/thumbnail.png)
 
-## Install
+## Install the harness
 
 You can either install the desktop application for macOS from https://hermes-agent.nousresearch.com/ or rather install it programmatically for Linux or macOS as:
 
@@ -18,7 +18,11 @@ Or on Windows as:
 irm https://hermes-agent.nousresearch.com/install.ps1 | iex
 ```
 
-## Connect with Foundry
+## Connect the model
+
+<Tip>
+    Here we assume that you already have a running model on Microsoft Foundry, if you don't, deploy it either [programmatically with Python](../get-started/deploy-open-models-on-microsoft-foundry-with-python.mdx) or [from the UI](../get-started/deploy-open-models-on-microsoft-foundry.mdx).
+</Tip>
 
 Once installed, you can connect your OpenAI-compatible models deployed on Microsoft Foundry to it as it supports both Chat Completions API and Responses API (recommended) specifications.
 
@@ -64,7 +68,7 @@ Alternatively, from the desktop application you can also open the settings and c
 
 ![Hermes Agent Settings -> Providers -> Custom Endpoints](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/desktop.png)
 
-## Use
+## Test it!
 
 Finally, before using the model you can test it beforehand to make sure that everything's correctly configured, then you're all set!
 
