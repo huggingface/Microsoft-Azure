@@ -33,7 +33,7 @@ response = client.chat.completions.create(
 )
 ```
 
-## Where to start?
+## Get started
 
 Before deploying a model from Microsoft Foundry, you will usually need:
 
@@ -42,9 +42,9 @@ Before deploying a model from Microsoft Foundry, you will usually need:
 - Permission to create deployments in that project
 - Enough quota in the target region for the hardware you want to use
 
-Start with the Getting started section:
+Follow this path:
 
-- [Deploy open-models from Microsoft Foundry with Python](./get-started/deploy-open-models-from-microsoft-foundry-with-python)
-  This will cover the prerequisites and a simple programmatic deployment flow.
-- [Deploy open-models from Microsoft Foundry](./get-started/deploy-open-models-from-microsoft-foundry)
-  This will cover the equivalent flow from the Foundry UI.
+1. [Deploy from the Foundry UI](./get-started/deploy-open-models-on-microsoft-foundry) or [deploy with Python](./get-started/deploy-open-models-on-microsoft-foundry-with-python).
+2. Start with [GLM 5.2 FP8](./large-language-models/glm-5-2-fp8) or [DeepSeek V4 Flash 0731](./large-language-models/deepseek-v4-flash-0731).
+3. Verify the deployment through its OpenAI-compatible endpoint.
+4. Connect it to an [agent harness](./agents/introduction), such as [Codex](./agents/harness-integrations/codex).

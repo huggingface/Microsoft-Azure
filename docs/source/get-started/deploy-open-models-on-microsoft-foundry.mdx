@@ -1,1 +1,34 @@
-# Deploy open-models from Microsoft Foundry
+# Deploy open-models on Microsoft Foundry
+
+Use Managed Compute to deploy open models on dedicated hardware without managing the serving stack.
+
+## Prerequisites
+
+- An Azure subscription and Microsoft Foundry account
+- Permission to create deployments
+- Managed Compute quota for the required accelerator
+
+## Find a model
+
+1. Open [Microsoft Foundry](https://ai.azure.com).
+2. Go to **Discover → Models**.
+3. Filter **Collection** by **Hugging Face**.
+4. Select a model and choose **Deploy**.
+
+## Deploy
+
+1. Enter a deployment name.
+2. Keep **Global Managed Compute** as the deployment type.
+3. Choose a compatible deployment template and accelerator.
+4. Start with one model instance.
+5. Acknowledge the cost and select **Deploy**.
+
+Provisioning usually takes 10–20 minutes. Wait for the deployment state to become `Succeeded`.
+
+## Test and monitor
+
+Open the deployment's **Playground** tab to send a request. Use **Monitor** to inspect request count, latency, token usage, and errors.
+
+The deployment name is the value applications pass in the API's `model` field.
+
+Delete unused deployments to release their accelerators and stop billing. For programmatic deployment, see [Deploy open-models on Microsoft Foundry with Python](./deploy-open-models-on-microsoft-foundry-with-python).
