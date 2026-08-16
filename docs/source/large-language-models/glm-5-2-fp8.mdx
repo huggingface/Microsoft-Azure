@@ -1,0 +1,105 @@
+# GLM 5.2 FP8
+
+[`zai-org/GLM-5.2-FP8`](https://huggingface.co/zai-org/GLM-5.2-FP8) is an open-weight reasoning model for coding, tool use, and long-running agent tasks.
+
+![](https://raw.githubusercontent.com/zai-org/GLM-5/refs/heads/main/resources/bench_52.png)
+
+On Microsoft Foundry, it runs with vLLM on AMD ROCm using:
+
+- 8 x AMD Instinct MI300X 192 GB GPUs
+- A 524,288 token context window
+- Up to 32 concurrent requests per batch
+- OpenAI compatible Responses API
+
+## Pre-requisites
+
+- A Microsoft Azure subscription with access to Microsoft Foundry
+- A Microsoft Foundry project / account
+- Python 3.10 or higher
+
+Then install the following Python dependencies:
+
+```bash
+pip install azure-identity azure-ai-ml "azure-mgmt-cognitiveservices>=15.0.0b2" openai
+```
+
+And sign-in with the `az` CLI with `az login`.
+
+## Deployment
+
+Then you are all set to deploy models programmatically with the Python SDK as follows:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "zai-org--glm-5-2-fp8"
+
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": "azureml://registries/azure-huggingface/models/zai-org--glm-5.2-fp8/versions/5",
+            "deploymentTemplate": "azureml://registries/azure-huggingface/deploymenttemplates/zai-org--glm-52-fp8--512k-amd-8xmi300x/labels/latest",
+            "acceleratorType": "MI300_192GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+<Tip>
+    The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+</Tip>
+
+## Inference
+
+As GLM 5.2 is a reasoning model, then using the OpenAI Responses API at `/v1/responses` is recommended.
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+from openai import OpenAI
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "zai-org--glm-5-2-fp8"
+
+az_client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+client = OpenAI(
+    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    api_key=az_client.accounts.list_keys(RESOURCE_GROUP, ACCOUNT_NAME).key1,
+)
+
+response = client.responses.create(
+    model=DEPLOYMENT_NAME,
+    input="Build a small FastAPI health-check endpoint.",
+    reasoning={"effort": "high"},
+)
+
+print(response.output_text)
+```
+
+## Next steps
+
+[Connect the deployment to Codex](../harness/codex), or your favourite harness, to use your model as an agent.
+
+![](https://alvarobartt.com/assets/vid/posts/goal-glm-5.2-on-foundry/codex-glm-5.2-goal.mp4)

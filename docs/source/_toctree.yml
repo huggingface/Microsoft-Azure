@@ -9,8 +9,18 @@
     title: Deploy open-models on Microsoft Foundry
   title: Get started
 - sections:
+  - local: large-language-models/glm-5-2-fp8
+    title: GLM 5.2 FP8
+  title: Large Language Models
+- sections:
+  - local: harness/claude-code
+    title: Claude Code (Coming soon)
+  - local: harness/codex
+    title: Codex
   - local: harness/hermes-agent
-    title: Hermes Agent (Coming soon)
+    title: Hermes Agent
+  - local: harness/pi
+    title: Pi (Coming soon)
   title: Harness
 - sections:
   - local: large-language-models/introduction
