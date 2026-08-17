@@ -1,0 +1,139 @@
+# Quickstart
+
+Deploy a Hugging Face model on Microsoft Foundry, test it in the Playground, and call it from an application. You can use the Foundry portal for a guided setup or the Python SDK for a repeatable deployment.
+
+## Before you begin
+
+You need:
+
+- An Azure subscription and a Microsoft Foundry project
+- `Cognitive Services Contributor` access to create the deployment
+- `Foundry User` access to call it from the Playground
+- Managed compute quota for the accelerator used by your model
+
+Managed compute is currently in preview and uses dedicated GPU capacity. Delete deployments that you no longer need to stop billing.
+
+## Choose a deployment path
+
+| Foundry portal | Python SDK |
+|---|---|
+| The quickest path for a first deployment. [Start in the portal](#foundry-portal). | Best for automation and repeatable environments. [Start with Python](#python-sdk). |
+
+Both paths create the same type of managed compute deployment. Choose one, then continue to [Test the deployment](#test-the-deployment).
+
+## Foundry portal
+
+1. Open [Microsoft Foundry](https://ai.azure.com) and select your project.
+2. Go to **Discover → Models**. Filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
+3. Select a model, choose **Deploy**, and enter a deployment name. Keep one instance for your first deployment, then select a compatible deployment template and accelerator.
+4. Select **Deploy** and wait for the deployment state to become `Succeeded`.
+
+Provisioning often takes 10–20 minutes and can take longer when accelerator capacity is limited.
+
+## Python SDK
+
+Install the dependencies and sign in to Azure:
+
+```bash
+pip install azure-identity "azure-mgmt-cognitiveservices>=15.0.0b2" openai
+az login
+```
+
+Open the model's deployment wizard in Foundry and copy its **Model ID**, **Deployment template ID**, and **Accelerator type**. Replace the placeholders below, then run the script:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION-ID>"
+RESOURCE_GROUP = "<RESOURCE-GROUP>"
+ACCOUNT_NAME = "<FOUNDRY-ACCOUNT-NAME>"
+DEPLOYMENT_NAME = "<DEPLOYMENT-NAME>"
+
+MODEL = "<MODEL-ID>"
+TEMPLATE = "<DEPLOYMENT-TEMPLATE-ID>"
+ACCELERATOR_TYPE = "<ACCELERATOR-TYPE>"
+
+management_client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = management_client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": MODEL,
+            "deploymentTemplate": TEMPLATE,
+            "acceleratorType": ACCELERATOR_TYPE,
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+The call waits for provisioning to finish. The deployment is ready when it prints `Succeeded`.
+
+## Test the deployment
+
+Open the deployment in Foundry and select **Playground**. Send a simple prompt, such as:
+
+```text
+Explain what this model is best suited for in three short bullet points.
+```
+
+If the model responds, the deployment is ready. Applications must use the **deployment name** in the API's `model` field, not the model name from the catalog.
+
+## Call the model from Python
+
+Copy the endpoint and API key from the deployment page, then install the OpenAI client if you did not use the Python deployment path:
+
+```bash
+pip install openai
+```
+
+For a model that supports the Responses API:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<FOUNDRY-ACCOUNT-NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API-KEY>",
+)
+
+response = client.responses.create(
+    model="<DEPLOYMENT-NAME>",
+    input="Write a one-sentence hello from Microsoft Foundry.",
+)
+
+print(response.output_text)
+```
+
+Check the model card or deployment page for its supported API. Some models use Chat Completions instead of Responses.
+
+## Clean up
+
+Delete deployments that you are not using to release their accelerators and stop billing.
+
+- In Foundry, open the deployments list, select the deployment, and choose **Delete**.
+- If you deployed with Python, use the management client created earlier:
+
+```python
+management_client.managed_compute_deployments.begin_delete(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+).result()
+```
+
+## Next steps
+
+- Try a model-specific guide for [GLM 5.2 FP8](../large-language-models/glm-5-2-fp8) or [DeepSeek V4 Flash 0731](../large-language-models/deepseek-v4-flash-0731).
+- Connect a Responses-compatible deployment to [Codex](../harness/codex) or another supported harness.
+- See the [Managed compute documentation](https://learn.microsoft.com/azure/foundry/how-to/deploy-models-managed) for quota, monitoring, scaling, and troubleshooting.

@@ -3,10 +3,8 @@
     title: Overview
   title: Overview
 - sections:
-  - local: get-started/deploy-open-models-on-microsoft-foundry
-    title: Deploy open-models on Microsoft Foundry
-  - local: get-started/deploy-open-models-on-microsoft-foundry-with-python
-    title: Deploy open-models on Microsoft Foundry with Python
+  - local: get-started/quickstart
+    title: Quickstart
   title: Get started
 - sections:
   - local: large-language-models/glm-5-2-fp8
