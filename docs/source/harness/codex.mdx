@@ -1,6 +1,6 @@
 # Codex
 
-[Codex](https://developers.openai.com/codex/cli) is OpenAI's coding agent. The CLI works from your terminal, where it can inspect a repository, edit files, and run commands with your approval.
+<a href="https://developers.openai.com/codex/cli" target="_blank" rel="noopener">Codex</a> is OpenAI's coding agent. The CLI works from your terminal, where it can inspect a repository, edit files, and run commands with your approval.
 
 ![OpenAI Codex Landing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/codex/thumbnail.png)
 
@@ -18,17 +18,16 @@ On Windows, run:
 powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
 ```
 
-You can also install Codex with [npm or Homebrew](https://github.com/openai/codex#installing-and-running-codex-cli).
+You can also install Codex with <a href="https://github.com/openai/codex#installing-and-running-codex-cli" target="_blank" rel="noopener">npm or Homebrew</a>.
 
 ## Connect the model
 
-<Tip>
-    This guide assumes that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
-</Tip>
+> [!TIP]
+> This guide assumes that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
 
-Codex allows you to [define custom profiles to connect to custom model providers](https://learn.chatgpt.com/docs/config-file/config-advanced) through the Responses API.
+Codex allows you to <a href="https://learn.chatgpt.com/docs/config-file/config-advanced" target="_blank" rel="noopener">define custom profiles to connect to custom model providers</a> through the Responses API.
 
-For example, suppose you [deploy Qwen3.8 27B on Microsoft Foundry](https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface) in a project named `huggingface-demo`, you can create a custom profile at `~/.codex/microsoft-foundry.config.toml` with:
+For example, suppose you <a href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface" target="_blank" rel="noopener">deploy Qwen3.8 27B on Microsoft Foundry</a> in a project named `huggingface-demo`, you can create a custom profile at `~/.codex/microsoft-foundry.config.toml` with:
 
 ```toml
 model = "qwen--qwen3-8-27b"
@@ -56,7 +55,7 @@ For PowerShell, use:
 $env:MICROSOFT_FOUNDRY_API_KEY="<API-KEY>"
 ```
 
-You can copy the key from [Microsoft Foundry](https://ai.azure.com), or retrieve it with the Azure CLI:
+You can copy the key from <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a>, or retrieve it with the Azure CLI:
 
 ```bash
 az cognitiveservices account keys list \

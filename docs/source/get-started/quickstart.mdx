@@ -10,9 +10,8 @@ You need:
 - `Cognitive Services Contributor` access to create the deployment
 - Managed compute quota for the accelerator that your model requires
 
-<Tip warning={true}>
-    Managed compute runs on dedicated GPU capacity and bills for as long as the deployment exists. Delete the deployments that you no longer need.
-</Tip>
+> [!WARNING]
+> Managed compute runs on dedicated GPU capacity and bills for as long as the deployment exists. Delete the deployments that you no longer need.
 
 ## Deploy a model
 
@@ -21,7 +20,7 @@ Pick the Foundry portal for a first, guided deployment, or Python for a repeatab
 <hfoptions id="deployment">
 <hfoption id="Foundry portal">
 
-1. Open [Microsoft Foundry](https://ai.azure.com) and select your project.
+1. Open <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> and select your project.
 2. Go to **Discover → Models**, and filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
 3. Select a model and choose **Deploy**.
 4. Enter a deployment name, pick a deployment template and its accelerator, and select **Deploy**.
@@ -77,9 +76,8 @@ The call returns when provisioning finishes, and prints `Succeeded`.
 </hfoption>
 </hfoptions>
 
-<Tip>
-    The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
-</Tip>
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
 
 ## Call the deployment
 
@@ -117,6 +115,6 @@ client.managed_compute_deployments.begin_delete(
 
 ## Next steps
 
-- Browse the [catalog](../catalog/qwen) to pick a model.
+- Browse the catalog to pick a model: [Qwen](../catalog/qwen), [DeepSeek AI](../catalog/deepseek-ai), [NVIDIA](../catalog/nvidia), [Microsoft](../catalog/microsoft).
 - Turn reasoning on or off per request in [Enable and disable reasoning](../advanced/reasoning).
 - Connect the deployment to a harness such as [Codex](../harness/codex) or [Hermes Agent](../harness/hermes-agent).

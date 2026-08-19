@@ -1,12 +1,12 @@
 # Hermes Agent
 
-[Hermes Agent](https://hermes-agent.nousresearch.com/) is a self-improving AI agent built by Nous Research. It's the only agent with a built-in learning loop, it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions.
+<a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes Agent</a> is a self-improving AI agent built by Nous Research. It's the only agent with a built-in learning loop, it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions.
 
 ![Hermes Agent Landing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/thumbnail.png)
 
 ## Install the harness
 
-You can either install the desktop application for macOS from https://hermes-agent.nousresearch.com/ or rather install it programmatically for Linux or macOS as:
+You can either install the desktop application for macOS from <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">https://hermes-agent.nousresearch.com/</a> or rather install it programmatically for Linux or macOS as:
 
 ```bash
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
@@ -20,15 +20,14 @@ irm https://hermes-agent.nousresearch.com/install.ps1 | iex
 
 ## Connect the model
 
-<Tip>
-    This guide assumes that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
-</Tip>
+> [!TIP]
+> This guide assumes that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
 
 Once installed, you can connect your OpenAI-compatible models deployed on Microsoft Foundry to it as it supports both Chat Completions API and Responses API (recommended) specifications.
 
-You need to create or add the following into your Hermes Agent configuration file at `~/.hermes/config.yaml`. More information at [Hermes Agent - Configuring Models](https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models).
+You need to create or add the following into your Hermes Agent configuration file at `~/.hermes/config.yaml`. More information at <a href="https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models" target="_blank" rel="noopener">Hermes Agent - Configuring Models</a>.
 
-Let's assume that you want to [deploy Qwen3.8 27B on Microsoft Foundry](https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface) in a project named `huggingface-demo` then the `~/.hermes/config.yaml` would look like:
+Let's assume that you want to <a href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface" target="_blank" rel="noopener">deploy Qwen3.8 27B on Microsoft Foundry</a> in a project named `huggingface-demo` then the `~/.hermes/config.yaml` would look like:
 
 ```yaml
 model:
@@ -54,9 +53,8 @@ agent:
     qwen--qwen3-8-27b: medium
 ```
 
-<Tip>
-    As a reminder, the value for `HERMES_CUSTOM_MICROSOFT_FOUNDRY_API_KEY` is either obtained from [Microsoft Foundry](https://ai.azure.com) or programmatically with the `az` CLI as `az cognitiveservices account keys list --subscription <SUBSCRIPTION-ID> --resource-group <RESOURCE-GROUP> --name huggingface-demo -o tsv --query key1`.
-</Tip>
+> [!TIP]
+> As a reminder, the value for `HERMES_CUSTOM_MICROSOFT_FOUNDRY_API_KEY` is either obtained from <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> or programmatically with the `az` CLI as `az cognitiveservices account keys list --subscription <SUBSCRIPTION-ID> --resource-group <RESOURCE-GROUP> --name huggingface-demo -o tsv --query key1`.
 
 Alternatively, from the desktop application you can also open the settings and click on "Providers -> Custom Endpoints" and create the endpoint with the deployed model, then set the following:
 

@@ -7,6 +7,10 @@
     title: Qwen
   - local: catalog/deepseek-ai
     title: DeepSeek AI
+  - local: catalog/nvidia
+    title: NVIDIA
+  - local: catalog/microsoft
+    title: Microsoft
   title: Catalog
 - sections:
   - local: get-started/quickstart

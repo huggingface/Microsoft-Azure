@@ -1,6 +1,6 @@
 # DeepSeek V4 Flash 0731
 
-[`deepseek-ai/DeepSeek-V4-Flash-0731`](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) is the official DeepSeek V4 Flash release, superseding the preview with stronger coding, tool-use, and agentic capabilities.
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" target="_blank" rel="noopener"><code>deepseek-ai/DeepSeek-V4-Flash-0731</code></a> is the official DeepSeek V4 Flash release, superseding the preview with stronger coding, tool-use, and agentic capabilities.
 
 DeepSeek V4 Flash is a mixture-of-experts model with 284B total parameters and 13B activated per token. It combines DeepSeek's compressed attention architecture with a fused DSpark speculative-decoding module, keeping inference efficient while supporting long-context workloads. The model is released under the MIT license.
 
@@ -72,9 +72,8 @@ deployment = client.managed_compute_deployments.begin_create_or_update(
 print(deployment.properties.provisioning_state)
 ```
 
-<Tip>
-    The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
-</Tip>
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
 
 ## Inference
 
@@ -127,4 +126,4 @@ Use `low` for quick tasks, `high` for most agentic work, and `max` for the harde
 
 Connect the deployment to a compatible harness, such as [Hermes Agent](../harness/hermes-agent). Confirm that the harness supports Chat Completions and the model's reasoning controls.
 
-For more model and serving details, see the [DeepSeek model card](https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731) and the [vLLM recipe](https://recipes.vllm.ai/deepseek-ai/DeepSeek-V4-Flash).
+For more model and serving details, see the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" target="_blank" rel="noopener">DeepSeek model card</a> and the <a href="https://recipes.vllm.ai/deepseek-ai/DeepSeek-V4-Flash" target="_blank" rel="noopener">vLLM recipe</a>.

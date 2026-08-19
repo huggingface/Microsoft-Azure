@@ -1,531 +1,726 @@
 # Qwen
 
-[Qwen](https://huggingface.co/Qwen) is Alibaba Cloud's open model family, spanning dense and mixture-of-experts text models, vision-language models, embeddings, and image generation. It is the largest family in the Hugging Face collection on Microsoft Foundry.
-
-Every card links to the latest version of the model in the `azure-huggingface` registry on Microsoft Foundry, and shows its input and output modalities:
+<a href="https://huggingface.co/Qwen" target="_blank" rel="noopener">Qwen</a> is the open model family from Alibaba Cloud, released under permissive licenses and covering text, vision-language, coding, embedding, and image generation models.
 
 <div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
-  <span class="flex items-center gap-1.5"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span>Text</span>
-  <span class="flex items-center gap-1.5"><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span>Image</span>
-  <span class="flex items-center gap-1.5"><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span>Video</span>
-  <span class="flex items-center gap-1.5"><span title="Embeddings" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span>Embeddings</span>
+  <span class="flex items-center gap-1.5"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span>Text</span>
+  <span class="flex items-center gap-1.5"><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span>Image</span>
+  <span class="flex items-center gap-1.5"><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span>Video</span>
+  <span class="flex items-center gap-1.5"><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span>Embeddings</span>
 </div>
 
 ## Chat completion
 
-<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
   <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-0.6b/version/1/registry/azure-huggingface"
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-0.6B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-0.6b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Compact Qwen3 0.6B chat model for lightweight text generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-14b/version/2/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-14B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-14b &#183; v2</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Dense 14.8B Qwen3 reasoning model with multilingual chat, tool use, and switchable thinking modes.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-instruct-2507/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Instruct-2507</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-30b-a3b-instruct-2507 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 30B-A3B instruction model for long-context reasoning and generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-instruct-2507-fp8/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Instruct-2507-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-30b-a3b-instruct-2507-fp8 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3 30B-A3B instruct model for long-context reasoning and generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-thinking-2507/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Thinking-2507</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-30b-a3b-thinking-2507 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 30B-A3B thinking model for long-context reasoning and generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-32b/version/3/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-32B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-32b &#183; v3</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Dense 32.8B Qwen3 reasoning model with switchable thinking modes, multilingual chat, and agentic workflows.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-4b-instruct-2507/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-4B-Instruct-2507</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-4b-instruct-2507 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 4B instruction model for compact long-context chat and text generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-30b-a3b-instruct/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-30B-A3B-Instruct</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-coder-30b-a3b-instruct &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 Coder 30B-A3B instruction model for code generation and agentic workflows.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-30b-a3b-instruct-fp8/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-30B-A3B-Instruct-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-coder-30b-a3b-instruct-fp8 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3 Coder 30B-A3B model for code generation and agentic workflows.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-next/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-Next</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-coder-next &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3-Coder-Next model for agentic coding, tool use, and long-context software workflows.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-next-fp8/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-Next-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-coder-next-fp8 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3-Coder-Next model for agentic coding, tool use, and long-context software workflows.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-vl-30b-a3b-instruct/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-VL-30B-A3B-Instruct</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-vl-30b-a3b-instruct &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3-VL 30B-A3B multimodal model for image, video, and text generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-vl-30b-a3b-instruct-fp8/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-VL-30B-A3B-Instruct-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-vl-30b-a3b-instruct-fp8 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3-VL 30B-A3B instruct model for multimodal image, video, and text generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-0.8b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-0.8B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-0.8b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Compact multimodal Qwen3.5 model for visual reasoning, OCR, GUI interaction, and long-context video understanding.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-2b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-2B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-2b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Small multimodal Qwen3.5 model for visual reasoning, OCR, GUI interaction, and long-context video understanding.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-35b-a3b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-35B-A3B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-35b-a3b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 35B-A3B multimodal model for visual reasoning and long-context generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-397b-a17b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-397B-A17B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-397b-a17b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 397B-A17B multimodal MoE for reasoning, coding, agents, OCR, GUI, and long-context video.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-397b-a17b-fp8/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-397B-A17B-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-397b-a17b-fp8 &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3.5 397B-A17B multimodal MoE for reasoning, coding, agents, OCR, GUI, and video.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-4b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-4B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-4b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 4B multimodal model for visual reasoning, OCR, and long-context generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-9b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-9B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.5-9b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 9B multimodal model for visual reasoning, OCR, and long-context generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.6-27b/version/2/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.6-27B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.6-27b &#183; v2</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Multimodal 27B Qwen3.6 model for coding, reasoning, OCR, GUI interaction, and long-context video understanding.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.8-27B</span>
+          <span class="rounded bg-green-50 px-1.5 py-0.5 text-xs font-semibold uppercase text-green-700 ring-1 ring-green-100 dark:bg-gray-800 dark:text-green-400 dark:ring-gray-700">New</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Compact Qwen3.8 27B vision-language model for coding, agents, reasoning, images, and video.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Aug 2026</span>
+      </span>
     </span>
   </a>
   <a
     href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.6-27b-fp8/version/5/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.6-27B-FP8</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.6-27b-fp8 &#183; v5</span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.6-27B-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
       <span class="text-sm text-gray-500 dark:text-gray-400">FP8-quantized multimodal 27B Qwen3.6 model for coding, reasoning, OCR, GUI interaction, and long-context video understanding.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2026</span>
+      </span>
     </span>
   </a>
   <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface"
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.6-27b/version/2/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.8-27B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3.8-27b &#183; v2</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Compact Qwen3.8 27B vision-language model for coding, agents, reasoning, images, and video.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.6-27B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Multimodal 27B Qwen3.6 model for coding, reasoning, OCR, GUI interaction, and long-context video understanding.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-0.8b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-0.8B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Compact multimodal Qwen3.5 model for visual reasoning, OCR, GUI interaction, and long-context video understanding.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-2b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-2B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Small multimodal Qwen3.5 model for visual reasoning, OCR, GUI interaction, and long-context video understanding.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-4b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-4B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 4B multimodal model for visual reasoning, OCR, and long-context generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-9b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-9B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 9B multimodal model for visual reasoning, OCR, and long-context generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-35b-a3b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-35B-A3B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 35B-A3B multimodal model for visual reasoning and long-context generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-397b-a17b-fp8/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-397B-A17B-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3.5 397B-A17B multimodal MoE for reasoning, coding, agents, OCR, GUI, and video.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.5-397b-a17b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3.5-397B-A17B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3.5 397B-A17B multimodal MoE for reasoning, coding, agents, OCR, GUI, and long-context video.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-next-fp8/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-Next-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3-Coder-Next model for agentic coding, tool use, and long-context software workflows.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-next/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-Next</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3-Coder-Next model for agentic coding, tool use, and long-context software workflows.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jan 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-vl-30b-a3b-instruct-fp8/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-VL-30B-A3B-Instruct-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3-VL 30B-A3B instruct model for multimodal image, video, and text generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Oct 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-vl-30b-a3b-instruct/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-VL-30B-A3B-Instruct</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3-VL 30B-A3B multimodal model for image, video, and text generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Sep 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-4b-instruct-2507/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-4B-Instruct-2507</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 4B instruction model for compact long-context chat and text generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Aug 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-30b-a3b-instruct-fp8/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-30B-A3B-Instruct-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3 Coder 30B-A3B model for code generation and agentic workflows.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-coder-30b-a3b-instruct/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Coder-30B-A3B-Instruct</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 Coder 30B-A3B instruction model for code generation and agentic workflows.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-thinking-2507/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Thinking-2507</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 30B-A3B thinking model for long-context reasoning and generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-instruct-2507-fp8/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Instruct-2507-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">FP8 Qwen3 30B-A3B instruct model for long-context reasoning and generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-30b-a3b-instruct-2507/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-30B-A3B-Instruct-2507</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Qwen3 30B-A3B instruction model for long-context reasoning and generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-32b/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-32B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Dense 32.8B Qwen3 reasoning model with switchable thinking modes, multilingual chat, and agentic workflows.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-14b/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-14B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Dense 14.8B Qwen3 reasoning model with multilingual chat, tool use, and switchable thinking modes.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-0.6b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-0.6B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Compact Qwen3 0.6B chat model for lightweight text generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2025</span>
+      </span>
     </span>
   </a>
   <a
     href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwq-32b/version/1/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">QwQ-32B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwq-32b &#183; v1</span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">QwQ-32B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
       <span class="text-sm text-gray-500 dark:text-gray-400">QwQ 32B reasoning model for math, coding, and analytical text generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Mar 2025</span>
+      </span>
     </span>
   </a>
   <a
     href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwq-32b-preview/version/2/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">QwQ-32B-Preview</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwq-32b-preview &#183; v2</span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">QwQ-32B-Preview</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
       <span class="text-sm text-gray-500 dark:text-gray-400">Preview QwQ 32B reasoning model for experimental math and coding tasks.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
-    </span>
-  </a>
-</div>
-
-## Embeddings
-
-<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-embedding-0.6b/version/1/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Embedding-0.6B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-embedding-0.6b &#183; v1</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Compact multilingual embedding model with flexible output dimensions for retrieval, classification, clustering, and code retrieval.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
-    </span>
-  </a>
-  <a
-    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-embedding-8b/version/2/registry/azure-huggingface"
-    target="_blank"
-    rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
-  >
-    <img
-      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
-      alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
-    />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Embedding-8B</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen3-embedding-8b &#183; v2</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">State-of-the-art 8B multilingual embedding model for retrieval, classification, clustering, bitext mining, and code retrieval.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Nov 2024</span>
+      </span>
     </span>
   </a>
 </div>
 
 ## Text to image
 
-<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
   <a
     href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen-image-2512/version/3/registry/azure-huggingface"
     target="_blank"
     rel="noopener"
-    class="!no-underline flex items-start gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
       alt="Qwen logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col gap-1">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen-Image-2512</span>
-      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">qwen--qwen-image-2512 &#183; v3</span>
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen-Image-2512</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
       <span class="text-sm text-gray-500 dark:text-gray-400">Qwen Image 2512 model for English and Chinese text-to-image generation.</span>
-      <span class="flex items-center gap-1 pt-1"><span title="Text" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Image" class="inline-flex h-6 w-6 items-center justify-center rounded-md bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span></span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Dec 2025</span>
+      </span>
+    </span>
+  </a>
+</div>
+
+## Embeddings
+
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-embedding-8b/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Embedding-8B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">State-of-the-art 8B multilingual embedding model for retrieval, classification, clustering, bitext mining, and code retrieval.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jun 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3-embedding-0.6b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Qwen3-Embedding-0.6B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Compact multilingual embedding model with flexible output dimensions for retrieval, classification, clustering, and code retrieval.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jun 2025</span>
+      </span>
     </span>
   </a>
 </div>

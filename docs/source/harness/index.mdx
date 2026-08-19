@@ -2,67 +2,66 @@
 
 An agent harness is the application that drives a model: it holds the conversation, exposes tools such as file edits or shell commands, and decides what to send back to the model on every turn. Any harness that speaks the OpenAI Chat Completions API or the Responses API can point at a model deployed on Microsoft Foundry.
 
-<Tip>
-    These guides assume that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
-</Tip>
+> [!TIP]
+> These guides assume that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
 
 Pick a harness to connect it to your Foundry deployment:
 
-<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
   <a
     href="./codex"
-    class="!no-underline flex items-center gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/codex/logo.png"
       alt="Codex logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Codex</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">OpenAI's coding agent for the terminal</span>
+    <span class="flex flex-col gap-0.5">
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Codex</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">OpenAI's coding agent for the terminal</span>
     </span>
   </a>
   <a
     href="./hermes-agent"
-    class="!no-underline flex items-center gap-4 rounded-xl border border-gray-200 dark:border-gray-700 p-4 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
   >
     <img
       src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/logo.png"
       alt="Hermes Agent logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
     />
-    <span class="flex flex-col">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Hermes Agent</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Nous Research's self-improving agent</span>
+    <span class="flex flex-col gap-0.5">
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Hermes Agent</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">Nous Research's self-improving agent</span>
     </span>
   </a>
   <div
-    class="flex items-center gap-4 rounded-xl border border-dashed border-gray-200 dark:border-gray-700 p-4 opacity-60 cursor-not-allowed"
+    class="flex items-center gap-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 p-3 opacity-60 cursor-not-allowed"
     aria-disabled="true"
   >
     <img
       src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/claude-code/logo.png"
       alt="Claude Code logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200 grayscale"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200 grayscale"
     />
-    <span class="flex flex-col">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Claude Code</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Coming soon</span>
+    <span class="flex flex-col gap-0.5">
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Claude Code</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">Coming soon</span>
     </span>
   </div>
   <div
-    class="flex items-center gap-4 rounded-xl border border-dashed border-gray-200 dark:border-gray-700 p-4 opacity-60 cursor-not-allowed"
+    class="flex items-center gap-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 p-3 opacity-60 cursor-not-allowed"
     aria-disabled="true"
   >
     <img
       src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/pi/logo.png"
       alt="Pi logo"
-      class="h-10 w-10 shrink-0 rounded-lg bg-white object-contain p-1 ring-1 ring-gray-200 grayscale"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200 grayscale"
     />
-    <span class="flex flex-col">
-      <span class="font-semibold text-gray-900 dark:text-gray-100">Pi</span>
-      <span class="text-sm text-gray-500 dark:text-gray-400">Coming soon</span>
+    <span class="flex flex-col gap-0.5">
+      <span class="text-sm font-semibold text-gray-900 dark:text-gray-100">Pi</span>
+      <span class="text-xs text-gray-500 dark:text-gray-400">Coming soon</span>
     </span>
   </div>
 </div>
