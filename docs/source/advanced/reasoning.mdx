@@ -1,0 +1,64 @@
+# Enable and disable reasoning
+
+Many of the models in the collection are hybrid reasoning models: they can answer directly, or think first and then answer. The mode is chosen per request, so a single deployment covers both, and you do not need to redeploy to switch.
+
+Reasoning costs latency and output tokens, so it is worth turning off for classification, extraction, or short chat turns, and on for planning, coding, and agentic work.
+
+## Chat Completions
+
+The switch lives in the model's chat template, and vLLM exposes the template arguments through `extra_body`:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<DEPLOYMENT_NAME>",
+    messages=[{"role": "user", "content": "Sort these tickets by urgency."}],
+    extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+)
+
+print(response.choices[0].message.content)
+```
+
+The argument name is defined by the model, not by the API, so check the model page before using it:
+
+| Model | Argument | Values |
+|---|---|---|
+| Qwen3 and Qwen3.x | `enable_thinking` | `True`, `False` |
+| DeepSeek V4 Flash 0731 | `thinking`, `reasoning_effort` | `True` / `False`, and `low`, `high`, `max` |
+
+When reasoning is enabled and the deployment runs with a reasoning parser, the thinking trace comes back separately from the answer, in `reasoning_content`:
+
+```python
+print(response.choices[0].message.reasoning_content)
+print(response.choices[0].message.content)
+```
+
+Send the `content` of an assistant turn back in the conversation history, but not its `reasoning_content`.
+
+## Responses API
+
+Models served through the Responses API take a reasoning effort instead of a boolean:
+
+```python
+response = client.responses.create(
+    model="<DEPLOYMENT_NAME>",
+    input="Build a small FastAPI health-check endpoint.",
+    reasoning={"effort": "high"},
+)
+
+print(response.output_text)
+```
+
+<Tip>
+    Agent harnesses usually set the reasoning effort themselves, so configure it there rather than per request. See [Codex](../harness/codex) or [Hermes Agent](../harness/hermes-agent).
+</Tip>
+
+## Models without a switch
+
+Some models are reasoning-only, such as [QwQ-32B](../catalog/qwen) and Qwen3-30B-A3B-Thinking-2507, and others never emit a thinking trace, such as the `Instruct` variants. Passing the argument to those models has no effect on the output.

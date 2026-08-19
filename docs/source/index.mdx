@@ -2,49 +2,72 @@
 
 ![Hugging Face on Microsoft Azure](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/thumbnail.png)
 
-Hugging Face and Microsoft work together to make open models easier to discover and deploy on Microsoft Foundry. The Hugging Face collection in Foundry brings a large catalog of open models into the Foundry experience so teams can deploy them from the UI or from Python without building the full serving stack themselves.
+Hugging Face and Microsoft bring a curated collection of open models to Microsoft Foundry. You deploy a model on managed compute from the Foundry portal or from Python, and call it behind an OpenAI-compatible endpoint, without building or maintaining the serving stack yourself.
 
-With Hugging Face on Microsoft Foundry, you can:
+## Catalog
 
-- Discover open models from the Hugging Face catalog directly in Microsoft Foundry.
-- Deploy supported models from the UI or programmatically from Python.
-- Use the resulting deployments behind Foundry-managed endpoints.
-- Build applications, agents, and examples on top of those deployments.
-
-## Microsoft Foundry
-
-The Hugging Face collection is available from the Foundry model catalog, where you can filter models by family, modality, task, and deployment option before starting a deployment.
+The collection lives in the `azure-huggingface` registry and shows up in the Foundry model catalog, where you can filter by **Collection: Hugging Face** and **Deployment options: Managed compute**.
 
 ![Filtering the Foundry model catalog by the Hugging Face collection and managed compute deployment option](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/catalog.png)
 
-Once a deployment is ready, you can call it through the Foundry endpoint with a standard OpenAI-compatible client:
+Each model is published as a versioned asset in the registry, with one or more deployment templates that pin the serving engine, the context window, and the accelerator it runs on. Browse the collection by family in the [catalog](./catalog/qwen), where every entry links to the latest version of the model on Microsoft Foundry.
+
+## Deploy a model
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "qwen--qwen3-8-27b"
+
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": "azureml://registries/azure-huggingface/models/qwen--qwen3.8-27b/versions/2",
+            "deploymentTemplate": "azureml://registries/azure-huggingface/deploymenttemplates/qwen--qwen3-8-27b--256k-nvidia-h100/labels/latest",
+            "acceleratorType": "H100_80GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+## Run inference
+
+Once the deployment reports `Succeeded`, call it with the OpenAI SDK. The `model` field takes the **deployment name**, not the model name from the catalog:
 
 ```python
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://<resource>.services.ai.azure.com/openai/v1/",
-    api_key="<TOKEN_OR_KEY>",
+    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
 )
 
 response = client.chat.completions.create(
-    model="<deployment-name>",
+    model=DEPLOYMENT_NAME,
     messages=[{"role": "user", "content": "Hello from Microsoft Foundry."}],
 )
+
+print(response.choices[0].message.content)
 ```
 
-## Get started
+## Next steps
 
-Before deploying a model from Microsoft Foundry, you will usually need:
-
-- An Azure subscription
-- A Microsoft Foundry project
-- Permission to create deployments in that project
-- Enough quota in the target region for the hardware you want to use
-
-Follow this path:
-
-1. Follow the [quickstart](./get-started/quickstart) to deploy from the Foundry portal or with Python.
-2. Start with [GLM 5.2 FP8](./large-language-models/glm-5-2-fp8) or [DeepSeek V4 Flash 0731](./large-language-models/deepseek-v4-flash-0731).
-3. Verify the deployment through its OpenAI-compatible endpoint.
-4. Connect it to an agent harness, such as [Codex](./harness/codex) or [Hermes Agent](./harness/hermes-agent).
+- Deploy your first model from the portal or from Python in the [quickstart](./get-started/quickstart).
+- Turn reasoning on or off per request in [Enable and disable reasoning](./advanced/reasoning).
+- Connect a deployment to an agent harness such as [Codex](./harness/codex) or [Hermes Agent](./harness/hermes-agent).

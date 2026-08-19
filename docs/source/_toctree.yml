@@ -1,6 +1,13 @@
 - sections:
-  local: index
+  - local: index
+    title: Overview
   title: Overview
+- sections:
+  - local: catalog/qwen
+    title: Qwen
+  - local: catalog/deepseek-ai
+    title: DeepSeek AI
+  title: Catalog
 - sections:
   - local: get-started/quickstart
     title: Quickstart
@@ -14,6 +21,8 @@
     title: Qwen3.8 27B
   title: Large Language Models
 - sections:
+  - local: harness/index
+    title: Overview
   - local: harness/claude-code
     title: Claude Code (Coming soon)
   - local: harness/codex
@@ -22,5 +31,8 @@
     title: Hermes Agent
   - local: harness/pi
     title: Pi (Coming soon)
-  local: harness/index
   title: Harness
+- sections:
+  - local: advanced/reasoning
+    title: Enable and disable reasoning
+  title: Advanced
