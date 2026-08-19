@@ -1,43 +1,48 @@
 - local: index
   title: Overview
+
 - local: catalog/index
   title: Catalog
+  isExpanded: true
   sections:
-    - local: catalog/qwen
-      title: Qwen
-    - local: catalog/deepseek-ai
-      title: DeepSeek AI
-    - local: catalog/nvidia
-      title: NVIDIA
-    - local: catalog/microsoft
-      title: Microsoft
+  - local: catalog/qwen
+    title: Qwen
+  - local: catalog/deepseek-ai
+    title: DeepSeek AI
+  - local: catalog/nvidia
+    title: NVIDIA
+  - local: catalog/microsoft
+    title: Microsoft
+
 - sections:
   - local: get-started/quickstart
     title: Quickstart
   title: Get started
+
 - sections:
-  - local: large-language-models/glm-5-2-fp8
-    title: GLM 5.2 FP8
-  - local: large-language-models/deepseek-v4-flash-0731
-    title: DeepSeek V4 Flash 0731
-  - local: large-language-models/qwen3-8-27b
-    title: Qwen3.8 27B (Coming soon)
-  title: Large Language Models
+  - local: examples/glm-5-2-fp8
+    title: Open frontier-scale intelligence with GLM 5.2 and vLLM on Foundry
+  - local: examples/deepseek-v4-flash-0731
+    title: Long-context reasoning and agentic coding with DeepSeek V4 Flash on Foundry
+  - local: examples/qwen3-8-27b
+    title: Multimodal understanding with Qwen3.8 27B on Foundry
+  title: Examples
+
 - local: harness/index
   title: Harness
+  isExpanded: true
   sections:
-    - local: harness/index
-      title: Overview
-    - local: harness/claude-code
-      title: Claude Code (Coming soon)
-    - local: harness/codex
-      title: Codex
-    - local: harness/hermes-agent
-      title: Hermes Agent
-    - local: harness/pi
-      title: Pi (Coming soon)
+  - local: harness/claude-code
+    title: Claude Code (Coming soon)
+  - local: harness/codex
+    title: Codex
+  - local: harness/hermes-agent
+    title: Hermes Agent
+  - local: harness/pi
+    title: Pi (Coming soon)
+
 - sections:
   - local: advanced/reasoning
     title: Enable and disable reasoning
   title: Advanced
-  isExpanded: true
+  isExpanded: false

@@ -1,0 +1,88 @@
+# Catalog
+
+Hugging Face publishes a curated collection of open models to the `azure-huggingface` registry on Microsoft Foundry. Each one is packaged with the serving engine, context window, and accelerator it was validated on, so you deploy it on managed compute without assembling the stack yourself.
+
+The families below have a page here, listing every one of their models available on Foundry:
+
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <a
+    href="./qwen"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6215ca5692c0ecfba9186921/hrRM50-6XcdWgg2AKpENG.jpeg"
+      alt="Qwen logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Qwen</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Chat, vision-language, coding, embeddings, and image generation</span>
+    </span>
+  </a>
+  <a
+    href="./deepseek-ai"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/6538815d1bdb3c40db94fbfa/xMBly9PUMphrFVMxLX4kq.png"
+      alt="DeepSeek AI logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">DeepSeek AI</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Mixture-of-experts models for long-context reasoning and coding</span>
+    </span>
+  </a>
+  <a
+    href="./nvidia"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">NVIDIA</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Nemotron and Cosmos, plus FP8 and NVFP4 quantizations</span>
+    </span>
+  </a>
+  <a
+    href="./microsoft"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/1583646260758-5e64858c87403103f9f1055d.png"
+      alt="Microsoft logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Microsoft</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Phi small language models and domain-tuned variants</span>
+    </span>
+  </a>
+</div>
+
+## And much more
+
+Those pages cover 50 of the 102 models in the collection. The rest spans many more providers, including:
+
+- **Z.ai** GLM 5.2, and **OpenAI** gpt-oss 20B and 120B, for open frontier-scale chat and reasoning
+- **Google** Gemma 4, **Mistral AI**, **IBM Granite**, and **Cohere Labs** North, for general-purpose chat
+- **OpenAI** Whisper for speech recognition, and **Qwen** and **Tongyi-MAI** models for image generation
+- **Sentence Transformers** all-MiniLM, **Answer.AI** ModernBERT, and **BERT** variants, for embeddings and classification at a fraction of the cost of a chat model
+
+New models land in the collection regularly, so the Foundry catalog is always the complete, current list:
+
+<a
+  href="https://ai.azure.com/nextgen/goto/discover/models"
+  target="_blank"
+  rel="noopener"
+  class="!no-underline mt-6 flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+>
+  <span class="flex flex-1 flex-col leading-snug">
+    <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Browse the full collection on Microsoft Foundry</span>
+    <span class="text-sm text-gray-500 dark:text-gray-400">Filter by <strong>Collection: Hugging Face</strong> and <strong>Deployment options: Managed compute</strong> to see all 102</span>
+  </span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+</a>
