@@ -1,17 +1,16 @@
-- sections:
-  - local: index
-    title: Overview
+- local: index
   title: Overview
-- sections:
-  - local: catalog/qwen
-    title: Qwen
-  - local: catalog/deepseek-ai
-    title: DeepSeek AI
-  - local: catalog/nvidia
-    title: NVIDIA
-  - local: catalog/microsoft
-    title: Microsoft
+- local: catalog/index
   title: Catalog
+  sections:
+    - local: catalog/qwen
+      title: Qwen
+    - local: catalog/deepseek-ai
+      title: DeepSeek AI
+    - local: catalog/nvidia
+      title: NVIDIA
+    - local: catalog/microsoft
+      title: Microsoft
 - sections:
   - local: get-started/quickstart
     title: Quickstart
@@ -22,21 +21,23 @@
   - local: large-language-models/deepseek-v4-flash-0731
     title: DeepSeek V4 Flash 0731
   - local: large-language-models/qwen3-8-27b
-    title: Qwen3.8 27B
+    title: Qwen3.8 27B (Coming soon)
   title: Large Language Models
-- sections:
-  - local: harness/index
-    title: Overview
-  - local: harness/claude-code
-    title: Claude Code (Coming soon)
-  - local: harness/codex
-    title: Codex
-  - local: harness/hermes-agent
-    title: Hermes Agent
-  - local: harness/pi
-    title: Pi (Coming soon)
+- local: harness/index
   title: Harness
+  sections:
+    - local: harness/index
+      title: Overview
+    - local: harness/claude-code
+      title: Claude Code (Coming soon)
+    - local: harness/codex
+      title: Codex
+    - local: harness/hermes-agent
+      title: Hermes Agent
+    - local: harness/pi
+      title: Pi (Coming soon)
 - sections:
   - local: advanced/reasoning
     title: Enable and disable reasoning
   title: Advanced
+  isExpanded: true
