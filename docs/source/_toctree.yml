@@ -1,6 +1,11 @@
 - local: index
   title: Overview
 
+- sections:
+  - local: get-started/quickstart
+    title: Quickstart
+  title: Get started
+
 - local: catalog/index
   title: Catalog
   isExpanded: true
@@ -13,11 +18,6 @@
     title: NVIDIA
   - local: catalog/microsoft
     title: Microsoft
-
-- sections:
-  - local: get-started/quickstart
-    title: Quickstart
-  title: Get started
 
 - sections:
   - local: examples/glm-5-2-fp8

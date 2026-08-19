@@ -1,17 +1,24 @@
-# Long-context reasoning and agentic coding with DeepSeek V4 Flash on Foundry
+# Long-context reasoning and agentic coding with DeepSeek V4 Flash
 
 <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" target="_blank" rel="noopener"><code>deepseek-ai/DeepSeek-V4-Flash-0731</code></a> is the official DeepSeek V4 Flash release, superseding the preview with stronger coding, tool-use, and agentic capabilities.
 
 DeepSeek V4 Flash is a mixture-of-experts model with 284B total parameters and 13B activated per token. It combines DeepSeek's compressed attention architecture with a fused DSpark speculative-decoding module, keeping inference efficient while supporting long-context workloads. The model is released under the MIT license.
 
-DeepSeek reports the following results for the `0731` release:
+<div align="center">
 
-| Benchmark | Score |
-|---|---:|
-| Terminal Bench 2.1 | 82.7 |
-| DeepSWE | 54.4 |
-| Toolathlon-Verified | 70.3 |
-| Agents' Last Exam | 25.2 |
+| Benchmark | DeepSeek-V4-Flash-0731 | DeepSeek-V4-Flash (Preview) | DeepSeek-V4-Pro (Preview) | GLM-5.2 | Opus-4.8 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Terminal Bench 2.1 | 82.7 | 61.8 | 72.1 | 81.0 | 85.0 |
+| NL2Repo | 54.2 | 39.4 | 38.5 | 48.9 | 69.7 |
+| Cybergym | 76.7 | 38.7 | 52.7 | - | 83.1 |
+| DeepSWE | 54.4 | 7.3 | 12.8 | 46.2 | 58.0 |
+| Toolathlon-Verified | 70.3 | 49.7 | 55.9 | 59.9 | 76.2 |
+| Agents' Last Exam | 25.2 | 15.8 | 16.5 | 23.8 | 25.7 |
+| AutomationBench Public | 25.1 | 10.8 | 12.8 | 12.9 | 27.2 |
+| DSBench-FullStack † | 68.7 | 37.0 | 41.8 | 61.8 | 71.6 |
+| DSBench-Hard † | 59.6 | 25.8 | 31.1 | 54.5 | 71.7 |
+
+</div>
 
 On Microsoft Foundry, it runs with vLLM using:
 
