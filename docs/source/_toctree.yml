@@ -1,6 +1,5 @@
 - sections:
-  - local: index
-    title: Overview
+  local: index
   title: Overview
 - sections:
   - local: get-started/quickstart
@@ -15,8 +14,6 @@
     title: Qwen3.8 27B
   title: Large Language Models
 - sections:
-  - local: harness/index
-    title: Overview
   - local: harness/claude-code
     title: Claude Code (Coming soon)
   - local: harness/codex
@@ -25,4 +22,5 @@
     title: Hermes Agent
   - local: harness/pi
     title: Pi (Coming soon)
+  local: harness/index
   title: Harness
