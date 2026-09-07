@@ -11,7 +11,7 @@
   sections:
   - local: catalog/index
     title: Overview
-  - isExpanded: false
+  - isExpanded: true
     sections:
     - local: catalog/qwen
       title: Qwen
@@ -21,7 +21,7 @@
       title: NVIDIA
     - local: catalog/microsoft
       title: Microsoft
-    title: Organizations
+    title: Featured
   - local: catalog/more
     title: And much more
   title: Catalog
@@ -35,18 +35,22 @@
     title: Multimodal understanding with Qwen3.8 27B on Foundry
   title: Examples
 
-- local: harness/index
-  title: Harness
-  isExpanded: true
+- isExpanded: true
   sections:
-  - local: harness/claude-code
-    title: Claude Code (Coming soon)
-  - local: harness/codex
-    title: Codex
-  - local: harness/hermes-agent
-    title: Hermes Agent
-  - local: harness/pi
-    title: Pi (Coming soon)
+  - local: harness/index
+    title: Overview
+  - isExpanded: true
+    sections:
+    - local: harness/claude-code
+      title: Claude Code (Coming soon)
+    - local: harness/codex
+      title: Codex
+    - local: harness/hermes-agent
+      title: Hermes Agent
+    - local: harness/pi
+      title: Pi (Coming soon)
+    title: Integrations
+  title: Harness
 
 - sections:
   - local: advanced/reasoning
