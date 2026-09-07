@@ -41,12 +41,14 @@
     title: Overview
   - isExpanded: true
     sections:
-    - local: harness/claude-code
-      title: Claude Code (Coming soon)
     - local: harness/codex
       title: Codex
     - local: harness/hermes-agent
       title: Hermes Agent
+    - local: harness/claude-code
+      title: Claude Code (Coming soon)
+    - local: harness/opencode
+      title: OpenCode (Coming soon)
     - local: harness/pi
       title: Pi (Coming soon)
     title: Integrations
