@@ -8,6 +8,7 @@
 
 - local: catalog/index
   title: Catalog
+  isNew: true
   isExpanded: true
   sections:
   - local: catalog/qwen

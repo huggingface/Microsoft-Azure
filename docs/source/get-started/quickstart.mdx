@@ -10,15 +10,12 @@ You need:
 - `Cognitive Services Contributor` access to create the deployment
 - Managed compute quota for the accelerator that your model requires
 
-> [!WARNING]
-> Managed compute runs on dedicated GPU capacity and bills for as long as the deployment exists. Delete the deployments that you no longer need.
-
 ## Deploy a model
 
 Pick the Foundry portal for a first, guided deployment, or Python for a repeatable one. Both create the same managed compute deployment.
 
 <hfoptions id="deployment">
-<hfoption id="Foundry portal">
+<hfoption id="Microsoft Foundry">
 
 1. Open <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> and select your project.
 2. Go to **Discover → Models**, and filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
@@ -28,7 +25,7 @@ Pick the Foundry portal for a first, guided deployment, or Python for a repeatab
 The deployment is ready when its state becomes `Succeeded`.
 
 </hfoption>
-<hfoption id="Python">
+<hfoption id="Python SDK">
 
 Install the dependencies and sign in:
 
@@ -73,6 +70,18 @@ print(deployment.properties.provisioning_state)
 
 The call returns when provisioning finishes, and prints `Succeeded`.
 
+### Clean up
+
+When you are finished with the deployment, delete it to release its accelerators and stop billing:
+
+```python
+client.managed_compute_deployments.begin_delete(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+).result()
+```
+
 </hfoption>
 </hfoptions>
 
@@ -100,18 +109,6 @@ print(response.choices[0].message.content)
 ```
 
 Some models are served through the Responses API instead, at `/openai/v1/responses`. Check the model page for the API that it supports.
-
-## Clean up
-
-Delete the deployment to release its accelerators and stop billing, either from its page in Foundry or with:
-
-```python
-client.managed_compute_deployments.begin_delete(
-    resource_group_name=RESOURCE_GROUP,
-    account_name=ACCOUNT_NAME,
-    deployment_name=DEPLOYMENT_NAME,
-).result()
-```
 
 ## Next steps
 
