@@ -6,19 +6,25 @@
     title: Quickstart
   title: Get started
 
-- local: catalog/index
-  title: Catalog
-  isNew: true
-  isExpanded: true
+- isExpanded: true
+  new: true
   sections:
-  - local: catalog/qwen
-    title: Qwen
-  - local: catalog/deepseek-ai
-    title: DeepSeek AI
-  - local: catalog/nvidia
-    title: NVIDIA
-  - local: catalog/microsoft
-    title: Microsoft
+  - local: catalog/index
+    title: Overview
+  - isExpanded: false
+    sections:
+    - local: catalog/qwen
+      title: Qwen
+    - local: catalog/deepseek-ai
+      title: DeepSeek AI
+    - local: catalog/nvidia
+      title: NVIDIA
+    - local: catalog/microsoft
+      title: Microsoft
+    title: Organizations
+  - local: catalog/more
+    title: And much more
+  title: Catalog
 
 - sections:
   - local: examples/glm-5-2-fp8
