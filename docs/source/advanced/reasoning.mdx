@@ -1,12 +1,45 @@
 # Enable and disable reasoning
 
-Many of the models in the collection are hybrid reasoning models: they can answer directly, or think first and then answer. The mode is chosen per request, so a single deployment covers both, and you do not need to redeploy to switch.
+Some models can answer directly or generate a reasoning trace before the final answer. You choose the mode per request, so you can switch without redeploying the model.
 
-Reasoning costs latency and output tokens, so it is worth turning off for classification, extraction, or short chat turns, and on for planning, coding, and agentic work.
+Reasoning can improve planning, coding, and other multi-step tasks, but it also adds latency and output tokens. Defaults and supported controls vary by model, so check the model page before relying on a particular setting.
 
-## Chat Completions
+## Chat Completions API
 
-The switch lives in the model's chat template, and vLLM exposes the template arguments through `extra_body`:
+Send Chat Completions requests to `/openai/v1/chat/completions`. Reasoning switches are extensions understood by the serving engine and the model's chat template; they are not standard Chat Completions fields.
+
+With cURL, place `chat_template_kwargs` directly in the JSON body. With the Python SDK, pass it through `extra_body` so the SDK forwards it as a top-level request field.
+
+Use the switch documented by the model rather than sending every possible key. Common switches include `enable_thinking` for Qwen and GLM models, and `thinking` for DeepSeek models.
+
+### vLLM
+
+This example enables reasoning with `enable_thinking`. Set it to `false` to request a direct answer from models that support both modes.
+
+<hfoptions id="vllm-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is deep learning?"
+      }
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": true
+    }
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
 
 ```python
 from openai import OpenAI
@@ -18,34 +51,115 @@ client = OpenAI(
 
 response = client.chat.completions.create(
     model="<DEPLOYMENT_NAME>",
-    messages=[{"role": "user", "content": "Sort these tickets by urgency."}],
-    extra_body={"chat_template_kwargs": {"enable_thinking": False}},
+    messages=[{"role": "user", "content": "What is deep learning?"}],
+    extra_body={
+        "chat_template_kwargs": {
+            "enable_thinking": True,
+        }
+    },
 )
 
-print(response.choices[0].message.content)
+message = response.choices[0].message
+print(getattr(message, "reasoning", None))
+print(message.content)
 ```
 
-The argument name is defined by the model, not by the API, so check the model page before using it:
+</hfoption>
+</hfoptions>
 
-| Model | Argument | Values |
-|---|---|---|
-| Qwen3 and Qwen3.x | `enable_thinking` | `True`, `False` |
-| DeepSeek V4 Flash 0731 | `thinking`, `reasoning_effort` | `True` / `False`, and `low`, `high`, `max` |
+When a reasoning parser is configured for the deployment, current vLLM versions return the separated trace in `message.reasoning` and the final answer in `message.content`. Older runtime versions may use `reasoning_content` instead.
 
-When reasoning is enabled and the deployment runs with a reasoning parser, the thinking trace comes back separately from the answer, in `reasoning_content`:
+### SGLang
+
+Set `separate_reasoning` to `true` to return the trace separately from the final answer.
+
+<hfoptions id="sglang-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is deep learning?"
+      }
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": true
+    },
+    "separate_reasoning": true
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
 
 ```python
-print(response.choices[0].message.reasoning_content)
-print(response.choices[0].message.content)
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<DEPLOYMENT_NAME>",
+    messages=[{"role": "user", "content": "What is deep learning?"}],
+    extra_body={
+        "chat_template_kwargs": {
+            "enable_thinking": True,
+        },
+        "separate_reasoning": True,
+    },
+)
+
+message = response.choices[0].message
+print(getattr(message, "reasoning_content", None))
+print(message.content)
 ```
 
-Send the `content` of an assistant turn back in the conversation history, but not its `reasoning_content`.
+</hfoption>
+</hfoptions>
+
+SGLang returns the separated trace in `message.reasoning_content` and the final answer in `message.content`.
 
 ## Responses API
 
-Models served through the Responses API take a reasoning effort instead of a boolean:
+For deployments that expose the Responses API, send requests to `/openai/v1/responses` and use `reasoning.effort`. Supported effort levels vary by model and runtime; `high` enables more reasoning, while `none` requests a direct answer where that level is supported.
+
+<hfoptions id="responses-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "input": "Build a small FastAPI health-check endpoint.",
+    "reasoning": {
+      "effort": "high"
+    }
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
 
 ```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
 response = client.responses.create(
     model="<DEPLOYMENT_NAME>",
     input="Build a small FastAPI health-check endpoint.",
@@ -55,9 +169,9 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-> [!TIP]
-> Agent harnesses usually set the reasoning effort themselves, so configure it there rather than per request. See [Codex](../harness/codex) or [Hermes Agent](../harness/hermes-agent).
+</hfoption>
+</hfoptions>
 
 ## Models without a switch
 
-Some models are reasoning-only, such as [QwQ-32B](../catalog/qwen) and Qwen3-30B-A3B-Thinking-2507, and others never emit a thinking trace, such as the `Instruct` variants. Passing the argument to those models has no effect on the output.
+Reasoning-only models ignore requests to disable reasoning, while non-reasoning models ignore reasoning controls. Use the model page as the source of truth for supported modes and parameter names.
