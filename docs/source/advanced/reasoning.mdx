@@ -1,5 +1,9 @@
 # Enable and disable reasoning
 
+Some models can answer directly or generate a reasoning trace before the final answer. You choose the mode per request, so you can switch without redeploying the model.
+
+Reasoning can improve planning, coding, and other multi-step tasks, but it also adds latency and output tokens. Defaults and supported controls vary by model, so check the model page before relying on a particular setting.
+
 <div class="not-prose mx-auto my-8 w-full max-w-lg overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
   <div class="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
     <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Reasoning mode</span>
@@ -16,10 +20,6 @@
     </div>
   </div>
 </div>
-
-Some models can answer directly or generate a reasoning trace before the final answer. You choose the mode per request, so you can switch without redeploying the model.
-
-Reasoning can improve planning, coding, and other multi-step tasks, but it also adds latency and output tokens. Defaults and supported controls vary by model, so check the model page before relying on a particular setting.
 
 ## Chat Completions API
 
