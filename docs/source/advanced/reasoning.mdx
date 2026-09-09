@@ -1,5 +1,22 @@
 # Enable and disable reasoning
 
+<div class="not-prose mx-auto my-8 w-full max-w-lg overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
+  <div class="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
+    <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Reasoning mode</span>
+    <span class="rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-green-100 dark:bg-green-950 dark:text-green-300 dark:ring-green-900">Enabled</span>
+  </div>
+  <div class="font-mono text-sm leading-6">
+    <div class="flex gap-3 border-b border-red-100 bg-red-50 px-4 py-2 text-red-800 dark:border-red-950 dark:bg-red-950/40 dark:text-red-300">
+      <span aria-hidden="true" class="select-none font-semibold text-red-500">−</span>
+      <code class="bg-transparent p-0 text-inherit">'enable_thinking': false</code>
+    </div>
+    <div class="flex gap-3 bg-green-50 px-4 py-2 text-green-800 dark:bg-green-950/40 dark:text-green-300">
+      <span aria-hidden="true" class="select-none font-semibold text-green-600">+</span>
+      <code class="bg-transparent p-0 text-inherit">'enable_thinking': true</code>
+    </div>
+  </div>
+</div>
+
 Some models can answer directly or generate a reasoning trace before the final answer. You choose the mode per request, so you can switch without redeploying the model.
 
 Reasoning can improve planning, coding, and other multi-step tasks, but it also adds latency and output tokens. Defaults and supported controls vary by model, so check the model page before relying on a particular setting.
@@ -9,8 +26,6 @@ Reasoning can improve planning, coding, and other multi-step tasks, but it also 
 Send Chat Completions requests to `/openai/v1/chat/completions`. Reasoning switches are extensions understood by the serving engine and the model's chat template; they are not standard Chat Completions fields.
 
 With cURL, place `chat_template_kwargs` directly in the JSON body. With the Python SDK, pass it through `extra_body` so the SDK forwards it as a top-level request field.
-
-Use the switch documented by the model rather than sending every possible key. Common switches include `enable_thinking` for Qwen and GLM models, and `thinking` for DeepSeek models.
 
 ### vLLM
 
@@ -33,7 +48,8 @@ curl -sS -X POST \
       }
     ],
     "chat_template_kwargs": {
-      "enable_thinking": true
+      "enable_thinking": true,
+      "thinking": true
     }
   }'
 ```
@@ -55,6 +71,7 @@ response = client.chat.completions.create(
     extra_body={
         "chat_template_kwargs": {
             "enable_thinking": True,
+            "thinking": True,
         }
     },
 )
@@ -90,7 +107,8 @@ curl -sS -X POST \
       }
     ],
     "chat_template_kwargs": {
-      "enable_thinking": true
+      "enable_thinking": true,
+      "thinking": true
     },
     "separate_reasoning": true
   }'
@@ -113,6 +131,7 @@ response = client.chat.completions.create(
     extra_body={
         "chat_template_kwargs": {
             "enable_thinking": True,
+            "thinking": True,
         },
         "separate_reasoning": True,
     },
