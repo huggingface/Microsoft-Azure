@@ -22,6 +22,13 @@ Pick Microsoft Foundry for a first, guided deployment experience, or rather the 
 
 The deployment is ready when its state becomes `Succeeded`.
 
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+
+### Clean up
+
+When you are finished with the deployment, delete it to release its accelerators and stop billing.
+
 </hfoption>
 <hfoption id="Python SDK">
 
@@ -68,6 +75,9 @@ print(deployment.properties.provisioning_state)
 
 The call returns when provisioning finishes, and prints `Succeeded`.
 
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+
 ### Clean up
 
 When you are finished with the deployment, delete it to release its accelerators and stop billing:
@@ -82,9 +92,6 @@ client.managed_compute_deployments.begin_delete(
 
 </hfoption>
 </hfoptions>
-
-> [!TIP]
-> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
 
 ## Call the deployment
 
@@ -111,4 +118,4 @@ The models that support reasoning are better supported via the Responses API at 
 ## Next steps
 
 - Browse the [Featured Catalog](../catalog/index) to help select a model.
-- Connect the deployment to a harness such as [Codex](../harness/codex) or [Hermes Agent](../harness/hermes-agent).
+- Connect the deployment to a harness such as [Codex](../harness/integrations/codex) or [Hermes Agent](../harness/integrations/hermes-agent).
