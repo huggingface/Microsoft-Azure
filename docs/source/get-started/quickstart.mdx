@@ -1,40 +1,38 @@
 # Quickstart
 
-Deploy a model from the Hugging Face collection on Microsoft Foundry, then call it from Python.
+Deploy a model from the Hugging Face collection on Microsoft Foundry, then call it from Python using the OpenAI-compatible APIs.
 
 ## Before you begin
 
-You need:
-
-- An Azure subscription and a Microsoft Foundry project
+- A Microsoft Azure subscription and a Microsoft Foundry project
 - `Cognitive Services Contributor` access to create the deployment
 - Managed compute quota for the accelerator that your model requires
 
 ## Deploy a model
 
-Pick the Foundry portal for a first, guided deployment, or Python for a repeatable one. Both create the same managed compute deployment.
+Pick Microsoft Foundry for a first, guided deployment experience, or rather the Python SDK for a programmatic and repeatable one.
 
 <hfoptions id="deployment">
 <hfoption id="Microsoft Foundry">
 
 1. Open <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> and select your project.
-2. Go to **Discover → Models**, and filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
+2. Go to **Discover -> Models**, and filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
 3. Select a model and choose **Deploy**.
-4. Enter a deployment name, pick a deployment template and its accelerator, and select **Deploy**.
+4. Enter a deployment name, pick a deployment template and its accelerator, and click **Deploy**.
 
 The deployment is ready when its state becomes `Succeeded`.
 
 </hfoption>
 <hfoption id="Python SDK">
 
-Install the dependencies and sign in:
+Install the dependencies and sign in to Azure.
 
 ```bash
 pip install azure-identity "azure-mgmt-cognitiveservices>=15.0.0b2" openai
 az login
 ```
 
-Copy the **Model ID**, **Deployment template ID**, and **Accelerator type** from the model's deployment wizard in Foundry, then run:
+Then, when you select a model ID from the Hugging Face Hub or from the available IDs in the Microsoft Foundry collection, then you need to retrieve the asset name and version, as well as the deployment-template and accelerator that it will be deployed in.
 
 ```python
 from azure.identity import DefaultAzureCredential
@@ -108,10 +106,9 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Some models are served through the Responses API instead, at `/openai/v1/responses`. Check the model page for the API that it supports.
+The models that support reasoning are better supported via the Responses API at `/openai/v1/responses` rather than Chat Completions API.
 
 ## Next steps
 
-- Browse the [catalog](../catalog/index) to pick a model.
-- Turn reasoning on or off per request in [Enable and disable reasoning](../advanced/reasoning).
+- Browse the [Featured Catalog](../catalog/index) to help select a model.
 - Connect the deployment to a harness such as [Codex](../harness/codex) or [Hermes Agent](../harness/hermes-agent).
