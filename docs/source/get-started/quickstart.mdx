@@ -20,12 +20,31 @@ Pick Microsoft Foundry for a first, guided deployment experience, or rather the 
 3. Select a model and choose **Deploy**.
 4. Enter a deployment name, pick a deployment template and its accelerator, and click **Deploy**.
 
+![Qwen3.8 27B on Microsoft Foundry](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F661/microsoft-foundry/get-started/model.png)
+
 The deployment is ready when its state becomes `Succeeded`.
 
 > [!TIP]
 > The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
 
-### Clean up
+## Call the deployment
+
+Either go to the Playground page for the model on Microsoft Foundry to use the chat models.
+
+![Microsoft Foundry Playground](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F661/microsoft-foundry/get-started/playground.png)
+
+Or rather send a cURL request to the OpenAI-compatible API as follows:
+
+```bash
+curl https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions \
+    -H "Authorization: Bearer <API_KEY>" \
+    -H "Content-Type: application/json" \
+    -d '{"model":"<DEPLOYMENT_NAME>","messages":[{"role":"user","content":"Write a one-sentence hello from Microsoft Foundry."}]}'
+```
+
+The models that support reasoning are better supported via the Responses API at `/openai/v1/responses` rather than Chat Completions API.
+
+## Clean up
 
 When you are finished with the deployment, delete it to release its accelerators and stop billing.
 
@@ -78,21 +97,6 @@ The call returns when provisioning finishes, and prints `Succeeded`.
 > [!TIP]
 > The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
 
-### Clean up
-
-When you are finished with the deployment, delete it to release its accelerators and stop billing:
-
-```python
-client.managed_compute_deployments.begin_delete(
-    resource_group_name=RESOURCE_GROUP,
-    account_name=ACCOUNT_NAME,
-    deployment_name=DEPLOYMENT_NAME,
-).result()
-```
-
-</hfoption>
-</hfoptions>
-
 ## Call the deployment
 
 Copy the endpoint and key from the deployment page, and use the **deployment name** as the `model`:
@@ -114,6 +118,21 @@ print(response.choices[0].message.content)
 ```
 
 The models that support reasoning are better supported via the Responses API at `/openai/v1/responses` rather than Chat Completions API.
+
+## Clean up
+
+When you are finished with the deployment, delete it to release its accelerators and stop billing.
+
+```python
+client.managed_compute_deployments.begin_delete(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+).result()
+```
+
+</hfoption>
+</hfoptions>
 
 ## Next steps
 
