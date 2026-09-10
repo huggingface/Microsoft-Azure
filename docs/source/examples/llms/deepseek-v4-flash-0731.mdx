@@ -1,0 +1,136 @@
+# Long-context reasoning and agentic coding with DeepSeek V4 Flash
+
+<a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" target="_blank" rel="noopener"><code>deepseek-ai/DeepSeek-V4-Flash-0731</code></a> is the official DeepSeek V4 Flash release, superseding the preview with stronger coding, tool-use, and agentic capabilities.
+
+DeepSeek V4 Flash is a mixture-of-experts model with 284B total parameters and 13B activated per token. It combines DeepSeek's compressed attention architecture with a fused DSpark speculative-decoding module, keeping inference efficient while supporting long-context workloads. The model is released under the MIT license.
+
+<div align="center">
+
+| Benchmark | DeepSeek-V4-Flash-0731 | DeepSeek-V4-Flash (Preview) | DeepSeek-V4-Pro (Preview) | GLM-5.2 | Opus-4.8 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Terminal Bench 2.1 | 82.7 | 61.8 | 72.1 | 81.0 | 85.0 |
+| NL2Repo | 54.2 | 39.4 | 38.5 | 48.9 | 69.7 |
+| Cybergym | 76.7 | 38.7 | 52.7 | - | 83.1 |
+| DeepSWE | 54.4 | 7.3 | 12.8 | 46.2 | 58.0 |
+| Toolathlon-Verified | 70.3 | 49.7 | 55.9 | 59.9 | 76.2 |
+| Agents' Last Exam | 25.2 | 15.8 | 16.5 | 23.8 | 25.7 |
+| AutomationBench Public | 25.1 | 10.8 | 12.8 | 12.9 | 27.2 |
+| DSBench-FullStack † | 68.7 | 37.0 | 41.8 | 61.8 | 71.6 |
+| DSBench-Hard † | 59.6 | 25.8 | 31.1 | 54.5 | 71.7 |
+
+</div>
+
+On Microsoft Foundry, it runs with vLLM using:
+
+- 8 NVIDIA H100 80 GB GPUs
+- A 524,288-token context window
+- OpenAI-compatible Chat Completions
+- `low`, `high`, and `max` reasoning-effort levels
+
+The upstream model supports up to 1,048,576 tokens. This deployment template uses 524,288 tokens to fit the model and KV cache on one 8×H100 node.
+
+## Pre-requisites
+
+- A Microsoft Azure subscription with access to Microsoft Foundry
+- A Microsoft Foundry project / account
+- Python 3.10 or higher
+
+Then install the following Python dependencies:
+
+```bash
+pip install azure-identity azure-ai-ml "azure-mgmt-cognitiveservices>=15.0.0b2" openai
+```
+
+And sign-in with the `az` CLI with `az login`.
+
+## Deployment
+
+Deploy the model programmatically with the Python SDK:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "deepseek-ai--deepseek-v4-flash-0731"
+
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": "azureml://registries/azure-huggingface/models/deepseek-ai--deepseek-v4-flash-0731/versions/1",
+            "deploymentTemplate": "azureml://registries/azure-huggingface/deploymenttemplates/deepseek-ai--deepseek-v4-flash-0731--512k-nvidia-8xh100/labels/latest",
+            "acceleratorType": "H100_80GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+
+## Inference
+
+Use Chat Completions and pass the reasoning mode through vLLM's chat-template arguments:
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+from openai import OpenAI
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "deepseek-ai--deepseek-v4-flash-0731"
+
+az_client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+client = OpenAI(
+    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    api_key=az_client.accounts.list_keys(RESOURCE_GROUP, ACCOUNT_NAME).key1,
+)
+
+response = client.chat.completions.create(
+    model=DEPLOYMENT_NAME,
+    messages=[
+        {
+            "role": "user",
+            "content": "Review this repository and propose the three highest-impact improvements.",
+        }
+    ],
+    temperature=1.0,
+    top_p=0.95,
+    extra_body={
+        "chat_template_kwargs": {
+            "thinking": True,
+            "reasoning_effort": "high",
+        }
+    },
+)
+
+print(response.choices[0].message.content)
+```
+
+Use `low` for quick tasks, `high` for most agentic work, and `max` for the hardest planning and coding tasks. DeepSeek recommends `temperature=1.0` and `top_p=0.95` for agentic scenarios.
+
+## Bonus: Use it in an agent harness
+
+Connect the deployment to a compatible harness, such as [Hermes Agent](../../harness/integrations/hermes-agent). Confirm that the harness supports Chat Completions and the model's reasoning controls.
+
+For more model and serving details, see the <a href="https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731" target="_blank" rel="noopener">DeepSeek model card</a> and the <a href="https://recipes.vllm.ai/deepseek-ai/DeepSeek-V4-Flash" target="_blank" rel="noopener">vLLM recipe</a>.

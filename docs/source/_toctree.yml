@@ -1,35 +1,67 @@
+- local: index
+  title: Overview
+
 - sections:
-  - local: index
-    title: Hugging Face on Microsoft Azure
-  - local: features
-    title: Features & Benefits
-  - local: security
-    title: Security & Compliance
-  - local: resources
-    title: Other Resources
-  - local: faq
-    title: Frequent Asked Questions (FAQ)
-  title: Getting Started
+  - local: get-started/quickstart
+    title: Quickstart
+  title: Get started
+
+- isExpanded: true
+  new: true
+  sections:
+  - local: catalog/index
+    title: Overview
+  - isExpanded: true
+    sections:
+    - local: catalog/featured/qwen
+      title: Qwen
+    - local: catalog/featured/deepseek-ai
+      title: DeepSeek AI
+    - local: catalog/featured/nvidia
+      title: NVIDIA
+    - local: catalog/featured/microsoft
+      title: Microsoft
+    title: Featured
+  - local: catalog/more
+    title: And much more
+  title: Catalog
+
+- isExpanded: true
+  sections:
+  - local: harness/index
+    title: Overview
+  - isExpanded: true
+    sections:
+    - local: harness/integrations/codex
+      title: Codex
+    - local: harness/integrations/hermes-agent
+      title: Hermes Agent
+    - local: harness/integrations/claude-code
+      title: Claude Code (Coming soon)
+    - local: harness/integrations/opencode
+      title: OpenCode (Coming soon)
+    - local: harness/integrations/pi
+      title: Pi (Coming soon)
+    title: Integrations
+  title: Harness
+
 - sections:
-  - local: guides/managed-compute-foundry
-    title: Deploy Hugging Face Models in Foundry with Managed Compute
-  - local: guides/one-click-deployment-foundry
-    title: One-click deployments from the Hugging Face Hub on Microsoft Foundry
-  - local: guides/access-gated-models
-    title: Deploy Hugging Face gated models on Microsoft Foundry
-  - local: guides/request-model-addition
-    title: Request a model addition in the Hugging Face collection on Microsoft Foundry
-  - local: guides/configure-azure-ml-microsoft-foundry
-    title: Configure Azure Machine Learning and Microsoft Foundry
-  local: guides/introduction
-  title: Guides
-- sections:
-  - local: foundry/introduction
-    title: Introduction
-  - local: foundry/tasks
-    title: Supported Tasks
-  - local: foundry/hardware
-    title: Supported Hardware
-  - local: foundry/models
-    title: Supported Models
-  title: Microsoft Foundry
+  - local: advanced/reasoning
+    title: Enable and disable reasoning
+  title: Advanced
+  isExpanded: false
+
+- isExpanded: true
+  sections:
+  - local: examples/index
+    title: Overview
+  - isExpanded: true
+    sections:
+    - local: examples/llms/glm-5-2-fp8
+      title: Open frontier-scale intelligence with GLM 5.2 and vLLM
+    - local: examples/llms/deepseek-v4-flash-0731
+      title: Long-context reasoning and agentic coding with DeepSeek V4 Flash
+    - local: examples/llms/qwen3-8-27b
+      title: Multimodal understanding with Qwen3.8 27B
+    title: LLMs
+  title: Examples

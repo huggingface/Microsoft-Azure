@@ -1,0 +1,87 @@
+# Harness
+
+An agent harness is the application that drives a model: it holds the conversation, exposes tools such as file edits or shell commands, and decides what to send back to the model on every turn. Any harness that speaks the OpenAI Chat Completions API or the Responses API can point at a model deployed on Microsoft Foundry.
+
+> [!TIP]
+> These guides assume that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
+
+## Choose an integration
+
+Pick the tool you want to use. Each guide starts from an existing Foundry deployment and shows you how to connect it to the harness and run your first task.
+
+<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 not-prose">
+  <a
+    href="./integrations/codex"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/codex/logo.png"
+      alt="Codex logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Codex</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">OpenAI's coding agent for the terminal</span>
+    </span>
+  </a>
+  <a
+    href="./integrations/hermes-agent"
+    class="!no-underline flex items-center gap-3 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-2.5 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/logo.png"
+      alt="Hermes Agent logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Hermes Agent</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Nous Research's self-improving agent</span>
+    </span>
+  </a>
+  <div
+    class="flex items-center gap-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 px-3 py-2.5 opacity-60 cursor-not-allowed"
+    aria-disabled="true"
+  >
+    <img
+      src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/claude-code/logo.png"
+      alt="Claude Code logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200 grayscale"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Claude Code</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Coming soon</span>
+    </span>
+  </div>
+  <div
+    class="flex items-center gap-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 px-3 py-2.5 opacity-60 cursor-not-allowed"
+    aria-disabled="true"
+  >
+    <img
+      src="https://opencode.ai/favicon-96x96-v3.png"
+      alt="OpenCode logo"
+      class="h-9 w-9 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200 grayscale"
+    />
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">OpenCode</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Coming soon</span>
+    </span>
+  </div>
+  <div
+    class="flex items-center gap-3 rounded-lg border border-dashed border-gray-200 dark:border-gray-700 px-3 py-2.5 opacity-60 cursor-not-allowed"
+    aria-disabled="true"
+  >
+    <svg
+      viewBox="0 0 800 800"
+      role="img"
+      aria-label="Pi logo"
+      class="h-9 w-9 shrink-0 text-black dark:text-white"
+    >
+      <path fill="currentColor" fill-rule="evenodd" d="M165.29 165.29H517.36V400H400V517.36H282.65V634.72H165.29ZM282.65 282.65V400H400V282.65Z" />
+      <path fill="currentColor" d="M517.36 400H634.72V634.72H517.36Z" />
+    </svg>
+    <span class="flex flex-col leading-snug">
+      <span class="text-base font-semibold text-gray-900 dark:text-gray-100">Pi</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Coming soon</span>
+    </span>
+  </div>
+</div>
