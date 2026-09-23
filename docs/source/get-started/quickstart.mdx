@@ -1,0 +1,140 @@
+# Quickstart
+
+Deploy a model from the Hugging Face collection on Microsoft Foundry, then call it from Python using the OpenAI-compatible APIs.
+
+## Before you begin
+
+- A Microsoft Azure subscription and a Microsoft Foundry project
+- `Cognitive Services Contributor` access to create the deployment
+- Managed compute quota for the accelerator that your model requires
+
+## Deploy a model
+
+Pick Microsoft Foundry for a first, guided deployment experience, or rather the Python SDK for a programmatic and repeatable one.
+
+<hfoptions id="deployment">
+<hfoption id="Microsoft Foundry">
+
+1. Open <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> and select your project.
+2. Go to **Discover -> Models**, and filter **Collection** by **Hugging Face** and **Deployment options** by **Managed compute**.
+3. Select a model and choose **Deploy**.
+4. Enter a deployment name, pick a deployment template and its accelerator, and click **Deploy**.
+
+![Qwen3.8 27B on Microsoft Foundry](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F661/microsoft-foundry/get-started/model.png)
+
+The deployment is ready when its state becomes `Succeeded`.
+
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+
+## Call the deployment
+
+Either go to the Playground page for the model on Microsoft Foundry to use the chat models.
+
+![Microsoft Foundry Playground](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F661/microsoft-foundry/get-started/playground.png)
+
+Or rather send a cURL request to the OpenAI-compatible API as follows:
+
+```bash
+curl https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions \
+    -H "Authorization: Bearer <API_KEY>" \
+    -H "Content-Type: application/json" \
+    -d '{"model":"<DEPLOYMENT_NAME>","messages":[{"role":"user","content":"Write a one-sentence hello from Microsoft Foundry."}]}'
+```
+
+The models that support reasoning are better supported via the Responses API at `/openai/v1/responses` rather than Chat Completions API.
+
+## Clean up
+
+When you are finished with the deployment, delete it to release its accelerators and stop billing.
+
+</hfoption>
+<hfoption id="Python SDK">
+
+Install the dependencies and sign in to Azure.
+
+```bash
+pip install azure-identity "azure-mgmt-cognitiveservices>=15.0.0b2" openai
+az login
+```
+
+Then, when you select a model ID from the Hugging Face Hub or from the available IDs in the Microsoft Foundry collection, then you need to retrieve the asset name and version, as well as the deployment-template and accelerator that it will be deployed in.
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "qwen--qwen3-8-27b"
+
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": "azureml://registries/azure-huggingface/models/qwen--qwen3.8-27b/versions/2",
+            "deploymentTemplate": "azureml://registries/azure-huggingface/deploymenttemplates/qwen--qwen3-8-27b--256k-nvidia-h100/labels/latest",
+            "acceleratorType": "H100_80GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+The call returns when provisioning finishes, and prints `Succeeded`.
+
+> [!TIP]
+> The deployment usually takes 15–20 minutes, but might take up to an hour whilst looking for instances when demand is high.
+
+## Call the deployment
+
+Copy the endpoint and key from the deployment page, and use the **deployment name** as the `model`:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<DEPLOYMENT_NAME>",
+    messages=[{"role": "user", "content": "Write a one-sentence hello from Microsoft Foundry."}],
+)
+
+print(response.choices[0].message.content)
+```
+
+The models that support reasoning are better supported via the Responses API at `/openai/v1/responses` rather than Chat Completions API.
+
+## Clean up
+
+When you are finished with the deployment, delete it to release its accelerators and stop billing.
+
+```python
+client.managed_compute_deployments.begin_delete(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+).result()
+```
+
+</hfoption>
+</hfoptions>
+
+## Next steps
+
+- Browse the [Featured Catalog](../catalog/index) to help select a model.
+- Connect the deployment to a harness such as [Codex](../harness/integrations/codex) or [Hermes Agent](../harness/integrations/hermes-agent).

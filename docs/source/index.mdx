@@ -1,11 +1,73 @@
-# Hugging Face on Microsoft Azure
+# Hugging Face on Microsoft Foundry
 
 ![Hugging Face on Microsoft Azure](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/microsoft-azure/thumbnail.png)
 
-Hugging Face collaborates with Microsoft Azure across open science, open source, and cloud, to enable companies to build their own AI with the latest open models from Hugging Face and the latest infrastructure features from Microsoft Azure.
+Hugging Face and Microsoft bring a curated collection of open models to Microsoft Foundry. You deploy a model on managed compute from the Foundry portal or from Python, and call it behind an OpenAI-compatible endpoint, without building or maintaining the serving stack yourself.
 
-Hugging Face enables new experiences for Microsoft Azure customers, allowing them to [deploy models on their Microsoft Azure infrastructure directly from the Hugging Face Hub via one-click deployments](./guides/one-click-deployment-foundry) in a secure and scalable way, as well as from either the Microsoft Foundry or the Azure Machine Learning model catalog, or even programmatically via the Azure CLI or the Python SDK.
+## Catalog
 
-This collaboration aims to offer developers access to an everyday growing catalog of open-source models from the Hugging Face Hub, using Hugging Face open-source libraries across a broad spectrum of Microsoft Azure services and hardware platforms.
+The collection lives in the `azure-huggingface` registry and shows up in the Foundry model catalog, where you can filter by **Collection: Hugging Face** and **Deployment options: Managed compute**.
 
-By combining Hugging Face's open-source models, libraries and solutions with Microsoft Azure's scalable and secure cloud services, developers can more easily and affordably incorporate advanced AI capabilities into their applications.
+![Filtering the Foundry model catalog by the Hugging Face collection and managed compute deployment option](https://huggingface.co/datasets/hf-azure-internal/documentation-image/resolve/main/managed-compute/catalog.png)
+
+Each model is published as a versioned asset in the registry, with one or more deployment templates that pin the serving engine, the configuration, and the accelerator it runs on. Browse it in the [catalog](./catalog/index), where every entry links to the latest version of the model on Microsoft Foundry.
+
+## Deploy a model
+
+```python
+from azure.identity import DefaultAzureCredential
+from azure.mgmt.cognitiveservices import CognitiveServicesManagementClient
+
+SUBSCRIPTION_ID = "<SUBSCRIPTION_ID>"
+RESOURCE_GROUP = "<RESOURCE_GROUP>"
+ACCOUNT_NAME = "<ACCOUNT_NAME>"
+DEPLOYMENT_NAME = "qwen--qwen3-8-27b"
+
+client = CognitiveServicesManagementClient(
+    credential=DefaultAzureCredential(),
+    subscription_id=SUBSCRIPTION_ID,
+)
+
+deployment = client.managed_compute_deployments.begin_create_or_update(
+    resource_group_name=RESOURCE_GROUP,
+    account_name=ACCOUNT_NAME,
+    deployment_name=DEPLOYMENT_NAME,
+    resource={
+        "sku": {"name": "GlobalManagedCompute", "capacity": 1},
+        "properties": {
+            "model": "azureml://registries/azure-huggingface/models/qwen--qwen3.8-27b/versions/2",
+            "deploymentTemplate": "azureml://registries/azure-huggingface/deploymenttemplates/qwen--qwen3-8-27b--256k-nvidia-h100/labels/latest",
+            "acceleratorType": "H100_80GB",
+            "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+        },
+    },
+).result()
+
+print(deployment.properties.provisioning_state)
+```
+
+## Run inference
+
+Once the deployment reports `Succeeded`, call it with the OpenAI SDK. The `model` field takes the **deployment name**, not the model name from the catalog:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url=f"https://{ACCOUNT_NAME}.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model=DEPLOYMENT_NAME,
+    messages=[{"role": "user", "content": "Hello from Microsoft Foundry."}],
+)
+
+print(response.choices[0].message.content)
+```
+
+## Next steps
+
+- Deploy your first model from the portal or from Python in the [quickstart](./get-started/quickstart).
+- Turn reasoning on or off per request in [Enable and disable reasoning](./advanced/reasoning).
+- Connect a deployment to an agent harness such as [Codex](./harness/integrations/codex) or [Hermes Agent](./harness/integrations/hermes-agent).
