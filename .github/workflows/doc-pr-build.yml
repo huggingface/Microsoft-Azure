@@ -21,4 +21,3 @@ jobs:
       package: Microsoft-Azure
       package_name: microsoft-azure
       additional_args: --not_python_module
-      pre_command: cd Microsoft-Azure && make docs

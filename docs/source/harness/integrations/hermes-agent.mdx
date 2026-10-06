@@ -1,0 +1,73 @@
+# Hermes Agent
+
+<a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">Hermes Agent</a> is a self-improving AI agent built by Nous Research. It's the only agent with a built-in learning loop, it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions.
+
+![Hermes Agent Landing](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/thumbnail.png)
+
+## Install the harness
+
+You can either install the desktop application for macOS from <a href="https://hermes-agent.nousresearch.com/" target="_blank" rel="noopener">https://hermes-agent.nousresearch.com/</a> or rather install it programmatically for Linux or macOS as:
+
+```bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+```
+
+Or on Windows as:
+
+```bash
+irm https://hermes-agent.nousresearch.com/install.ps1 | iex
+```
+
+## Connect the model
+
+> [!TIP]
+> This guide assumes that you already have a model running on Microsoft Foundry. If you do not, follow the [quickstart](../../get-started/quickstart) and deploy one from the Foundry portal or with Python first.
+
+Once installed, you can connect your OpenAI-compatible models deployed on Microsoft Foundry to it as it supports both Chat Completions API and Responses API (recommended) specifications.
+
+You need to create or add the following into your Hermes Agent configuration file at `~/.hermes/config.yaml`. More information at <a href="https://hermes-agent.nousresearch.com/docs/user-guide/configuring-models" target="_blank" rel="noopener">Hermes Agent - Configuring Models</a>.
+
+Let's assume that you want to <a href="https://ai.azure.com/nextgen/goto/discover/models/qwen--qwen3.8-27b/version/2/registry/azure-huggingface" target="_blank" rel="noopener">deploy Qwen3.8 27B on Microsoft Foundry</a> in a project named `huggingface-demo` then the `~/.hermes/config.yaml` would look like:
+
+```yaml
+model:
+  default: qwen--qwen3-8-27b
+  provider: microsoft-foundry
+  base_url: https://huggingface-demo.openai.azure.com/openai/v1
+  key_env: HERMES_CUSTOM_MICROSOFT_FOUNDRY_API_KEY
+
+providers:
+  microsoft-foundry:
+    name: Microsoft Foundry
+    base_url: https://huggingface-demo.openai.azure.com/openai/v1
+    model: <DEPLOYMENT-NAME>
+    discover_models: false
+
+    models:
+      qwen--qwen3-8-27b:
+        context_length: 262144
+        supports_vision: true
+
+agent:
+  reasoning_overrides:
+    qwen--qwen3-8-27b: medium
+```
+
+> [!TIP]
+> As a reminder, the value for `HERMES_CUSTOM_MICROSOFT_FOUNDRY_API_KEY` is either obtained from <a href="https://ai.azure.com" target="_blank" rel="noopener">Microsoft Foundry</a> or programmatically with the `az` CLI as `az cognitiveservices account keys list --subscription <SUBSCRIPTION-ID> --resource-group <RESOURCE-GROUP> --name huggingface-demo -o tsv --query key1`.
+
+Alternatively, from the desktop application you can also open the settings and click on "Providers -> Custom Endpoints" and create the endpoint with the deployed model, then set the following:
+
+- **Name** and **Provider ID** set to "Microsoft Foundry" and "microsoft-foundry", respectively.
+- **Endpoint URL** set to "https://<FOUNDRY_PROJECT_NAME>.openai.azure.com/openai/v1"
+- **Default Model** set to the *deployment name* not the model name, as it's the name that Microsoft Foundry uses in the top-level router to forward the requests to the deployed models.
+- **Context** set to the maximum context length supported by the model, which is usually any of 65536, 131072, 262144, 524288, etc. but check it out first in the deployment template as it's usually mentioned in the description. But note that even though the underlying model might support a larger (or shorter) context length, the one defined in the deployment template is the correct one.
+- **API Key** set to the primary key displayed in Microsoft Foundry, or rather the output of `az cognitiveservices account keys list --subscription <SUBSCRIPTION_ID> --resource-group <RESOURCE_GROUP> --name <FOUNDRY_PROJECT> -o tsv --query key1`.
+
+![Hermes Agent Settings -> Providers -> Custom Endpoints](https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/desktop.png)
+
+## Test it!
+
+Finally, before using the model you can test it beforehand to make sure that everything's correctly configured, then you're all set!
+
+<video src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/refs%2Fpr%2F653/microsoft-azure/harness/hermes-agent/video.mp4" controls muted loop preload="metadata" />

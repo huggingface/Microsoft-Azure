@@ -1,0 +1,453 @@
+# NVIDIA
+
+<a href="https://huggingface.co/nvidia" target="_blank" rel="noopener">NVIDIA</a> releases the Nemotron and Cosmos families, together with FP8 and NVFP4 quantizations of them that lower the accelerator footprint needed to serve each model.
+
+<div class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500 dark:text-gray-400">
+  <span class="flex items-center gap-1.5"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span>Text</span>
+  <span class="flex items-center gap-1.5"><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span>Image</span>
+  <span class="flex items-center gap-1.5"><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span>Video</span>
+  <span class="flex items-center gap-1.5"><span title="Audio" class="inline-flex h-5 w-5 items-center justify-center rounded bg-orange-50 text-orange-600 ring-orange-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17.5 7a7 7 0 0 1 0 10"/></svg></span>Audio</span>
+  <span class="flex items-center gap-1.5"><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span>Embeddings</span>
+</div>
+
+## Chat completion
+
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nvidia-nemotron-3.5-lightning-30b-a3b-nvfp4/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4</span>
+          <span class="rounded bg-green-50 px-1.5 py-0.5 text-xs font-semibold uppercase text-green-700 ring-1 ring-green-100 dark:bg-gray-800 dark:text-green-400 dark:ring-gray-700">New</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Efficient Nemotron 3.5 Lightning 30B NVFP4 model for long-running agents and local inference.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Aug 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nvidia-nemotron-3.5-lightning-30b-a3b-bf16/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16</span>
+          <span class="rounded bg-green-50 px-1.5 py-0.5 text-xs font-semibold uppercase text-green-700 ring-1 ring-green-100 dark:bg-gray-800 dark:text-green-400 dark:ring-gray-700">New</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Full-precision Nemotron 3.5 Lightning 30B reference model for customization and domain adaptation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Aug 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nvidia-nemotron-3-ultra-550b-a55b-nvfp4/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Frontier-scale NVFP4 reasoning and chat model for complex agentic workflows, long-context analysis, tool use, multilingual reasoning, and high-stakes RAG.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jun 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nvidia-nemotron-3-super-120b-a12b-fp8/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">NVIDIA-Nemotron-3-Super-120B-A12B-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Instruction-tuned reasoning model for chat, tool use, and complex problem solving.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Mar 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-terminal-32b/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-Terminal-32B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVIDIA Qwen3-based 32B model specialized for autonomous terminal interaction.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-terminal-14b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-Terminal-14B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVIDIA Qwen3-based 14B model specialized for autonomous terminal interaction.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-terminal-8b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-Terminal-8B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVIDIA Qwen3-based 8B model specialized for autonomous terminal interaction.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Feb 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nvidia-nemotron-3-nano-30b-a3b-fp8/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">NVIDIA-Nemotron-3-Nano-30B-A3B-FP8</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Instruction-tuned reasoning model for chat, tool use, and complex problem solving.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Dec 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--opencodereasoning-nemotron-1.1-32b/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">OpenCodeReasoning-Nemotron-1.1-32B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVIDIA 32B code-reasoning model derived from Qwen2.5-32B-Instruct.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jun 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--opencodereasoning-nemotron-1.1-14b/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">OpenCodeReasoning-Nemotron-1.1-14B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVIDIA 14B code-reasoning model derived from Qwen2.5-14B-Instruct.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jun 2025</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--cosmos-reason1-7b/version/2/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Cosmos-Reason1-7B</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">VLM for physical AI reasoning over text, images, and video.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Apr 2025</span>
+      </span>
+    </span>
+  </a>
+</div>
+
+## Multimodal generation
+
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--cosmos3-edge/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Cosmos3-Edge</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Cosmos3 Edge omni model for text, image, video, audio, and action generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span title="Audio" class="inline-flex h-5 w-5 items-center justify-center rounded bg-orange-50 text-orange-600 ring-orange-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17.5 7a7 7 0 0 1 0 10"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--cosmos3-nano/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Cosmos3-Nano</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Cosmos3 Nano omni model for text, image, video, audio, and action generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span title="Audio" class="inline-flex h-5 w-5 items-center justify-center rounded bg-orange-50 text-orange-600 ring-orange-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17.5 7a7 7 0 0 1 0 10"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Mar 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--cosmos3-super/version/3/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Cosmos3-Super</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Cosmos3 Super omni model for text, image, video, audio, and action generation.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span><span title="Audio" class="inline-flex h-5 w-5 items-center justify-center rounded bg-orange-50 text-orange-600 ring-orange-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5"/><path d="M17.5 7a7 7 0 0 1 0 10"/></svg></span><span class="px-1 text-gray-400">&#8594;</span><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span title="Image" class="inline-flex h-5 w-5 items-center justify-center rounded bg-green-50 text-green-600 ring-green-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m4 18 5-5 3.5 3.5L16 13l4 4"/></svg></span><span title="Video" class="inline-flex h-5 w-5 items-center justify-center rounded bg-red-50 text-red-500 ring-red-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Mar 2026</span>
+      </span>
+    </span>
+  </a>
+</div>
+
+## Embeddings
+
+<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-3-embed-1b-nvfp4/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-3-Embed-1B-NVFP4</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">NVFP4-quantized multilingual 1B embedding model for retrieval, semantic search, and RAG.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-3-embed-8b-bf16/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-3-Embed-8B-BF16</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Multilingual 8B embedding model for retrieval, semantic search, and RAG with flexible 4096-dim vectors.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2026</span>
+      </span>
+    </span>
+  </a>
+  <a
+    href="https://ai.azure.com/nextgen/goto/discover/models/nvidia--nemotron-3-embed-1b-bf16/version/1/registry/azure-huggingface"
+    target="_blank"
+    rel="noopener"
+    class="!no-underline flex items-start gap-3 rounded-lg border border-gray-200 dark:border-gray-700 p-3 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-500 transition"
+  >
+    <img
+      src="https://cdn-avatars.huggingface.co/v1/production/uploads/65df9200dc3292a8983e5017/Vs5FPVCH-VZBipV3qKTuy.png"
+      alt="NVIDIA logo"
+      class="h-8 w-8 shrink-0 rounded-md bg-white object-contain p-0.5 ring-1 ring-gray-200"
+    />
+    <span class="flex flex-1 flex-col gap-1 min-w-0">
+      <span class="flex items-center justify-between gap-2">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class="font-semibold text-gray-900 dark:text-gray-100">Nemotron-3-Embed-1B-BF16</span>
+        </span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 shrink-0 text-gray-400 dark:text-gray-500"><path d="M8.5 15.5 20 4"/><path d="M14 4h6v6"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg>
+      </span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Multilingual 1B embedding model for retrieval, semantic search, and RAG with flexible 2048-dim vectors.</span>
+      <span class="flex items-center justify-between gap-2 pt-0.5">
+        <span class="flex items-center gap-1"><span title="Text" class="inline-flex h-5 w-5 items-center justify-center rounded bg-blue-50 text-blue-600 ring-blue-100 ring-1 dark:bg-gray-800 dark:ring-gray-700"><span class="text-xs font-serif font-semibold leading-none">T</span></span><span class="px-1 text-gray-400">&#8594;</span><span title="Embeddings" class="inline-flex h-5 w-5 items-center justify-center rounded bg-gray-100 text-gray-600 ring-gray-200 ring-1 dark:bg-gray-800 dark:ring-gray-700"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3"><path d="M4 7h11M4 12h16M4 17h8"/></svg></span></span>
+        <span class="shrink-0 text-xs text-gray-400 dark:text-gray-500">Jul 2026</span>
+      </span>
+    </span>
+  </a>
+</div>
