@@ -1,0 +1,196 @@
+# Enable and disable reasoning
+
+Some models can answer directly or generate a reasoning trace before the final answer. You choose the mode per request, so you can switch without redeploying the model.
+
+Reasoning can improve planning, coding, and other multi-step tasks, but it also adds latency and output tokens. Defaults and supported controls vary by model, so check the model page before relying on a particular setting.
+
+<div class="not-prose mx-auto my-8 w-full max-w-lg overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
+  <div class="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
+    <span class="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Reasoning mode</span>
+    <span class="rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700 ring-1 ring-green-100 dark:bg-gray-800 dark:text-green-400 dark:ring-gray-700">Enabled</span>
+  </div>
+  <div class="font-mono text-sm leading-6">
+    <div class="flex gap-3 border-b border-red-100 bg-red-50 px-4 py-2 text-red-800 dark:border-gray-700 dark:bg-gray-900 dark:text-red-400">
+      <span aria-hidden="true" class="select-none font-semibold text-red-500 dark:text-red-400">−</span>
+      <code class="bg-transparent p-0 text-inherit">'enable_thinking': false</code>
+    </div>
+    <div class="flex gap-3 bg-green-50 px-4 py-2 text-green-800 dark:bg-gray-900 dark:text-green-400">
+      <span aria-hidden="true" class="select-none font-semibold text-green-600 dark:text-green-400">+</span>
+      <code class="bg-transparent p-0 text-inherit">'enable_thinking': true</code>
+    </div>
+  </div>
+</div>
+
+## Chat Completions API
+
+Send Chat Completions requests to `/openai/v1/chat/completions`. Reasoning switches are extensions understood by the serving engine and the model's chat template; they are not standard Chat Completions fields.
+
+With cURL, place `chat_template_kwargs` directly in the JSON body. With the Python SDK, pass it through `extra_body` so the SDK forwards it as a top-level request field.
+
+### vLLM
+
+This example enables reasoning with `enable_thinking`. Set it to `false` to request a direct answer from models that support both modes.
+
+<hfoptions id="vllm-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is deep learning?"
+      }
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": true,
+      "thinking": true
+    }
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<DEPLOYMENT_NAME>",
+    messages=[{"role": "user", "content": "What is deep learning?"}],
+    extra_body={
+        "chat_template_kwargs": {
+            "enable_thinking": True,
+            "thinking": True,
+        }
+    },
+)
+
+message = response.choices[0].message
+print(getattr(message, "reasoning", None))
+print(message.content)
+```
+
+</hfoption>
+</hfoptions>
+
+When a reasoning parser is configured for the deployment, current vLLM versions return the separated trace in `message.reasoning` and the final answer in `message.content`. Older runtime versions may use `reasoning_content` instead.
+
+### SGLang
+
+Set `separate_reasoning` to `true` to return the trace separately from the final answer.
+
+<hfoptions id="sglang-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/chat/completions" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is deep learning?"
+      }
+    ],
+    "chat_template_kwargs": {
+      "enable_thinking": true,
+      "thinking": true
+    },
+    "separate_reasoning": true
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.chat.completions.create(
+    model="<DEPLOYMENT_NAME>",
+    messages=[{"role": "user", "content": "What is deep learning?"}],
+    extra_body={
+        "chat_template_kwargs": {
+            "enable_thinking": True,
+            "thinking": True,
+        },
+        "separate_reasoning": True,
+    },
+)
+
+message = response.choices[0].message
+print(getattr(message, "reasoning_content", None))
+print(message.content)
+```
+
+</hfoption>
+</hfoptions>
+
+SGLang returns the separated trace in `message.reasoning_content` and the final answer in `message.content`.
+
+## Responses API
+
+For deployments that expose the Responses API, send requests to `/openai/v1/responses` and use `reasoning.effort`. Supported effort levels vary by model and runtime; `high` enables more reasoning, while `none` requests a direct answer where that level is supported.
+
+<hfoptions id="responses-client">
+<hfoption id="cURL">
+
+```bash
+curl -sS -X POST \
+  "https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "api-key: <API_KEY>" \
+  -d '{
+    "model": "<DEPLOYMENT_NAME>",
+    "input": "Build a small FastAPI health-check endpoint.",
+    "reasoning": {
+      "effort": "high"
+    }
+  }'
+```
+
+</hfoption>
+<hfoption id="Python SDK">
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<ACCOUNT_NAME>.services.ai.azure.com/openai/v1",
+    api_key="<API_KEY>",
+)
+
+response = client.responses.create(
+    model="<DEPLOYMENT_NAME>",
+    input="Build a small FastAPI health-check endpoint.",
+    reasoning={"effort": "high"},
+)
+
+print(response.output_text)
+```
+
+</hfoption>
+</hfoptions>
+
+## Models without a switch
+
+Reasoning-only models ignore requests to disable reasoning, while non-reasoning models ignore reasoning controls. Use the model page as the source of truth for supported modes and parameter names.
